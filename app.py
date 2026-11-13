@@ -42,6 +42,17 @@ def index():
     return send_from_directory(BASE_DIR, "index.html")
 
 
+@app.get("/favicon.ico")
+def favicon():
+    return send_from_directory(os.path.join(BASE_DIR, "static"), "favicon.ico",
+                               mimetype="image/vnd.microsoft.icon")
+
+
+@app.get("/apple-touch-icon.png")
+def apple_touch_icon():
+    return send_from_directory(os.path.join(BASE_DIR, "static"), "apple-touch-icon.png")
+
+
 @app.get("/health")
 def health():
     return {"ok": True, "telegram_configured": bool(BOT_TOKEN and CHAT_ID)}
