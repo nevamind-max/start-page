@@ -1,0 +1,865 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Metakultura для артистів</title>
+<meta name="description" content="Продаємо мерч українських артистів: розміщення, оплати, комунікація з покупцями, склад, відправки й виробництво. Тарифи від 12%.">
+<meta property="og:title" content="Metakultura для артистів">
+<meta property="og:description" content="Ви пишете музику — ми продаємо ваш мерч. Тарифи від 12%, щомісячні виплати, власні інструменти аналітики.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://start.metakultura.store/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+@font-face{font-family:"NAMU";src:url("/static/fonts/NAMU-1990.woff2") format("woff2");font-weight:400 900;font-display:swap}
+
+:root{
+  --paper:#F2F2EF;
+  --white:#FFFFFF;
+  --ink:#000000;
+  --yellow:#F7E51E;
+  --grey:#5E5E5A;
+  --line:#D6D6D0;
+  --tg-bg:#0E1621;
+  --tg-in:#182533;
+  --tg-out:#2B5278;
+  --font:"NAMU","Golos Text",system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--paper);color:var(--ink);font-family:var(--font);font-size:17px;line-height:1.55;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.wrap{max-width:1200px;margin:0 auto;padding:0 16px}
+@media (min-width:760px){.wrap{padding:0 32px}}
+
+h2{font-size:clamp(30px,4.6vw,52px);line-height:1.05;font-weight:700;letter-spacing:-.01em;max-width:18ch}
+.sec{padding:72px 0}
+@media (min-width:760px){.sec{padding:110px 0}}
+.sec-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:16px 40px;margin-bottom:40px}
+.sec-head p{max-width:44ch;color:var(--grey)}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 26px;font:600 16px/1 var(--font);text-decoration:none;border:2px solid var(--ink);cursor:pointer;transition:transform .15s ease,background .15s ease}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:4px 4px 0 var(--ink)}
+.btn-black{background:var(--ink);color:var(--white)}
+.btn-black:hover{box-shadow:4px 4px 0 var(--yellow)}
+.btn-yellow{background:var(--yellow);color:var(--ink)}
+.btn-line{background:transparent;color:var(--ink)}
+.btn svg{width:20px;height:20px;flex:none}
+
+/* header */
+header{position:sticky;top:0;z-index:20;background:rgba(242,242,239,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.head{display:flex;align-items:center;justify-content:space-between;height:68px;gap:24px}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none;font-weight:700;font-size:18px}
+.logo-svg{width:42px;height:42px;display:block;flex:none}
+.logo small{display:block;font-weight:500;font-size:13px;color:var(--grey);line-height:1}
+nav.links{display:none;gap:28px}
+nav.links a{text-decoration:none;font-size:15px;color:var(--grey)}
+nav.links a:hover{color:var(--ink)}
+.head .btn{min-height:42px;padding:0 18px;font-size:15px}
+@media (min-width:980px){nav.links{display:flex}}
+@media (max-width:520px){.head .btn{display:none}}
+
+/* hero */
+.hero{padding:56px 0 0}
+.hero-grid{display:grid;gap:48px;align-items:center}
+@media (min-width:980px){.hero-grid{grid-template-columns:1.15fr .85fr;gap:32px}}
+.stack{font-size:clamp(36px,6.4vw,80px);line-height:1;font-weight:800;text-transform:uppercase;letter-spacing:-.02em;margin-bottom:32px}
+.stack span{display:block;width:fit-content;white-space:nowrap;background:var(--white);padding:.08em .18em .12em;margin-bottom:.12em;transform-origin:left center}
+.stack span:nth-child(1){transform:rotate(-1.2deg)}
+.stack span:nth-child(2){margin-left:.6em;transform:rotate(.6deg)}
+.stack span:nth-child(3){background:var(--yellow);margin-left:.2em;transform:rotate(-.8deg)}
+.stack span:nth-child(4){margin-left:1.1em;transform:rotate(.5deg)}
+.lead{font-size:19px;max-width:40ch;margin-bottom:32px}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px}
+
+.collage{position:relative;height:440px;max-width:480px;width:100%;margin:0 auto}
+.collage figure{position:absolute;background:var(--white);padding:10px 10px 0;box-shadow:0 1px 0 var(--line)}
+.collage figure img{width:100%;aspect-ratio:1/1;object-fit:cover;background:#eee}
+.collage figcaption{font-size:12px;color:var(--grey);padding:8px 2px 10px}
+.collage .c1{width:58%;left:0;top:30px;transform:rotate(-4deg);z-index:2}
+.collage .c2{width:50%;right:0;top:0;transform:rotate(3deg)}
+.collage .c3{width:46%;right:6%;bottom:0;transform:rotate(-1.5deg);z-index:3}
+.sticker{position:absolute;z-index:4;left:6%;bottom:44px;background:var(--yellow);padding:8px 16px;font-weight:700;font-size:20px;transform:rotate(-3deg)}
+@media (max-width:520px){.collage{height:360px}.sticker{font-size:17px}}
+
+.stats{list-style:none;display:grid;grid-template-columns:repeat(2,1fr);gap:24px 16px;margin-top:72px;padding-top:28px;padding-bottom:8px;border-top:2px solid var(--ink)}
+@media (min-width:760px){.stats{grid-template-columns:repeat(4,1fr)}}
+.stats b{display:block;font-size:clamp(32px,4vw,46px);line-height:1;font-weight:800}
+.stats span{color:var(--grey);font-size:15px}
+
+/* load motion: only the hero labels */
+@media (prefers-reduced-motion:no-preference){
+  .stack span{animation:drop .6s cubic-bezier(.2,.9,.3,1.2) both}
+  .stack span:nth-child(2){animation-delay:.12s}
+  .stack span:nth-child(3){animation-delay:.24s}
+  .stack span:nth-child(4){animation-delay:.36s}
+  @keyframes drop{from{opacity:0;translate:0 -18px;rotate:-4deg}to{opacity:1;translate:0 0;rotate:0deg}}
+}
+
+/* artists */
+.names{font-size:clamp(22px,3vw,36px);line-height:1.35;font-weight:600}
+.names span{white-space:nowrap}.names i{font-style:normal;color:#BDBDB6}
+.names-more{margin-top:32px}
+.names .more{color:var(--grey)}
+
+/* base package */
+.base{background:var(--white)}
+.checks{list-style:none;display:grid;gap:22px 48px}
+@media (min-width:760px){.checks{grid-template-columns:1fr 1fr}}
+.checks li{display:grid;grid-template-columns:32px 1fr;gap:14px;align-items:start}
+.checks b{display:block;font-size:19px;font-weight:600;line-height:1.3}
+.checks span{color:var(--grey);font-size:15px}
+.ic{width:32px;height:32px;flex:none}
+
+/* quiz */
+.quiz{background:var(--yellow);padding:32px 20px;position:relative}
+@media (min-width:760px){.quiz{padding:48px}}
+.quiz h3{font-size:clamp(24px,3vw,34px);line-height:1.1;margin-bottom:8px}
+.quiz-sub{margin-bottom:28px}
+.q-step{font-size:14px;margin-bottom:10px;opacity:.7}
+.q-text{font-size:21px;font-weight:600;margin-bottom:18px}
+.q-opts{display:grid;gap:10px}
+@media (min-width:760px){.q-opts{grid-template-columns:repeat(3,1fr)}}
+.q-opts button{text-align:left;background:var(--white);border:2px solid var(--ink);padding:16px 18px;font:500 16px/1.35 var(--font);cursor:pointer;min-height:72px;transition:transform .15s,box-shadow .15s}
+.q-opts button:hover{transform:translate(-2px,-2px);box-shadow:4px 4px 0 var(--ink)}
+.q-result{background:var(--ink);color:var(--white);padding:24px}
+.q-result h4{font-size:28px;line-height:1.1;margin-bottom:6px}
+.q-result h4 em{font-style:normal;background:var(--yellow);color:var(--ink);padding:0 .25em;margin-left:.2em}
+.q-result p{color:#cfcfcf;margin-bottom:18px;max-width:60ch}
+.q-actions{display:flex;flex-wrap:wrap;gap:10px}
+.q-reset{background:none;border:none;color:var(--white);text-decoration:underline;font:500 15px var(--font);cursor:pointer;padding:0 8px}
+
+/* tariffs */
+.tariffs{display:grid;gap:44px 24px;margin-top:56px}
+@media (min-width:980px){.tariffs{grid-template-columns:repeat(3,1fr)}}
+.tariff{display:flex;flex-direction:column}
+.plaque{background:var(--ink);color:var(--white);font-size:clamp(26px,2.6vw,32px);font-weight:700;padding:22px 24px 30px;position:relative}
+.rate{position:absolute;right:-6px;bottom:-22px;background:var(--yellow);color:var(--ink);font-size:20px;font-weight:600;padding:6px 16px;transform:rotate(-2.5deg)}
+.tariff .fit{margin:40px 0 18px;font-size:16px;color:var(--grey);min-height:3.1em}
+.tariff ul{list-style:none;display:grid;gap:12px;margin-bottom:24px}
+.tariff li{display:grid;grid-template-columns:26px 1fr;gap:10px;font-size:16px;line-height:1.35;align-items:start}
+.tariff li .ic{width:26px;height:26px}
+.tariff li.off{color:var(--grey)}
+.tariff .note{background:var(--white);border-left:4px solid var(--yellow);padding:12px 14px;font-size:15px;margin-bottom:20px}
+.tariff .btn{margin-top:auto;width:100%}
+.fine{margin-top:48px;display:grid;gap:10px;color:var(--grey);font-size:15px}
+@media (min-width:760px){.fine{grid-template-columns:repeat(2,1fr);gap:24px;max-width:820px}}
+
+/* production */
+.prod{background:var(--white)}
+.prod-grid{display:grid;gap:40px}
+@media (min-width:980px){.prod-grid{grid-template-columns:1.1fr .9fr;gap:64px}}
+.prod p{max-width:56ch;margin-bottom:18px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:26px 0}
+.chips span{border:1.5px solid var(--ink);padding:6px 14px;font-size:15px}
+.aside-note{color:var(--grey);font-size:15px;border-top:1px solid var(--line);padding-top:18px}
+.calc-card{background:var(--ink);color:var(--white);padding:32px;align-self:start}
+.calc-card h3{font-size:28px;line-height:1.1;margin-bottom:12px}
+.calc-card p{color:#cfcfcf;margin-bottom:24px}
+.calc-card .url{display:block;font-size:14px;color:#8d8d8d;margin-top:12px}
+
+/* tools */
+.tools-grid{display:grid;gap:40px;align-items:start}
+@media (min-width:980px){.tools-grid{grid-template-columns:minmax(0,460px) 1fr;gap:64px}}
+.tg{background:var(--tg-bg);padding:18px 14px 22px;border-radius:14px;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;font-size:14.5px;line-height:1.4;color:#E9EEF3;min-height:560px}
+.tg-top{display:flex;align-items:center;gap:10px;padding:0 4px 14px;border-bottom:1px solid #1f2b38;margin-bottom:14px}
+.tg-ava{width:36px;height:36px;border-radius:50%;overflow:hidden;flex:none}.tg-ava svg{width:100%;height:100%;display:block}
+.tg-top b{display:block;font-size:15px}
+.tg-top small{color:#6d8193;font-size:13px}
+.msg{max-width:88%;padding:9px 12px 20px;border-radius:12px;margin-bottom:10px;position:relative;white-space:pre-line;opacity:1}
+.msg.in{background:var(--tg-in);border-bottom-left-radius:4px}
+.msg.out{background:var(--tg-out);margin-left:auto;border-bottom-right-radius:4px;padding-bottom:9px;padding-right:46px;white-space:normal}
+.msg time{position:absolute;right:10px;bottom:5px;font-size:11.5px;color:#6d8193}
+.msg.out time{color:#9fc3e6;bottom:9px}
+.kb{display:grid;grid-template-columns:1fr 1fr;gap:4px;max-width:88%;margin:-6px 0 12px}
+.kb span{background:#1e2c3a;text-align:center;padding:8px;border-radius:8px;font-size:13.5px;color:#cfe3f5}
+.js .tg .anim{opacity:0;transform:translateY(8px);transition:opacity .4s ease,transform .4s ease}
+.js .tg .anim.show{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.js .tg .anim{opacity:1;transform:none;transition:none}}
+.tool-copy h3{font-size:28px;line-height:1.15;margin-bottom:14px}
+.tool-copy > p{color:var(--grey);margin-bottom:22px;max-width:52ch}
+.feat{list-style:none;display:grid;gap:16px;margin-bottom:40px}
+.feat li{display:grid;grid-template-columns:26px 1fr;gap:12px}
+.feat .ic{width:26px;height:26px}
+
+.dash{background:var(--white);border:2px solid var(--ink);padding:22px}
+.dash-top{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.dash-top b{font-size:18px}
+.badge{background:var(--yellow);font-size:13px;font-weight:600;padding:4px 10px}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px}
+.kpi{background:var(--paper);padding:12px}
+.kpi small{display:block;color:var(--grey);font-size:12.5px}
+.kpi b{font-size:clamp(17px,2vw,22px);line-height:1.2}
+.kpi em{display:block;font-style:normal;font-size:12.5px;color:#1f7a3b;font-weight:600}
+.dash svg{width:100%;height:auto;display:block}
+.dash-cap{margin-top:12px;font-size:14px;color:var(--grey)}
+
+/* offline */
+.offline{background:var(--ink);color:var(--white)}
+.offline h2{color:var(--white)}
+.off-grid{display:grid;gap:48px;align-items:center}
+@media (min-width:980px){.off-grid{grid-template-columns:1fr 1fr;gap:72px}}
+.offline p{color:#cfcfcf;max-width:52ch;margin-bottom:16px}
+.offline .facts{list-style:none;display:grid;gap:10px;margin:24px 0 20px}
+.offline .off-note{font-size:15px;color:#9a9a9a;margin-bottom:28px}
+.offline .facts li{display:flex;gap:12px;align-items:baseline}
+.offline .facts b{color:var(--yellow);min-width:7.5em;font-weight:600}
+.machine{background:#1a1a1a;border:2px solid #333;padding:18px;max-width:440px;width:100%;justify-self:center}
+.machine-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;font-weight:700}
+.qr{width:44px;height:44px;background:
+  conic-gradient(from 90deg at 30% 30%,#fff 25%,#000 0) 0 0/11px 11px;border:4px solid #fff}
+.cells{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.cell{aspect-ratio:1/1.05;background:#262626;display:flex;flex-direction:column;justify-content:space-between;padding:7px;font-size:12px;color:#8d8d8d}
+.cell .coil{height:6px;border-top:2px dotted #555}
+.cell.on{background:var(--yellow);color:var(--ink)}
+.cell.on .coil{border-color:var(--ink)}
+.machine-foot{margin-top:14px;font-size:13px;color:#8d8d8d}
+.gigs{margin-top:56px;padding-top:32px;border-top:1px solid #333;display:grid;gap:12px}
+@media (min-width:760px){.gigs{grid-template-columns:auto 1fr;gap:40px;align-items:baseline}}
+.gigs h3{font-size:24px}
+.gigs p{margin:0}
+
+/* gallery */
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+@media (min-width:760px){.gallery{grid-template-columns:repeat(6,1fr);gap:20px}}
+.gallery a{text-decoration:none;display:block}
+.gallery img{width:100%;aspect-ratio:1/1;object-fit:cover;background:#e6e6e2;transition:filter .2s}
+.gallery a:hover img{filter:contrast(1.05) saturate(1.1)}
+.gallery b{display:block;font-size:13px;font-weight:600;margin-top:8px;line-height:1.25}
+.gallery span{display:block;font-size:12.5px;color:var(--grey);line-height:1.3}
+@media (min-width:760px){.gallery b{font-size:15px}.gallery span{font-size:14px}}
+.gal-more{margin-top:36px}
+
+/* steps */
+.steps-sec{background:var(--white)}
+.steps{list-style:none;display:grid;gap:28px;counter-reset:s}
+@media (min-width:760px){.steps{grid-template-columns:repeat(4,1fr);gap:24px}}
+.steps li{counter-increment:s;border-top:2px solid var(--ink);padding-top:18px}
+.steps li::before{content:counter(s);display:inline-grid;place-items:center;width:38px;height:38px;background:var(--yellow);font-weight:800;font-size:18px;margin-bottom:16px}
+.steps b{display:block;font-size:20px;margin-bottom:6px}
+.steps p{color:var(--grey);font-size:15.5px}
+
+/* faq */
+.faq{max-width:820px}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;padding:22px 44px 22px 0;font-size:20px;font-weight:600;position:relative}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"";position:absolute;right:6px;top:50%;width:14px;height:14px;border-right:2.5px solid var(--ink);border-bottom:2.5px solid var(--ink);transform:translateY(-70%) rotate(45deg);transition:transform .2s}
+.faq details[open] summary::after{transform:translateY(-30%) rotate(-135deg)}
+.faq details p{padding:0 0 24px;color:var(--grey);max-width:64ch}
+
+/* apply */
+.apply{background:var(--yellow)}
+.apply-grid{display:grid;gap:40px}
+@media (min-width:980px){.apply-grid{grid-template-columns:.85fr 1.15fr;gap:72px}}
+.apply-copy p{max-width:40ch;margin:20px 0 28px}
+.tg-direct{display:block;background:var(--ink);color:var(--white);text-decoration:none;padding:22px 24px;max-width:380px}
+.tg-direct small{display:block;color:#a8a8a8;font-size:14px;margin-bottom:4px}
+.tg-direct b{font-size:26px}
+form{background:var(--white);padding:24px;border:2px solid var(--ink)}
+@media (min-width:760px){form{padding:36px}}
+.f-row{display:grid;gap:16px}
+@media (min-width:640px){.f-row.two{grid-template-columns:1fr 1fr}}
+.field{display:grid;gap:6px;margin-bottom:16px}
+.field label,.field legend{font-size:14.5px;font-weight:600}
+.field .hint{font-weight:400;color:var(--grey)}
+input,select,textarea{width:100%;font:400 16px/1.4 var(--font);color:var(--ink);background:var(--paper);border:1.5px solid #bdbdb6;padding:13px 14px;border-radius:0;appearance:none}
+textarea{min-height:110px;resize:vertical}
+select{background-image:linear-gradient(45deg,transparent 50%,#000 50%),linear-gradient(135deg,#000 50%,transparent 50%);background-position:calc(100% - 20px) 55%,calc(100% - 14px) 55%;background-size:6px 6px;background-repeat:no-repeat;padding-right:40px}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--ink);background:var(--white)}
+fieldset{border:none}
+.radios{display:flex;flex-wrap:wrap;gap:8px}
+.radios label{display:flex;align-items:center;gap:8px;border:1.5px solid #bdbdb6;padding:10px 14px;cursor:pointer;font-weight:500;font-size:15px;background:var(--paper)}
+.radios input{width:16px;height:16px;padding:0;appearance:auto;accent-color:#000}
+.radios label:has(input:checked){border-color:var(--ink);background:var(--yellow)}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.f-foot{display:flex;flex-wrap:wrap;align-items:center;gap:14px 20px;margin-top:8px}
+.f-foot small{color:var(--grey);font-size:13.5px;max-width:34ch}
+.f-msg{margin-top:16px;font-weight:600}
+.f-msg.err{color:#b3261e}
+.done{text-align:left}
+.done h3{font-size:30px;line-height:1.1;margin-bottom:12px}
+.done p{color:var(--grey)}
+
+/* footer */
+footer{padding:40px 0 110px;font-size:15px;color:var(--grey)}
+@media (min-width:760px){footer{padding-bottom:40px}}
+.foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px}
+.foot nav{display:flex;flex-wrap:wrap;gap:20px}
+.foot a{text-decoration:none}
+.foot a:hover{color:var(--ink)}
+
+/* sticky mobile CTA */
+.m-cta{position:fixed;left:12px;right:12px;bottom:12px;z-index:30;transform:translateY(140%);transition:transform .25s ease}
+.m-cta.show{transform:none}
+.m-cta .btn{width:100%;box-shadow:0 6px 20px rgba(0,0,0,.25)}
+@media (min-width:760px){.m-cta{display:none}}
+</style>
+
+<!-- GA4: впишіть ідентифікатор G-XXXXXXX, щоб увімкнути аналітику -->
+<script>
+  window.GA_ID = "";
+  if (window.GA_ID) {
+    var s = document.createElement("script");
+    s.async = true; s.src = "https://www.googletagmanager.com/gtag/js?id=" + window.GA_ID;
+    document.head.appendChild(s);
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function(){ dataLayer.push(arguments); };
+    gtag("js", new Date()); gtag("config", window.GA_ID);
+  }
+  window.track = function(name, params){ if (window.gtag) gtag("event", name, params || {}); };
+  document.documentElement.classList.add("js");
+</script>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="ok" viewBox="0 0 32 32"><circle cx="16" cy="16" r="16" fill="#000"/><path d="M9.5 16.5l4.5 4.5 8.5-9" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="plus" viewBox="0 0 32 32"><circle cx="16" cy="16" r="16" fill="#F7E51E"/><path d="M9.5 16.5l4.5 4.5 8.5-9" fill="none" stroke="#000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="no" viewBox="0 0 32 32"><circle cx="16" cy="16" r="15" fill="none" stroke="#BDBDB6" stroke-width="2"/><path d="M10 16h12" stroke="#8d8d88" stroke-width="2.5" stroke-linecap="round"/></symbol>
+  <symbol id="tgi" viewBox="0 0 24 24"><path fill="currentColor" d="M21.9 4.3 18.7 19.4c-.2 1-.9 1.3-1.7.8l-4.8-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.9 8.9-8c.4-.3-.1-.5-.6-.2L6.5 13.2l-4.7-1.5c-1-.3-1-1 .2-1.5L20.5 3c.9-.3 1.6.2 1.4 1.3Z"/></symbol>
+</svg>
+
+<header>
+  <div class="wrap head">
+    <a class="logo" href="#top" aria-label="Metakultura — на початок сторінки">
+      <svg class="logo-svg" viewBox="0 0 75 75" aria-hidden="true"><rect width="75" height="75" fill="#F7E51E"/><g fill="#000"><path d="M12 52.5h8.4L37 24h-8.2z"/><rect x="34.9" y="24" width="1.8" height="28.5"/><path d="M34 52.5h8.4L59 24h-8.2z"/><rect x="56.9" y="24" width="1.8" height="28.5"/></g></svg>
+      <span>Metakultura<small>для артистів</small></span>
+    </a>
+    <nav class="links" aria-label="Розділи">
+      <a href="#tariffs">Тарифи</a>
+      <a href="#production">Виробництво</a>
+      <a href="#tools">Інструменти</a>
+      <a href="#offline">Мерчомат</a>
+      <a href="#faq">Питання</a>
+    </nav>
+    <a class="btn btn-black" href="#apply">Почати співпрацю</a>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <h1 class="stack" aria-label="Ви пишете музику — ми продаємо ваш мерч">
+        <span>Ви пишете</span>
+        <span>музику,</span>
+        <span>ми продаємо</span>
+        <span>ваш мерч</span>
+      </h1>
+      <p class="lead">Metakultura — магазин мерчу українських артистів. Ми беремо на себе продажі, спілкування з покупцями й оплати, а за бажанням — склад, відправки й виробництво. Виплати приходять щомісяця.</p>
+      <div class="cta-row">
+        <a class="btn btn-black" href="#apply" data-track="hero_apply">Залишити заявку</a>
+        <a class="btn btn-line" href="https://t.me/borees" target="_blank" rel="noopener" data-track="hero_telegram"><svg><use href="#tgi"/></svg>Написати в Telegram</a>
+      </div>
+    </div>
+    <div class="collage" aria-hidden="true">
+      <figure class="c2"><img src="https://metakultura.store/cdn/shop/files/nebo_t-shirt_1.webp?v=1791281116&width=600" alt="" loading="eager"><figcaption>Drevo</figcaption></figure>
+      <figure class="c1"><img src="https://metakultura.store/cdn/shop/files/sadsvit_cassette.webp?v=1757168153&width=600" alt="" loading="eager"><figcaption>SadSvit</figcaption></figure>
+      <figure class="c3"><img src="https://metakultura.store/cdn/shop/files/socks2uu.webp?v=1773867788&width=600" alt="" loading="eager"><figcaption>Юля Юріна</figcaption></figure>
+      <div class="sticker">комісія від 12%</div>
+    </div>
+  </div>
+  <div class="wrap">
+    <ul class="stats">
+      <li><b>50+</b><span>артистів уже з нами</span></li>
+      <li><b>~3</b><span>роки роботи</span></li>
+      <li><b>350+</b><span>товарів у магазині</span></li>
+      <li><b>6000+</b><span>відвідувачів щомісяця</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ARTISTS -->
+<section class="sec" aria-labelledby="artists-h">
+  <div class="wrap">
+    <div class="sec-head"><h2 id="artists-h">З нами вже працюють</h2></div>
+    <p class="names"><span>SadSvit</span> <i>/</i> <span>Юля Юріна</span> <i>/</i> <span>Berliner Döner</span> <i>/</i> <span>Drevo</span> <i>/</i> <span>YUKO</span> <i>/</i> <span>Сусіди Стерплять</span> <i>/</i> <span>The Elliens</span> <i>/</i> <span>туди-сюди і смерть</span> <i>/</i> <span class="more">та ще 40+ артистів</span></p>
+    <div class="names-more"><a class="btn btn-line" href="https://metakultura.store/pages/artists" target="_blank" rel="noopener">Усі артисти на сайті</a></div>
+  </div>
+</section>
+
+<!-- BASE PACKAGE -->
+<section class="sec base" aria-labelledby="base-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 id="base-h">Що отримує кожен артист</h2>
+      <p>Незалежно від тарифу. Різниця між тарифами лише в тому, хто зберігає товар, відправляє замовлення та виготовляє мерч.</p>
+    </div>
+    <ul class="checks">
+      <li><svg class="ic"><use href="#ok"/></svg><div><b>Сторінка й товари на сайті</b><span>Окрема колекція на metakultura.store з описами й фото.</span></div></li>
+      <li><svg class="ic"><use href="#ok"/></svg><div><b>Спілкування з покупцями</b><span>Відповідаємо на питання й домовляємось про повернення та обміни.</span></div></li>
+      <li><svg class="ic"><use href="#ok"/></svg><div><b>Прийом оплат</b><span>Покупець платить нам, ви не займаєтесь касою й реквізитами.</span></div></li>
+      <li><svg class="ic"><use href="#ok"/></svg><div><b>Щомісячні виплати</b><span>Комісію беремо лише з фактичних продажів.</span></div></li>
+      <li><svg class="ic"><use href="#ok"/></svg><div><b>Фотосесія мерчу</b><span>Знімаємо товари для сайту й соцмереж.</span></div></li>
+      <li><svg class="ic"><use href="#ok"/></svg><div><b>Анонси в Instagram і мерч у Spotify</b><span>Публікуємо новинки в нашому акаунті та підв’язуємо товари до вашого профілю артиста.</span></div></li>
+      <li><svg class="ic"><use href="#ok"/></svg><div><b>Статистика продажів</b><span>Telegram-бот і особистий дашборд — детальніше нижче.</span></div></li>
+      <li><svg class="ic"><use href="#ok"/></svg><div><b>Офіційне оформлення — за бажанням</b><span>Маємо ФОП і шаблони договорів, актів і рахунків.</span></div></li>
+    </ul>
+  </div>
+</section>
+
+<!-- TARIFFS -->
+<section class="sec" id="tariffs" aria-labelledby="tariffs-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 id="tariffs-h">Оберіть, скільки роботи віддати нам</h2>
+      <p>Комісію беремо лише з того, що продалось. Немає продажів — немає комісії.</p>
+    </div>
+
+    <div class="quiz" id="quiz" aria-live="polite">
+      <h3>Не впевнені, який тариф підходить?</h3>
+      <p class="quiz-sub">Дайте відповідь на два питання — підкажемо.</p>
+      <div id="quiz-body"></div>
+    </div>
+
+    <div class="tariffs">
+      <article class="tariff" id="t-self">
+        <div class="plaque">«Самостійний»<span class="rate">комісія: 12%</span></div>
+        <p class="fit">Мерч уже є, і ви готові самі зберігати його та відправляти замовлення.</p>
+        <ul>
+          <li><svg class="ic"><use href="#ok"/></svg>Усе, що отримує кожен артист</li>
+          <li><svg class="ic"><use href="#plus"/></svg>Гайди з пакування та відправок по Україні й за кордон</li>
+          <li class="off"><svg class="ic"><use href="#no"/></svg>Зберігання й відправки, зокрема обмінів і повернень, — на вашому боці</li>
+        </ul>
+        <a class="btn btn-line" href="#apply" data-tariff="Самостійний (12%)">Обрати «Самостійний»</a>
+      </article>
+
+      <article class="tariff" id="t-deleg">
+        <div class="plaque">«Делегуючий»<span class="rate">комісія: 20%</span></div>
+        <p class="fit">Мерч уже є, а склад і логістику хочеться віддати комусь іншому.</p>
+        <ul>
+          <li><svg class="ic"><use href="#ok"/></svg>Усе, що отримує кожен артист</li>
+          <li><svg class="ic"><use href="#plus"/></svg>Зберігання товару в нас</li>
+          <li><svg class="ic"><use href="#plus"/></svg>Пакування та відправка по Україні й за кордон</li>
+        </ul>
+        <a class="btn btn-black" href="#apply" data-tariff="Делегуючий (20%)">Обрати «Делегуючий»</a>
+      </article>
+
+      <article class="tariff" id="t-prog">
+        <div class="plaque">«Прогресивний»<span class="rate">комісія: 30%</span></div>
+        <p class="fit">Хочете новий мерч під ключ: від ідеї й макета до полиці та відправки.</p>
+        <ul>
+          <li><svg class="ic"><use href="#ok"/></svg>Усе, що отримує кожен артист</li>
+          <li><svg class="ic"><use href="#plus"/></svg>Зберігання, пакування та відправка</li>
+          <li><svg class="ic"><use href="#plus"/></svg>Допомога в розробці мерчу</li>
+          <li><svg class="ic"><use href="#plus"/></svg>Виготовлення продукції</li>
+        </ul>
+        <p class="note">Маєте готовий макет і чіткий запит? Тоді більша частина роботи вже зроблена — обговоримо комісію від 25%.</p>
+        <a class="btn btn-line" href="#apply" data-tariff="Прогресивний (30%)">Обрати «Прогресивний»</a>
+      </article>
+    </div>
+
+    <div class="fine">
+      <p>Різні товари одного артиста можуть продаватись за різними тарифами.</p>
+      <p>Умови можна обговорити індивідуально — під ваш проєкт і обсяги.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTION -->
+<section class="sec prod" id="production" aria-labelledby="prod-h">
+  <div class="wrap prod-grid">
+    <div>
+      <h2 id="prod-h">Виготовимо мерч, який хочеться носити</h2>
+      <p style="margin-top:24px">Під кожен запит обговорюємо умови окремо: матеріали, тиражі, терміни й бюджет. Допоможемо з ідеєю, підготуємо макет і проконтролюємо виробництво.</p>
+      <div class="chips" aria-label="Що виготовляємо">
+        <span>Футболки й лонгсліви</span><span>Худі та світшоти</span><span>Шопери</span><span>Кепки й шапки</span><span>Патчі</span><span>Піни</span><span>Шкарпетки</span><span>Брелоки</span><span>Стікери й плакати</span><span>Касети й CD</span>
+      </div>
+      <p class="aside-note">Артистам, у яких бачимо великий потенціал, іноді пропонуємо разом профінансувати перший тираж. Це не стандартна умова, а окрема домовленість після знайомства.</p>
+    </div>
+    <div class="calc-card">
+      <h3>Калькулятор мерчу</h3>
+      <p>Для найпопулярніших товарів і тиражів можна одразу прикинути вартість, побачити свій логотип на виробі й надіслати нам запит.</p>
+      <a class="btn btn-yellow" href="https://calc.metakultura.store" target="_blank" rel="noopener" data-track="calc_open">Відкрити калькулятор</a>
+      <span class="url">calc.metakultura.store</span>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS -->
+<section class="sec" id="tools" aria-labelledby="tools-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 id="tools-h">Інструменти, які ми зробили для артистів</h2>
+      <p>Ви завжди знаєте, що продалось і скільки отримаєте, — без запитів менеджеру й таблиць.</p>
+    </div>
+
+    <div class="tools-grid">
+      <div class="tg" id="tg" role="img" aria-label="Приклад повідомлень Telegram-бота: нове замовлення та статистика продажів за місяць">
+        <div class="tg-top"><span class="tg-ava"><svg class="logo-svg" viewBox="0 0 75 75" aria-hidden="true"><rect width="75" height="75" fill="#F7E51E"/><g fill="#000"><path d="M12 52.5h8.4L37 24h-8.2z"/><rect x="34.9" y="24" width="1.8" height="28.5"/><path d="M34 52.5h8.4L59 24h-8.2z"/><rect x="56.9" y="24" width="1.8" height="28.5"/></g></svg></span><div><b>Metakultura Orders</b><small>бот</small></div></div>
+        <div class="msg in anim">🛒 Нове замовлення!
+
+📋 Номер замовлення: #3187
+👤 Покупець: Марія К.
+🏠 Нова пошта: відділення №12, Львів
+📦 Товари:
+- Футболка «Тур 2026» Ваш гурт (M): 1 шт. × 1200.00 = 1200.00
+
+💰 Вартість товарів: 1200.00 грн<time>18:42</time></div>
+        <div class="kb anim"><span>📮 Ввести ТТН</span><span>📦 Відправлю пізніше</span></div>
+        <div class="msg out anim">/stats<time>21:05</time></div>
+        <div class="msg in anim">📊 Статистика за листопад 2026 (станом на сьогодні)
+
+🏷 Ваш гурт
+  • Футболка «Тур 2026» (M): 3 шт. — 3600.00 грн
+  • Касета «Дебют»: 4 шт. — 2400.00 грн
+  • Патч «Лого»: 5 шт. — 2000.00 грн
+  Разом: 12 шт., 8000.00 грн
+  💸 Очікувана виплата: 6400.00 грн<time>21:05</time></div>
+      </div>
+
+      <div class="tool-copy">
+        <h3>Telegram-бот</h3>
+        <p>Головний робочий інструмент для артистів на «Самостійному» тарифі, які відправляють замовлення самі. На інших тарифах через нього зручно стежити за продажами.</p>
+        <ul class="feat">
+          <li><svg class="ic"><use href="#plus"/></svg><span>Сповіщення про кожне нове замовлення з вашим товаром і даними для відправки.</span></li>
+          <li><svg class="ic"><use href="#plus"/></svg><span>Номер ТТН вводите прямо в боті.</span></li>
+          <li><svg class="ic"><use href="#plus"/></svg><span>Звіти 15-го числа і в кінці місяця з розбивкою по кожному товару.</span></li>
+          <li><svg class="ic"><use href="#plus"/></svg><span>Команда /stats — продажі й очікувана виплата будь-якої миті.</span></li>
+        </ul>
+
+        <div class="dash">
+          <div class="dash-top"><b>Дашборд артиста</b><span class="badge">Демо-доступ — незабаром</span></div>
+          <div class="kpis">
+            <div class="kpi"><small>Виручка</small><b>8 000 ₴</b><em>+24% до жовтня</em></div>
+            <div class="kpi"><small>Продано</small><b>12 шт.</b><em>+3 шт.</em></div>
+            <div class="kpi"><small>До виплати</small><b>6 400 ₴</b><em>за тарифом</em></div>
+          </div>
+          <svg viewBox="0 0 400 110" aria-hidden="true">
+            <path d="M0 95 L400 95" stroke="#D6D6D0" stroke-width="1"/>
+            <path d="M0 60 L400 60" stroke="#D6D6D0" stroke-width="1" stroke-dasharray="3 4"/>
+            <path d="M0 86 C30 82 45 70 70 72 S120 88 145 74 S195 40 220 46 S270 66 295 52 S345 18 400 14" fill="none" stroke="#000" stroke-width="2.5"/>
+            <path d="M0 90 C35 88 50 84 75 85 S125 92 150 86 S200 70 225 72 S275 80 300 74 S350 60 400 58" fill="none" stroke="#BDBDB6" stroke-width="2" stroke-dasharray="5 5"/>
+            <circle cx="400" cy="14" r="4" fill="#F7E51E" stroke="#000" stroke-width="2"/>
+          </svg>
+          <p class="dash-cap">Особисте посилання без паролів: продажі за будь-який період, порівняння з минулим і графіки по товарах. Цифри на прикладі вигадані.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OFFLINE -->
+<section class="sec offline" id="offline" aria-labelledby="off-h">
+  <div class="wrap">
+    <div class="off-grid">
+      <div>
+        <h2 id="off-h">Ваш мерч — ще й офлайн</h2>
+        <p style="margin-top:24px">Мерчомат — наш автомат із мерчем українських артистів. Покупець сканує QR-код, обирає товар, вводить номер на клавіатурі й платить телефоном. Без доставки й очікування.</p>
+        <ul class="facts">
+          <li><b>Де</b><span>КЦ «Спаська, 13», Київ, м. Контрактова площа</span></li>
+          <li><b>Коли</b><span>щодня з 11:00 до 22:00</span></li>
+          <li><b>Комісія</b><span>20% на товари в Мерчоматі</span></li>
+        </ul>
+        <p class="off-note">Не всі товари підходять за розміром і форматом, тому можливість продажу в Мерчоматі обговорюємо окремо.</p>
+        <a class="btn btn-yellow" href="https://metakultura.store/collections/merchomat" target="_blank" rel="noopener">Подивитись Мерчомат</a>
+      </div>
+      <div class="machine" aria-hidden="true">
+        <div class="machine-head"><span>Мерчомат</span><span class="qr"></span></div>
+        <div class="cells">
+          <div class="cell"><span>A11</span><span class="coil"></span></div>
+          <div class="cell on"><span>A12</span><span class="coil"></span></div>
+          <div class="cell"><span>A13</span><span class="coil"></span></div>
+          <div class="cell"><span>A14</span><span class="coil"></span></div>
+          <div class="cell"><span>A21</span><span class="coil"></span></div>
+          <div class="cell"><span>A22</span><span class="coil"></span></div>
+          <div class="cell"><span>A23</span><span class="coil"></span></div>
+          <div class="cell on"><span>A24</span><span class="coil"></span></div>
+          <div class="cell on"><span>A31</span><span class="coil"></span></div>
+          <div class="cell"><span>A32</span><span class="coil"></span></div>
+          <div class="cell"><span>A33</span><span class="coil"></span></div>
+          <div class="cell"><span>A34</span><span class="coil"></span></div>
+        </div>
+        <div class="machine-foot">Тут може бути ваша спіраль</div>
+      </div>
+    </div>
+    <div class="gigs">
+      <h3>Концерти й фестивалі</h3>
+      <p>За домовленістю можемо допомогти з продажем мерчу на ваших виступах. Формат обговорюємо окремо під кожну подію.</p>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="sec" aria-labelledby="gal-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 id="gal-h">Мерч наших артистів</h2>
+      <p>Від кепок і платівок до сережок і термотуші.</p>
+    </div>
+    <div class="gallery">
+      <a href="https://metakultura.store/products/drevo-cap" target="_blank" rel="noopener"><img src="https://metakultura.store/cdn/shop/files/drevo_cap1.webp?v=1791281831&width=600" alt="Кепка «Лого» Drevo" loading="lazy"><b>Кепка «Лого»</b><span>Drevo</span></a>
+      <a href="https://metakultura.store/products/nfc-keychain-sadsvit" target="_blank" rel="noopener"><img src="https://metakultura.store/cdn/shop/files/sadsvit_nfc1.webp?v=1783260871&width=600" alt="NFC-брелок «Касета» SadSvit" loading="lazy"><b>NFC-брелок «Касета»</b><span>SadSvit</span></a>
+      <a href="https://metakultura.store/products/lesfleures-talant-vinyl" target="_blank" rel="noopener"><img src="https://metakultura.store/cdn/shop/files/lesvinil0.webp?v=1787347970&width=600" alt="Платівка «Талант» Lesfleures" loading="lazy"><b>Платівка «Талант»</b><span>Lesfleures</span></a>
+      <a href="https://metakultura.store/products/yuyu-mascara" target="_blank" rel="noopener"><img src="https://metakultura.store/cdn/shop/files/webp.webp?v=1780388038&width=600" alt="Кольорова термотуш «Краля» Юля Юріна" loading="lazy"><b>Термотуш «Краля»</b><span>Юля Юріна × Colour intense</span></a>
+      <a href="https://metakultura.store/products/blind8-earrings" target="_blank" rel="noopener"><img src="https://metakultura.store/cdn/shop/files/earrings1.webp?v=1760818176&width=600" alt="Сережки з логотипом BLIND8" loading="lazy"><b>Сережки з логотипом</b><span>BLIND8</span></a>
+      <a href="https://metakultura.store/products/drevo-nebo-tee" target="_blank" rel="noopener"><img src="https://metakultura.store/cdn/shop/files/nebo_t-shirt_1.webp?v=1791281116&width=600" alt="Футболка «Смарагдове небо» Drevo" loading="lazy"><b>Футболка «Смарагдове небо»</b><span>Drevo</span></a>
+    </div>
+    <div class="gal-more"><a class="btn btn-line" href="https://metakultura.store/collections/our-products" target="_blank" rel="noopener">Усі товари в магазині</a></div>
+  </div>
+</section>
+
+<!-- STEPS -->
+<section class="sec steps-sec" aria-labelledby="steps-h">
+  <div class="wrap">
+    <div class="sec-head"><h2 id="steps-h">Як почати</h2></div>
+    <ol class="steps">
+      <li><b>Заявка</b><p>Заповніть форму нижче або напишіть у Telegram — це кілька хвилин.</p></li>
+      <li><b>Знайомство</b><p>Обговорюємо ваш мерч, тариф і умови, відповідаємо на питання.</p></li>
+      <li><b>Підготовка</b><p>Ви надсилаєте нам товари — ми фотографуємо їх і запитуємо потрібну інформацію для сайту.</p></li>
+      <li><b>Запуск</b><p>Товари з’являються на сайті, а ми анонсуємо їх в Instagram.</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec" id="faq" aria-labelledby="faq-h">
+  <div class="wrap">
+    <div class="sec-head"><h2 id="faq-h">Часті питання</h2></div>
+    <div class="faq">
+      <details>
+        <summary>Що потрібно для початку?</summary>
+        <p>Назва проєкту, логотип, фото або макети чи вже готовий товар, а також реквізити для виплат. Якщо чогось бракує — допоможемо підготувати.</p>
+      </details>
+      <details>
+        <summary>Чи можна продавати паралельно через Instagram?</summary>
+        <p>Так, ексклюзивності ми не вимагаємо.</p>
+      </details>
+      <details>
+        <summary>Як ви анонсуєте товари?</summary>
+        <p>Публікуємо їх в Instagram Метакультури, показуємо на сайті й у рекомендованих, підв’язуємо до вашого профілю в Spotify.</p>
+      </details>
+      <details>
+        <summary>Чи обов’язково підписувати договір?</summary>
+        <p>Ні, як вам зручніше. Можна почати без зайвих формальностей, а якщо потрібна офіційна співпраця — у нас є ФОП і шаблони договорів, актів і рахунків.</p>
+      </details>
+      <details>
+        <summary>Коли й як приходять виплати?</summary>
+        <p>Раз на місяць. Рахуємо лише з фактичних продажів за вирахуванням комісії тарифу.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- APPLY -->
+<section class="sec apply" id="apply" aria-labelledby="apply-h">
+  <div class="wrap apply-grid">
+    <div class="apply-copy">
+      <h2 id="apply-h">Розкажіть про свій проєкт</h2>
+      <p>Залиште заявку — ми напишемо вам у Telegram, щоб познайомитись і обговорити деталі.</p>
+      <a class="tg-direct" href="https://t.me/borees" target="_blank" rel="noopener" data-track="apply_telegram">
+        <small>Найшвидше — написати напряму</small>
+        <b>@borees</b>
+      </a>
+    </div>
+
+    <form id="lead" novalidate>
+      <div class="f-row two">
+        <div class="field">
+          <label for="f-name">Ім’я або назва проєкту</label>
+          <input id="f-name" name="name" required autocomplete="organization">
+        </div>
+        <div class="field">
+          <label for="f-tg">Telegram для зв’язку</label>
+          <input id="f-tg" name="telegram" required placeholder="@username або телефон">
+        </div>
+      </div>
+      <div class="field">
+        <label for="f-link">Посилання на вас <span class="hint">— необов’язково: Instagram, Spotify або інше</span></label>
+        <input id="f-link" name="link" placeholder="https://instagram.com/…">
+      </div>
+      <fieldset class="field">
+        <legend>Чи є у вас уже мерч?</legend>
+        <div class="radios">
+          <label><input type="radio" name="merch" value="Є, готовий до продажу">Є, готовий до продажу</label>
+          <label><input type="radio" name="merch" value="Є, але хочемо щось нове">Є, але хочемо щось нове</label>
+          <label><input type="radio" name="merch" value="Поки немає">Поки немає</label>
+        </div>
+      </fieldset>
+      <div class="field">
+        <label for="f-tariff">Тариф, що цікавить</label>
+        <select id="f-tariff" name="tariff">
+          <option value="Ще не знаю">Ще не знаю — порадьте</option>
+          <option value="Самостійний (12%)">«Самостійний» — 12%</option>
+          <option value="Делегуючий (20%)">«Делегуючий» — 20%</option>
+          <option value="Прогресивний (30%)">«Прогресивний» — 30%</option>
+          <option value="Прогресивний з готовим макетом (від 25%)">«Прогресивний» з готовим макетом — від 25%</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="f-msg">Коментар <span class="hint">— необов’язково</span></label>
+        <textarea id="f-msg" name="message" placeholder="Що хочете продавати або виготовити, тиражі, терміни"></textarea>
+      </div>
+      <div class="hp" aria-hidden="true"><label>Не заповнюйте<input name="website" tabindex="-1" autocomplete="off"></label></div>
+      <div class="f-foot">
+        <button class="btn btn-black" type="submit">Надіслати заявку</button>
+        <small>Дані бачимо лише ми й використовуємо тільки для зв’язку з вами.</small>
+      </div>
+      <p class="f-msg" id="f-status" role="status"></p>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>© 2026 Metakultura</span>
+    <nav aria-label="Посилання">
+      <a href="https://metakultura.store" target="_blank" rel="noopener">Магазин</a>
+      <a href="https://www.instagram.com/metakultura.project/" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.tiktok.com/@metakultura.project" target="_blank" rel="noopener">TikTok</a>
+      <a href="https://t.me/metakultura" target="_blank" rel="noopener">Telegram</a>
+    </nav>
+  </div>
+</footer>
+
+<div class="m-cta" id="m-cta"><a class="btn btn-black" href="#apply" data-track="sticky_apply">Залишити заявку</a></div>
+
+<script>
+(function(){
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var tariffSelect = document.getElementById("f-tariff");
+
+  function chooseTariff(value){
+    if (!value) return;
+    for (var i = 0; i < tariffSelect.options.length; i++){
+      if (tariffSelect.options[i].value === value){ tariffSelect.selectedIndex = i; break; }
+    }
+  }
+
+  /* tariff buttons prefill the form */
+  document.querySelectorAll("[data-tariff]").forEach(function(a){
+    a.addEventListener("click", function(){
+      chooseTariff(a.getAttribute("data-tariff"));
+      track("select_tariff", {tariff: a.getAttribute("data-tariff")});
+    });
+  });
+  document.querySelectorAll("[data-track]").forEach(function(a){
+    a.addEventListener("click", function(){ track(a.getAttribute("data-track")); });
+  });
+
+  /* quiz */
+  var body = document.getElementById("quiz-body");
+  var results = {
+    self: {name:"«Самостійний»", rate:"12%", value:"Самостійний (12%)", anchor:"#t-self",
+      text:"Ви зберігаєте товар і відправляєте замовлення самі, а ми продаємо, спілкуємося з покупцями, приймаємо оплати й робимо щомісячні виплати."},
+    deleg: {name:"«Делегуючий»", rate:"20%", value:"Делегуючий (20%)", anchor:"#t-deleg",
+      text:"Ви передаєте нам готовий мерч, а ми зберігаємо, пакуємо й відправляємо його, поки ви займаєтесь музикою."},
+    prog: {name:"«Прогресивний»", rate:"30%", value:"Прогресивний (30%)", anchor:"#t-prog",
+      text:"Разом розробимо новий мерч від ідеї до макета, виготовимо його, а далі зберігатимемо й відправлятимемо замовлення."},
+    progReady: {name:"«Прогресивний»", rate:"від 25%", value:"Прогресивний з готовим макетом (від 25%)", anchor:"#t-prog",
+      text:"Макет і чіткий запит уже є, тож беремо на себе виробництво, склад і відправки. Комісію в такому випадку обговорюємо від 25%."}
+  };
+  var q1 = {step:"Питання 1 з 2", text:"Хочете виготовити новий мерч разом із нами?", opts:[
+    {label:"Так, потрібна допомога з ідеєю та дизайном", go:"prog"},
+    {label:"Так, макет і чіткий запит уже є", go:"progReady"},
+    {label:"Ні, продаватимемо мерч, який уже маємо", go:"q2"}
+  ]};
+  var q2 = {step:"Питання 2 з 2", text:"Хто зберігатиме товар і відправлятиме замовлення?", opts:[
+    {label:"Ми самі — є місце й час", go:"self"},
+    {label:"Хочемо, щоб це робили ви", go:"deleg"}
+  ]};
+
+  function renderQ(q){
+    body.innerHTML = "";
+    var s = document.createElement("p"); s.className = "q-step"; s.textContent = q.step;
+    var t = document.createElement("p"); t.className = "q-text"; t.textContent = q.text;
+    var o = document.createElement("div"); o.className = "q-opts";
+    q.opts.forEach(function(opt){
+      var b = document.createElement("button"); b.type = "button"; b.textContent = opt.label;
+      b.addEventListener("click", function(){ opt.go === "q2" ? renderQ(q2) : renderR(opt.go); });
+      o.appendChild(b);
+    });
+    body.append(s, t, o);
+  }
+  function renderR(key){
+    var r = results[key];
+    track("quiz_complete", {result: r.value});
+    body.innerHTML =
+      '<div class="q-result"><h4>Вам підійде ' + r.name + '<em>' + r.rate + '</em></h4>' +
+      '<p>' + r.text + ' Різні позиції можна продавати за різними тарифами.</p>' +
+      '<div class="q-actions"><a class="btn btn-yellow" href="#apply" id="q-apply">Залишити заявку з цим тарифом</a>' +
+      '<a class="btn btn-line" style="color:#fff;border-color:#fff" href="' + r.anchor + '">Деталі тарифу</a>' +
+      '<button class="q-reset" type="button" id="q-reset">Пройти ще раз</button></div></div>';
+    document.getElementById("q-apply").addEventListener("click", function(){ chooseTariff(r.value); });
+    document.getElementById("q-reset").addEventListener("click", function(){ renderQ(q1); });
+  }
+  renderQ(q1);
+
+  /* telegram mock: messages appear one by one when visible */
+  var tg = document.getElementById("tg");
+  var parts = tg.querySelectorAll(".anim");
+  function showAll(){ parts.forEach(function(p){ p.classList.add("show"); }); }
+  if (reduce || !("IntersectionObserver" in window)) { showAll(); }
+  else {
+    var io = new IntersectionObserver(function(entries){
+      if (entries[0].isIntersecting){
+        parts.forEach(function(p, i){ setTimeout(function(){ p.classList.add("show"); }, 250 + i * 650); });
+        io.disconnect();
+      }
+    }, {threshold: .35});
+    io.observe(tg);
+  }
+
+  /* sticky mobile CTA: after hero, hidden over the form */
+  var cta = document.getElementById("m-cta");
+  var hero = document.querySelector(".hero");
+  var apply = document.getElementById("apply");
+  var pastHero = false, atForm = false;
+  function upd(){ cta.classList.toggle("show", pastHero && !atForm); }
+  if ("IntersectionObserver" in window){
+    new IntersectionObserver(function(e){ pastHero = !e[0].isIntersecting; upd(); }).observe(hero);
+    new IntersectionObserver(function(e){ atForm = e[0].isIntersecting; upd(); }, {threshold:.1}).observe(apply);
+  }
+
+  /* form */
+  var form = document.getElementById("lead");
+  var F = function(n){ return form.elements.namedItem(n); };
+  var status = document.getElementById("f-status");
+  var params = new URLSearchParams(location.search);
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+    status.className = "f-msg"; status.textContent = "";
+    var name = F("name").value.trim(), tgv = F("telegram").value.trim();
+    if (!name || !tgv){
+      status.className = "f-msg err";
+      status.textContent = "Вкажіть ім’я або назву проєкту та Telegram, щоб ми могли з вами зв’язатися.";
+      (!name ? F("name") : F("telegram")).focus();
+      return;
+    }
+    var data = {
+      name: name, telegram: tgv,
+      link: F("link").value.trim(),
+      merch: (form.querySelector('input[name="merch"]:checked') || {}).value || "",
+      tariff: F("tariff").value,
+      message: F("message").value.trim(),
+      website: F("website").value,
+      source: params.get("utm_source") || params.get("ref") || document.referrer || ""
+    };
+    var btn = form.querySelector("button[type=submit]");
+    btn.disabled = true; btn.textContent = "Надсилаємо…";
+    fetch("/api/lead", {method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify(data)})
+      .then(function(r){ if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(function(){
+        track("generate_lead", {tariff: data.tariff});
+        form.innerHTML = '<div class="done"><h3>Заявку надіслано</h3><p>Ми напишемо вам у Telegram найближчим часом. Якщо хочеться швидше — пишіть напряму <a href="https://t.me/borees">@borees</a>.</p></div>';
+      })
+      .catch(function(){
+        btn.disabled = false; btn.textContent = "Надіслати заявку";
+        status.className = "f-msg err";
+        status.innerHTML = 'Не вдалося надіслати заявку. Напишіть нам напряму в Telegram — <a href="https://t.me/borees">@borees</a>.';
+      });
+  });
+})();
+</script>
+</body>
+</html>
