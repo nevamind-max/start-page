@@ -7,11 +7,15 @@ from collections import defaultdict, deque
 import requests
 from flask import Flask, jsonify, request, send_from_directory
 
+import demo
+
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 BOT_TOKEN = os.environ.get("LEAD_BOT_TOKEN", "")
 CHAT_ID = os.environ.get("LEAD_CHAT_ID", "")
 
 app = Flask(__name__, static_folder=os.path.join(BASE_DIR, "static"), static_url_path="/static")
+app.json.ensure_ascii = False
+app.register_blueprint(demo.bp)
 
 # не більше 5 заявок з однієї IP за 10 хвилин
 _hits = defaultdict(deque)
