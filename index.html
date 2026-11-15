@@ -190,17 +190,23 @@ nav.links a:hover{color:var(--ink)}
 .feat li{display:grid;grid-template-columns:26px 1fr;gap:12px}
 .feat .ic{width:26px;height:26px}
 
-.dash{background:var(--white);border:2px solid var(--ink);padding:22px}
-.dash-top{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px;margin-bottom:16px}
-.dash-top b{font-size:18px}
-.badge{background:var(--yellow);font-size:13px;font-weight:600;padding:4px 10px}
-.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px}
-.kpi{background:var(--paper);padding:12px}
-.kpi small{display:block;color:var(--grey);font-size:12.5px}
-.kpi b{font-size:clamp(17px,2vw,22px);line-height:1.2}
-.kpi em{display:block;font-style:normal;font-size:12.5px;color:#1f7a3b;font-weight:600}
-.dash svg{width:100%;height:auto;display:block}
-.dash-cap{margin-top:12px;font-size:14px;color:var(--grey)}
+.tool + .tool{margin-top:88px;padding-top:56px;border-top:1px solid var(--line)}
+.tool-num{display:flex;align-items:center;gap:12px;font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--grey);margin-bottom:28px}
+.tool-num span{background:var(--yellow);color:var(--ink);padding:4px 10px;font-size:15px;letter-spacing:0}
+.tools-grid .feat{margin-bottom:0}
+.dash-head{display:grid;gap:8px 64px;margin-bottom:36px}
+@media (min-width:980px){.dash-head{grid-template-columns:minmax(0,460px) 1fr;align-items:start}}
+.dash-head .tool-copy > p{margin-bottom:0}
+.browser{border:2px solid var(--ink);background:#F7F7F3;box-shadow:8px 8px 0 var(--yellow)}
+.browser-bar{display:flex;align-items:center;gap:14px;padding:10px 14px;border-bottom:2px solid var(--ink);background:var(--white);font-size:14px}
+.browser-bar .dots{display:flex;gap:6px;flex:none}
+.browser-bar .dots i{width:11px;height:11px;border-radius:50%;border:1.5px solid var(--ink)}
+.browser-bar .dots i:first-child{background:var(--yellow)}
+.browser-title{flex:1;min-width:0;color:var(--grey);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.browser-bar a{font-weight:600;text-decoration:none;white-space:nowrap}
+.browser-bar a:hover{text-decoration:underline}
+#dash-frame{display:block;width:100%;height:900px;border:0;background:#F7F7F3}
+@media (max-width:759px){.browser{margin:0 -16px;border-left:0;border-right:0;box-shadow:none}.browser-title{display:none}.browser-bar{justify-content:space-between}}
 
 /* offline */
 .offline{background:var(--ink);color:var(--white)}
@@ -403,7 +409,7 @@ footer{padding:40px 0 110px;font-size:15px;color:var(--grey)}
       <li><svg class="ic"><use href="#ok"/></svg><div><b>Щомісячні виплати</b><span>Комісію беремо лише з фактичних продажів.</span></div></li>
       <li><svg class="ic"><use href="#ok"/></svg><div><b>Фотосесія мерчу</b><span>Знімаємо товари для сайту й соцмереж.</span></div></li>
       <li><svg class="ic"><use href="#ok"/></svg><div><b>Анонси в Instagram і мерч у Spotify</b><span>Публікуємо новинки в нашому акаунті та підв’язуємо товари до вашого профілю артиста.</span></div></li>
-      <li><svg class="ic"><use href="#ok"/></svg><div><b>Статистика продажів</b><span>Telegram-бот і особистий дашборд — детальніше нижче.</span></div></li>
+      <li><svg class="ic"><use href="#ok"/></svg><div><b>Статистика продажів</b><span>Telegram-бот і особистий дашборд — <a href="#tools">спробуйте демо нижче</a>.</span></div></li>
       <li><svg class="ic"><use href="#ok"/></svg><div><b>Офіційне оформлення — за бажанням</b><span>Маємо ФОП і шаблони договорів, актів і рахунків.</span></div></li>
     </ul>
   </div>
@@ -495,56 +501,66 @@ footer{padding:40px 0 110px;font-size:15px;color:var(--grey)}
       <p>Ви завжди знаєте, що продалось і скільки отримаєте, — без запитів менеджеру й таблиць.</p>
     </div>
 
-    <div class="tools-grid">
-      <div class="tg" id="tg" role="img" aria-label="Приклад повідомлень Telegram-бота: нове замовлення та статистика продажів за місяць">
-        <div class="tg-top"><span class="tg-ava"><svg class="logo-svg" viewBox="0 0 75 75" aria-hidden="true"><rect width="75" height="75" fill="#F7E51E"/><g fill="#000"><path d="M12 52.5h8.4L37 24h-8.2z"/><rect x="34.9" y="24" width="1.8" height="28.5"/><path d="M34 52.5h8.4L59 24h-8.2z"/><rect x="56.9" y="24" width="1.8" height="28.5"/></g></svg></span><div><b>Метакультура Orders</b><small>бот</small></div></div>
-        <div class="msg in anim">🛒 Нове замовлення!
+    <div class="tool">
+      <p class="tool-num"><span>01</span>Інструмент</p>
+      <div class="tools-grid">
+        <div class="tg" id="tg" role="img" aria-label="Приклад повідомлень Telegram-бота: нове замовлення та статистика продажів за місяць">
+          <div class="tg-top"><span class="tg-ava"><svg class="logo-svg" viewBox="0 0 75 75" aria-hidden="true"><rect width="75" height="75" fill="#F7E51E"/><g fill="#000"><path d="M12 52.5h8.4L37 24h-8.2z"/><rect x="34.9" y="24" width="1.8" height="28.5"/><path d="M34 52.5h8.4L59 24h-8.2z"/><rect x="56.9" y="24" width="1.8" height="28.5"/></g></svg></span><div><b>Метакультура Orders</b><small>бот</small></div></div>
+          <div class="msg in anim">🛒 Нове замовлення!
 
-📋 Номер замовлення: #3187
-👤 Покупець: Марія К.
-🏠 Нова пошта: відділення №12, Львів
-📦 Товари:
-- Футболка «Тур 2026» Ваш гурт (M): 1 шт. × 1200.00 = 1200.00
+  📋 Номер замовлення: #3187
+  👤 Покупець: Марія К.
+  🏠 Нова пошта: відділення №12, Львів
+  📦 Товари:
+  - Футболка «Тур 2026» Ваш гурт (M): 1 шт. × 1200.00 = 1200.00
 
-💰 Вартість товарів: 1200.00 грн<time>18:42</time></div>
-        <div class="kb anim"><span>📮 Ввести ТТН</span><span>📦 Відправлю пізніше</span></div>
-        <div class="msg out anim">/stats<time>21:05</time></div>
-        <div class="msg in anim">📊 Статистика за листопад 2026 (станом на сьогодні)
+  💰 Вартість товарів: 1200.00 грн<time>18:42</time></div>
+          <div class="kb anim"><span>📮 Ввести ТТН</span><span>📦 Відправлю пізніше</span></div>
+          <div class="msg out anim">/stats<time>21:05</time></div>
+          <div class="msg in anim">📊 Статистика за листопад 2026 (станом на сьогодні)
 
-🏷 Ваш гурт
-  • Футболка «Тур 2026» (M): 3 шт. — 3600.00 грн
-  • Касета «Дебют»: 4 шт. — 2400.00 грн
-  • Патч «Лого»: 5 шт. — 2000.00 грн
-  Разом: 12 шт., 8000.00 грн
-  💸 Очікувана виплата: 6400.00 грн<time>21:05</time></div>
-      </div>
-
-      <div class="tool-copy">
-        <h3>Telegram-бот</h3>
-        <p>Головний робочий інструмент для артистів на «Самостійному» тарифі, які відправляють замовлення самі. На інших тарифах через нього зручно стежити за продажами.</p>
-        <ul class="feat">
-          <li><svg class="ic"><use href="#plus"/></svg><span>Сповіщення про кожне нове замовлення з вашим товаром і даними для відправки.</span></li>
-          <li><svg class="ic"><use href="#plus"/></svg><span>Номер ТТН вводите прямо в боті.</span></li>
-          <li><svg class="ic"><use href="#plus"/></svg><span>Звіти 15-го числа і в кінці місяця з розбивкою по кожному товару.</span></li>
-          <li><svg class="ic"><use href="#plus"/></svg><span>Команда /stats — продажі й очікувана виплата будь-якої миті.</span></li>
-        </ul>
-
-        <div class="dash">
-          <div class="dash-top"><b>Дашборд артиста</b><span class="badge">Демо-доступ — незабаром</span></div>
-          <div class="kpis">
-            <div class="kpi"><small>Виручка</small><b>8 000 ₴</b><em>+24% до жовтня</em></div>
-            <div class="kpi"><small>Продано</small><b>12 шт.</b><em>+3 шт.</em></div>
-            <div class="kpi"><small>До виплати</small><b>6 400 ₴</b><em>за тарифом</em></div>
-          </div>
-          <svg viewBox="0 0 400 110" aria-hidden="true">
-            <path d="M0 95 L400 95" stroke="#D6D6D0" stroke-width="1"/>
-            <path d="M0 60 L400 60" stroke="#D6D6D0" stroke-width="1" stroke-dasharray="3 4"/>
-            <path d="M0 86 C30 82 45 70 70 72 S120 88 145 74 S195 40 220 46 S270 66 295 52 S345 18 400 14" fill="none" stroke="#000" stroke-width="2.5"/>
-            <path d="M0 90 C35 88 50 84 75 85 S125 92 150 86 S200 70 225 72 S275 80 300 74 S350 60 400 58" fill="none" stroke="#BDBDB6" stroke-width="2" stroke-dasharray="5 5"/>
-            <circle cx="400" cy="14" r="4" fill="#F7E51E" stroke="#000" stroke-width="2"/>
-          </svg>
-          <p class="dash-cap">Особисте посилання без паролів: продажі за будь-який період, порівняння з минулим і графіки по товарах. Цифри на прикладі вигадані.</p>
+  🏷 Ваш гурт
+    • Футболка «Тур 2026» (M): 3 шт. — 3600.00 грн
+    • Касета «Дебют»: 4 шт. — 2400.00 грн
+    • Патч «Лого»: 5 шт. — 2000.00 грн
+    Разом: 12 шт., 8000.00 грн
+    💸 Очікувана виплата: 6400.00 грн<time>21:05</time></div>
         </div>
+
+        <div class="tool-copy">
+          <h3>Telegram-бот</h3>
+          <p>Головний робочий інструмент для артистів на «Самостійному» тарифі, які відправляють замовлення самі. На інших тарифах через нього зручно стежити за продажами.</p>
+          <ul class="feat">
+            <li><svg class="ic"><use href="#plus"/></svg><span>Сповіщення про кожне нове замовлення з вашим товаром і даними для відправки.</span></li>
+            <li><svg class="ic"><use href="#plus"/></svg><span>Номер ТТН вводите прямо в боті.</span></li>
+            <li><svg class="ic"><use href="#plus"/></svg><span>Звіти 15-го числа і в кінці місяця з розбивкою по кожному товару.</span></li>
+            <li><svg class="ic"><use href="#plus"/></svg><span>Команда /stats — продажі й очікувана виплата будь-якої миті.</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="tool tool-dash">
+      <p class="tool-num"><span>02</span>Інструмент</p>
+      <div class="dash-head">
+        <div class="tool-copy">
+          <h3>Дашборд артиста</h3>
+          <p>Особисте посилання без паролів, яке відкривається з телефона чи комп’ютера. Тут видно всю картину продажів, а не лише окремі замовлення.</p>
+        </div>
+        <ul class="feat">
+          <li><svg class="ic"><use href="#plus"/></svg><span>Виручка, замовлення й сума до виплати за будь-який період — з порівнянням із попереднім.</span></li>
+          <li><svg class="ic"><use href="#plus"/></svg><span>Розбивка товарів за розміром і кольором, повернення, знижки й промокоди, топ міст.</span></li>
+          <li><svg class="ic"><use href="#plus"/></svg><span>Залишки на складі з позначками «закінчується» і «немає в наявності».</span></li>
+          <li><svg class="ic"><use href="#plus"/></svg><span>Звіт у CSV одним натисканням.</span></li>
+        </ul>
+      </div>
+      <div class="browser">
+        <div class="browser-bar">
+          <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="browser-title">Демо дашборду · цифри вигадані</span>
+          <a href="/demo" target="_blank" rel="noopener" data-track="open_demo_dashboard">На весь екран ↗</a>
+        </div>
+        <iframe id="dash-frame" src="/demo?embed=1" title="Інтерактивне демо дашборду артиста" loading="lazy"></iframe>
       </div>
     </div>
   </div>
@@ -812,6 +828,26 @@ footer{padding:40px 0 110px;font-size:15px;color:var(--grey)}
     }, {threshold: .35});
     io.observe(tg);
   }
+
+  /* demo dashboard iframe: grow to fit its content (same origin) */
+  var frame = document.getElementById("dash-frame");
+  function fit(){
+    try {
+      var doc = frame.contentDocument;
+      if (doc && doc.body) frame.style.height = Math.max(480, Math.ceil(doc.body.getBoundingClientRect().height)) + "px";
+    } catch (e) {}
+  }
+  frame.addEventListener("load", function(){
+    fit();
+    try {
+      var w = frame.contentWindow;
+      if ("ResizeObserver" in w) new w.ResizeObserver(fit).observe(frame.contentDocument.body);
+      frame.contentDocument.addEventListener("click", function once(){
+        track("demo_dashboard_interact");
+        frame.contentDocument.removeEventListener("click", once);
+      });
+    } catch (e) {}
+  });
 
   /* sticky mobile CTA: after hero, hidden over the form */
   var cta = document.getElementById("m-cta");

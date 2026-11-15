@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Демо дашборду — Метакультура</title>
+<link rel="icon" href="/favicon.ico" sizes="any">
+<meta name="robots" content="noindex">
+<style>
+  :root {
+    --bg: #F7F7F3;
+    --card: #FFFFFF;
+    --border: #E5E4DD;
+    --text: #111111;
+    --muted: #767670;
+    --accent: #F5E017;
+    --accent-text: #111111;
+    --accent-soft: #FFFBD6;
+    --positive: #1B8A5A;
+    --negative: #D63A3A;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    padding: 24px;
+  }
+  .wrap { max-width: 880px; margin: 0 auto; }
+
+  h1 { font-size: 22px; margin: 0 0 4px; font-weight: 700; }
+  .subtitle { color: var(--muted); font-size: 14px; margin-bottom: 28px; }
+
+  /* ---------- Loading ---------- */
+  #loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 20px;
+    text-align: center;
+  }
+  .spinner {
+    width: 42px; height: 42px;
+    border: 3px solid var(--border);
+    border-top-color: var(--accent-text);
+    border-radius: 50%;
+    animation: spin 0.9s linear infinite;
+    margin-bottom: 20px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  #loading-text { color: var(--muted); font-size: 14px; }
+  .progress-bar {
+    width: 220px; height: 4px;
+    background: var(--border);
+    border-radius: 2px;
+    margin-top: 16px;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: var(--accent);
+    width: 0%;
+    transition: width 1.5s linear;
+  }
+
+  /* ---------- Error ---------- */
+  #error { display: none; text-align: center; padding: 60px 20px; color: var(--muted); }
+
+  /* ---------- Content ---------- */
+  #content { display: none; }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px;
+  }
+  .card .label { color: var(--muted); font-size: 12px; margin-bottom: 6px; }
+  .card .value-row { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+  .card .value { font-size: 22px; font-weight: 700; }
+
+  .trend { font-size: 12px; font-weight: 600; display: inline-flex; align-items: center; gap: 2px; }
+
+  /* Картки статистики: однакова структура — назва, число, динаміка, підказка */
+  .stat-cards { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  .stat-cards.four { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .card.stat { display: flex; flex-direction: column; min-width: 0; }
+  .card.stat .label { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .card.stat .value { white-space: nowrap; }
+  .card.stat .trend { display: flex; min-height: 17px; margin-top: 4px; }
+  .card.stat .hint:empty { display: none; }
+  @media (max-width: 760px) {
+    .stat-cards, .stat-cards.four { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .stat-cards:not(.four) .card.stat:first-child { grid-column: span 2; }
+  }
+  .trend.up { color: var(--positive); }
+  .trend.down { color: var(--negative); }
+  .trend.flat { color: var(--muted); font-weight: 500; }
+
+  table { width: 100%; border-collapse: collapse; }
+  th, td {
+    text-align: left;
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+  }
+  th { color: var(--muted); font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.03em; }
+  td.num, th.num { text-align: right; }
+  tbody tr:hover { background: var(--accent-soft); }
+
+  .section-title { font-size: 15px; color: var(--muted); margin: 32px 0 10px; font-weight: 600; }
+
+  #period-bar { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  select, input[type="date"], button {
+    background: var(--card);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 14px;
+    font-family: inherit;
+  }
+  button {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--accent-text);
+    font-weight: 600;
+    cursor: pointer;
+  }
+  button:hover { opacity: 0.85; }
+  #custom-range { display: flex; align-items: center; gap: 8px; }
+  #comparison-note { color: var(--muted); font-size: 12px; margin-top: 8px; }
+  #history-limit-note {
+    color: #8a6d1a;
+    background: #FFF7DE;
+    border: 1px solid #F2E4A8;
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+
+  .highlight-badge {
+    display: inline-block;
+    padding: 9px 14px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .highlight-badge.growth { background: #E9F7EF; color: var(--positive); }
+  .highlight-badge.decline { background: #FBEAEA; color: var(--negative); }
+
+  .chart-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 20px 12px;
+    margin-bottom: 28px;
+  }
+  .chart-title { color: var(--muted); font-size: 12px; margin-bottom: 6px; }
+  .chart-total { font-size: 24px; font-weight: 700; margin-bottom: 12px; }
+  .chart-axis {
+    display: flex;
+    justify-content: space-between;
+    color: var(--muted);
+    font-size: 11px;
+    margin-top: 4px;
+  }
+
+  .card .hint { color: var(--muted); font-size: 11px; margin-top: 6px; }
+  .neg { color: var(--negative); }
+
+  /* ---------- Товари з підпунктами ---------- */
+  tr.prod.has-variants { cursor: pointer; }
+  tr.prod .caret { display: inline-block; width: 14px; color: var(--muted); transition: transform .15s; }
+  tr.prod.open .caret { transform: rotate(90deg); }
+  tr.variant-row td { font-size: 13px; color: #444; background: #FCFCFA; padding-top: 7px; padding-bottom: 7px; }
+  tr.variant-row td:first-child { padding-left: 34px; }
+  tr.variant-row { display: none; }
+  tr.variant-row.show { display: table-row; }
+  .ret { color: var(--negative); font-size: 12px; }
+  .ret-note { color: var(--negative); font-size: 12px; white-space: nowrap; }
+  .low-note { color: #8a6d1a; font-size: 12px; white-space: nowrap; }
+  .inv-flags { margin: 2px 0 0 14px; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  @media (max-width: 700px) { .two-col { grid-template-columns: 1fr; } }
+  .mini-note { color: var(--muted); font-size: 12px; margin-top: 8px; }
+
+  /* ---------- Tabs ---------- */
+  .tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--border); margin-bottom: 18px; }
+  .tab {
+    background: none; border: none; border-bottom: 2px solid transparent; border-radius: 0;
+    color: var(--muted); font-weight: 600; padding: 10px 14px; margin-bottom: -1px;
+  }
+  .tab:hover { opacity: 1; color: var(--text); }
+  .tab.active { color: var(--text); border-bottom-color: var(--text); }
+
+  /* ---------- Inventory ---------- */
+  #inv-loading, #inv-error { display: none; text-align: center; padding: 60px 20px; color: var(--muted); font-size: 14px; }
+  #inv-content { display: none; }
+  .inv-tools { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-bottom: 12px; }
+  .inv-tools input[type="search"] {
+    flex: 1 1 200px; background: var(--card); color: var(--text); border: 1px solid var(--border);
+    border-radius: 8px; padding: 8px 12px; font-size: 14px; font-family: inherit;
+  }
+  .stock { display: inline-block; min-width: 34px; padding: 2px 8px; border-radius: 6px; font-weight: 600; text-align: center; }
+  .stock.ok { background: #E9F7EF; color: var(--positive); }
+  .stock.low { background: #FFF7DE; color: #8a6d1a; }
+  .stock.out { background: #FBEAEA; color: var(--negative); }
+  .stock.untracked { color: var(--muted); font-weight: 400; }
+  .stock.total { color: var(--text); font-weight: 700; }  /* та сама рамка, що й у бейджів — числа в одну лінію */
+  .variant { color: var(--muted); font-size: 13px; }
+  .sku { color: var(--muted); font-size: 11px; }
+  .card.clickable { cursor: pointer; }
+  .card.clickable:hover { border-color: var(--text); }
+  #inv-updated { color: var(--muted); font-size: 12px; margin-top: 12px; }
+
+  @media (max-width: 480px) {
+    body { padding: 14px; }
+    .card { padding: 12px; }
+    .card .value { font-size: 18px; }
+    .chart-card { padding: 16px 14px 10px; }
+    .chart-total { font-size: 19px; }
+    .chart-axis span:nth-child(2n) { display: none; }
+    #period-bar { gap: 8px; }
+    select, input[type="date"], button { font-size: 13px; padding: 7px 10px; }
+    #custom-range { width: 100%; flex-wrap: wrap; }
+    th, td { padding: 9px 6px; font-size: 13px; }
+    th { font-size: 10px; letter-spacing: 0; }
+    tr.variant-row td:first-child { padding-left: 24px; }
+  }
+  td.num { white-space: nowrap; }
+
+  /* Вбудовано в лендинг (iframe з ?embed=1) */
+  html.embed body { padding: 20px; background: var(--bg); }
+  @media (max-width: 480px) { html.embed body { padding: 14px; } }
+  .demo-note { font-size: 12px; color: var(--muted); margin: -20px 0 22px; }
+</style>
+<script>if (new URLSearchParams(location.search).has("embed")) document.documentElement.classList.add("embed");</script>
+</head>
+<body>
+<div class="wrap">
+  <h1 id="vendor-name">Статистика</h1>
+  <div class="subtitle">Поточний місяць</div>
+  <div class="demo-note">Демо: усі цифри вигадані. Перемикайте періоди, розкривайте товари, дивіться залишки.</div>
+
+  <div class="tabs" role="tablist">
+    <button class="tab active" data-tab="sales" role="tab">Продажі</button>
+    <button class="tab" data-tab="inventory" role="tab">Залишки</button>
+  </div>
+
+  <div id="tab-sales">
+  <div id="period-bar" style="display:none; margin-bottom: 6px;">
+    <select id="period-select">
+      <option value="this_month">Цей місяць</option>
+      <option value="last_month">Минулий місяць</option>
+      <option value="last_7_days">Останні 7 днів</option>
+      <option value="last_30_days">Останні 30 днів</option>
+      <option value="custom">Обрати період...</option>
+    </select>
+    <span id="custom-range" style="display:none;">
+      <input type="date" id="start-date"> — <input type="date" id="end-date">
+      <button id="apply-range">Застосувати</button>
+    </span>
+  </div>
+  <div id="min-date-note" style="display:none; color: var(--muted); font-size: 11px; margin-top: 4px;"></div>
+  <div id="comparison-note" style="display:none; margin-bottom: 6px;"></div>
+  <div id="history-limit-note" style="display:none; margin-bottom: 14px;"></div>
+  <div id="product-highlights" style="display:none; gap: 10px; flex-wrap: wrap; margin-bottom: 22px;">
+    <div class="highlight-badge growth" id="highlight-growth" style="display:none;"></div>
+    <div class="highlight-badge decline" id="highlight-decline" style="display:none;"></div>
+  </div>
+
+  <div id="loading">
+    <div class="spinner"></div>
+    <div id="loading-text">Завантажуємо дані...</div>
+    <div class="progress-bar"><div class="progress-bar-fill" id="progress-fill"></div></div>
+  </div>
+
+  <div id="error">Не вдалося завантажити дані. Спробуйте оновити сторінку пізніше.</div>
+
+  <div id="content">
+    <div class="cards stat-cards" id="stat-cards">
+      <div class="card stat">
+        <div class="label">Виручка</div>
+        <div class="value" id="stat-revenue">—</div>
+        <div class="trend" id="trend-revenue"></div>
+        <div class="hint" id="revenue-hint"></div>
+      </div>
+      <div class="card stat" id="net-revenue-card" style="display:none;">
+        <div class="label">До виплати</div>
+        <div class="value" id="stat-net-revenue">—</div>
+        <div class="trend" id="trend-net"></div>
+        <div class="hint" id="net-revenue-hint"></div>
+      </div>
+      <div class="card stat">
+        <div class="label">Замовлень</div>
+        <div class="value" id="stat-orders">—</div>
+        <div class="trend" id="trend-orders"></div>
+      </div>
+      <div class="card stat">
+        <div class="label">Товарів продано</div>
+        <div class="value" id="stat-items">—</div>
+        <div class="trend" id="trend-items"></div>
+      </div>
+      <div class="card stat">
+        <div class="label">Середній чек</div>
+        <div class="value" id="stat-avg">—</div>
+        <div class="trend" id="trend-avg"></div>
+      </div>
+    </div>
+
+    <div class="chart-card">
+      <div class="chart-title">Продажі з часом</div>
+      <div class="chart-total" id="chart-total">—</div>
+      <svg id="chart-svg" viewBox="0 0 640 180" preserveAspectRatio="none" style="width:100%; height:180px; display:block;"></svg>
+      <div class="chart-axis" id="chart-axis"></div>
+    </div>
+
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-top:32px; margin-bottom:10px;">
+      <div class="section-title" style="margin:0;">Товари</div>
+      <button id="export-csv-btn" style="padding:8px 14px; font-size:13px;">Завантажити звіт (CSV)</button>
+    </div>
+    <table id="products-table">
+      <thead>
+        <tr><th>Назва</th><th class="num">Продано</th><th class="num">Виручка</th></tr>
+      </thead>
+      <tbody id="products-body"></tbody>
+    </table>
+    <div class="mini-note" id="products-note"></div>
+
+    <div class="two-col">
+      <div id="cities-section" style="display:none;">
+        <div class="section-title">Топ міст</div>
+        <table>
+          <thead><tr><th>Місто</th><th class="num">Замовлень</th><th class="num">Продажі</th></tr></thead>
+          <tbody id="cities-body"></tbody>
+        </table>
+        <div class="mini-note" id="cities-note"></div>
+      </div>
+      <div id="discounts-section" style="display:none;">
+        <div class="section-title">Знижки</div>
+        <div id="discounts-summary" style="font-size:14px; margin-bottom:10px;"></div>
+        <table>
+          <thead><tr><th>Знижка / промокод</th><th class="num">Замовлень</th><th class="num">Сума знижки</th></tr></thead>
+          <tbody id="discounts-body"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  </div><!-- /tab-sales -->
+
+  <div id="tab-inventory" style="display:none;">
+    <div id="inv-loading">Завантажуємо залишки...</div>
+    <div id="inv-error"></div>
+    <div id="inv-content">
+      <div class="cards">
+        <div class="card"><div class="label">Товарів у продажу</div><div class="value" id="inv-products">—</div></div>
+        <div class="card"><div class="label">Одиниць на складі</div><div class="value" id="inv-units">—</div></div>
+        <div class="card clickable" data-filter="low"><div class="label" id="inv-low-label">Закінчуються</div><div class="value" id="inv-low" style="color:#8a6d1a">—</div></div>
+        <div class="card clickable" data-filter="out"><div class="label">Немає в наявності</div><div class="value" id="inv-out" style="color:var(--negative)">—</div></div>
+      </div>
+      <div class="inv-tools">
+        <input type="search" id="inv-search" placeholder="Пошук за назвою, розміром або SKU…">
+        <select id="inv-filter">
+          <option value="all">Усі</option>
+          <option value="low">Закінчуються</option>
+          <option value="out">Немає в наявності</option>
+        </select>
+        <button id="inv-csv-btn" style="padding:8px 14px; font-size:13px;">Завантажити (CSV)</button>
+      </div>
+      <table>
+        <thead><tr><th>Товар</th><th class="num">Залишок</th></tr></thead>
+        <tbody id="inv-body"></tbody>
+      </table>
+      <div class="mini-note" id="inv-note" style="display:none;">Натисніть на товар, щоб побачити залишки за розміром і кольором.</div>
+      <div id="inv-updated"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+let currentData = null; // для CSV-експорту
+
+const loadingEl = document.getElementById("loading");
+const errorEl = document.getElementById("error");
+const contentEl = document.getElementById("content");
+const periodBarEl = document.getElementById("period-bar");
+const loadingTextEl = document.getElementById("loading-text");
+const progressFillEl = document.getElementById("progress-fill");
+const periodSelect = document.getElementById("period-select");
+const customRangeEl = document.getElementById("custom-range");
+const startDateInput = document.getElementById("start-date");
+const endDateInput = document.getElementById("end-date");
+const applyRangeBtn = document.getElementById("apply-range");
+const minDateNoteEl = document.getElementById("min-date-note");
+
+// Дзеркалить API_ORDERS_LOOKBACK_DAYS на бекенді — Shopify без розширеного
+// доступу віддає лише останні ~60 днів замовлень.
+const API_ORDERS_LOOKBACK_DAYS = 59;
+const earliestSelectable = new Date();
+earliestSelectable.setDate(earliestSelectable.getDate() - API_ORDERS_LOOKBACK_DAYS);
+const earliestSelectableStr = earliestSelectable.toISOString().slice(0, 10);
+
+function setEarliest(iso) {
+  startDateInput.min = iso;
+  endDateInput.min = iso;
+  minDateNoteEl.textContent = `Дані доступні з ${fmtDate(iso)}`;
+}
+setEarliest(earliestSelectableStr);
+
+
+const messages = [
+  "Завантажуємо дані...",
+  "Ще мить...",
+  "Майже готово, рахуємо статистику...",
+];
+
+function fmtMoney(n) {
+  return new Intl.NumberFormat("uk-UA", { minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(n) + " грн";
+}
+
+function fmtDate(iso) {
+  const d = new Date(iso);
+  return d.toLocaleDateString("uk-UA", { day: "numeric", month: "short" });
+}
+
+function sameAsBeforeText() {
+  return {
+    this_month: "як минулого місяця",
+    last_month: "як позаминулого місяця",
+    last_7_days: "як у попередні 7 днів",
+    last_30_days: "як у попередні 30 днів",
+  }[periodSelect.value] || "як у попередній період";
+}
+
+function renderTrend(elId, pct) {
+  const el = document.getElementById(elId);
+  if (pct === null || pct === undefined) {
+    el.textContent = "";
+    return;
+  }
+  const rounded = Math.round(pct * 10) / 10;
+  if (rounded === 0) {
+    el.className = "trend flat";
+    el.textContent = sameAsBeforeText();
+  } else if (rounded > 0) {
+    el.className = "trend up";
+    el.textContent = `▲ +${rounded}%`;
+  } else {
+    el.className = "trend down";
+    el.textContent = `▼ ${rounded}%`;
+  }
+}
+
+function renderHighlights(highlight) {
+  const wrapEl = document.getElementById("product-highlights");
+  const growthEl = document.getElementById("highlight-growth");
+  const declineEl = document.getElementById("highlight-decline");
+
+  let anyVisible = false;
+
+  if (highlight.top_growth) {
+    growthEl.style.display = "inline-block";
+    growthEl.textContent = `🔥 Найбільше зростання: ${highlight.top_growth.title} +${highlight.top_growth.change}%`;
+    anyVisible = true;
+  } else {
+    growthEl.style.display = "none";
+  }
+
+  if (highlight.top_decline) {
+    declineEl.style.display = "inline-block";
+    declineEl.textContent = `📉 Найбільше падіння: ${highlight.top_decline.title} ${highlight.top_decline.change}%`;
+    anyVisible = true;
+  } else {
+    declineEl.style.display = "none";
+  }
+
+  wrapEl.style.display = anyVisible ? "flex" : "none";
+}
+
+function csvEscape(value) {
+  const str = String(value);
+  if (str.includes(";") || str.includes('"') || str.includes("\n")) {
+    return '"' + str.replace(/"/g, '""') + '"';
+  }
+  return str;
+}
+
+function exportCsv(data) {
+  if (!data) return;
+
+  const rows = [
+    ["Вендор", data.vendor],
+    ["Період", `${data.period.start} — ${data.period.end}`],
+    ["Продажі (зі знижками)", data.gross],
+    ["Повернення", data.returns_amount],
+    ["Повернено, шт.", data.returns_qty],
+    ["Виручка (продажі − повернення)", data.revenue],
+  ];
+
+  if (data.net_revenue !== null) {
+    if (data.commission_rate !== null) rows.push(["Комісія платформи", `${data.commission_rate}%` + (data.has_product_rates ? " (на окремі товари — своя)" : "")]);
+    rows.push(["До виплати вендору", data.net_revenue]);
+  }
+
+  rows.push(
+    ["Замовлень", data.orders_count],
+    ["Товарів продано", data.items_sold],
+    ["Середній чек", data.avg_order_value],
+    [],
+    ["Товар", "Варіант", "Продано, шт.", "Повернено, шт.", "Продажі", "Повернення", "Виручка"],
+  );
+  data.products.forEach(p => {
+    rows.push([p.title, "", p.quantity, p.returned_qty, p.revenue, p.returned_amount, p.net]);
+    p.variants.forEach(v => rows.push(["", v.title, v.quantity, v.returned_qty, v.revenue, Math.round((v.revenue - v.net) * 100) / 100, v.net]));
+  });
+  if (data.cities.length) {
+    rows.push([], ["Місто", "Замовлень", "Продажі"], ...data.cities.map(c => [c.city, c.orders, c.revenue]));
+  }
+  if (data.discounts.labels.length) {
+    rows.push([], ["Знижка", "Замовлень", "Сума знижки"], ...data.discounts.labels.map(d => [d.label, d.orders, d.amount]));
+  }
+
+  const csvContent = rows.map(r => r.map(csvEscape).join(";")).join("\r\n");
+  const blob = new Blob(["\ufeff" + csvContent], { type: "text/csv;charset=utf-8;" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `${data.vendor}_${data.period.start}_${data.period.end}.csv`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+function catmullRomToBezier(points) {
+  if (points.length < 2) return "";
+  let d = `M${points[0][0]},${points[0][1]}`;
+  for (let i = 0; i < points.length - 1; i++) {
+    const p0 = points[i - 1] || points[i];
+    const p1 = points[i];
+    const p2 = points[i + 1];
+    const p3 = points[i + 2] || p2;
+    const cp1x = p1[0] + (p2[0] - p0[0]) / 6;
+    const cp1y = p1[1] + (p2[1] - p0[1]) / 6;
+    const cp2x = p2[0] - (p3[0] - p1[0]) / 6;
+    const cp2y = p2[1] - (p3[1] - p1[1]) / 6;
+    d += ` C${cp1x.toFixed(1)},${cp1y.toFixed(1)} ${cp2x.toFixed(1)},${cp2y.toFixed(1)} ${p2[0].toFixed(1)},${p2[1].toFixed(1)}`;
+  }
+  return d;
+}
+
+function fmtAxisAmount(n) {
+  if (n >= 1000) {
+    const thousands = n / 1000;
+    return (Number.isInteger(thousands) ? thousands : thousands.toFixed(1)) + "к";
+  }
+  return Math.round(n).toString();
+}
+
+function buildChartPoints(values, maxVal, width, height, padTop, padBottom, padLeft, padRight) {
+  return values.map((v, i, arr) => {
+    const x = padLeft + (i / Math.max(1, arr.length - 1)) * (width - padLeft - padRight);
+    const y = height - padBottom - (v / maxVal) * (height - padTop - padBottom);
+    return [x, y];
+  });
+}
+
+function renderChart(daily, comparisonDaily) {
+  const svg = document.getElementById("chart-svg");
+  const axisEl = document.getElementById("chart-axis");
+  const width = 640, height = 180;
+  const padTop = 14, padBottom = 12, padLeft = 44, padRight = 6;
+
+  const values = daily.map(d => d.revenue);
+  const compValues = (comparisonDaily || []).map(d => d.revenue);
+  // Спільна шкала для обох ліній, щоб порівняння було чесним візуально
+  const maxVal = Math.max(...values, ...compValues, 1);
+
+  const points = buildChartPoints(values, maxVal, width, height, padTop, padBottom, padLeft, padRight);
+  const pathD = catmullRomToBezier(points);
+
+  const baseY = height - padBottom;
+  const areaPathD = points.length
+    ? `${pathD} L${points[points.length - 1][0].toFixed(1)},${baseY} L${points[0][0].toFixed(1)},${baseY} Z`
+    : "";
+
+  let ghostPathD = "";
+  if (compValues.length >= 2) {
+    const ghostPoints = buildChartPoints(compValues, maxVal, width, height, padTop, padBottom, padLeft, padRight);
+    ghostPathD = catmullRomToBezier(ghostPoints);
+  }
+
+  // Горизонтальні лінії-орієнтири з сумою: 0, половина, максимум
+  const gridSteps = [0, 0.5, 1];
+  const gridLines = gridSteps.map(frac => {
+    const y = height - padBottom - frac * (height - padTop - padBottom);
+    const label = fmtAxisAmount(maxVal * frac);
+    return `
+      <line x1="${padLeft}" y1="${y}" x2="${width}" y2="${y}" stroke="var(--border)" stroke-width="1" />
+      <text x="${padLeft - 8}" y="${y + 3}" text-anchor="end" font-size="10" fill="var(--muted)">${label}</text>
+    `;
+  }).join("");
+
+  svg.innerHTML = `
+    <defs>
+      <linearGradient id="chartFill" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" style="stop-color: var(--accent); stop-opacity: 0.4" />
+        <stop offset="100%" style="stop-color: var(--accent); stop-opacity: 0" />
+      </linearGradient>
+    </defs>
+    ${gridLines}
+    ${ghostPathD ? `<path d="${ghostPathD}" fill="none" stroke="var(--muted)" stroke-width="2" stroke-dasharray="4 4" opacity="0.7" />` : ""}
+    <path d="${areaPathD}" fill="url(#chartFill)" stroke="none" />
+    <path d="${pathD}" fill="none" stroke="#111111" stroke-width="2.5" stroke-linecap="round" />
+  `;
+
+  const total = values.reduce((a, b) => a + b, 0);
+  document.getElementById("chart-total").textContent = fmtMoney(total);
+
+  axisEl.innerHTML = "";
+  axisEl.style.marginLeft = `${(padLeft / width) * 100}%`;
+  const labelCount = window.innerWidth < 480 ? Math.min(4, daily.length) : Math.min(6, daily.length);
+  for (let i = 0; i < labelCount; i++) {
+    const idx = Math.round((i / (labelCount - 1 || 1)) * (daily.length - 1));
+    const span = document.createElement("span");
+    span.textContent = fmtDate(daily[idx].date);
+    axisEl.appendChild(span);
+  }
+}
+
+function buildApiUrl() {
+  const period = periodSelect.value;
+  const params = new URLSearchParams({ period });
+  if (period === "custom") {
+    params.set("start", startDateInput.value);
+    params.set("end", endDateInput.value);
+  }
+  return `/demo/api/stats?${params.toString()}`;
+}
+
+function renderData(data) {
+  currentData = data;
+
+  document.getElementById("vendor-name").textContent = data.vendor;
+  salesSubtitle = `${fmtDate(data.period.start)} — ${fmtDate(data.period.end)}`;
+  if (tabSalesEl.style.display !== "none") document.querySelector(".subtitle").textContent = salesSubtitle;
+
+  document.getElementById("stat-revenue").textContent = fmtMoney(data.revenue);
+  document.getElementById("stat-orders").textContent = data.orders_count;
+  document.getElementById("stat-items").textContent = data.items_sold;
+  document.getElementById("stat-avg").textContent = fmtMoney(data.avg_order_value);
+
+  // Повернення рідкісні: показуємо їх лише підказкою, коли вони є
+  document.getElementById("revenue-hint").textContent = data.returns_amount > 0
+    ? `враховано повернення −${fmtMoney(data.returns_amount)}`
+    : "";
+
+  const netRevenueCardEl = document.getElementById("net-revenue-card");
+  const hasPayout = data.net_revenue !== null && data.net_revenue !== undefined;
+  document.getElementById("stat-cards").classList.toggle("four", !hasPayout);
+  if (hasPayout) {
+    netRevenueCardEl.style.display = "flex";
+    document.getElementById("stat-net-revenue").textContent = fmtMoney(data.net_revenue);
+    const hints = [];
+    if (data.commission_rate !== null) hints.push(`комісія ${data.commission_rate}%`);
+    if (data.has_product_rates) hints.push("на окремі товари — своя");
+    if (data.products_without_rate) hints.push(`без ставки й не враховано товарів: ${data.products_without_rate}`);
+    document.getElementById("net-revenue-hint").textContent = hints.join(", ");
+    renderTrend("trend-net", data.trend.net_revenue);
+  } else {
+    netRevenueCardEl.style.display = "none";
+  }
+
+  renderTrend("trend-revenue", data.trend.revenue);
+  renderTrend("trend-orders", data.trend.orders_count);
+  renderTrend("trend-items", data.trend.items_sold);
+  renderTrend("trend-avg", data.trend.avg_order_value);
+
+  renderChart(data.daily, data.comparison_daily);
+  renderHighlights(data.product_highlight || {});
+
+  const noteEl = document.getElementById("comparison-note");
+  noteEl.textContent =
+    `Порівняно з ${fmtDate(data.comparison_period.start)} — ${fmtDate(data.comparison_period.end)}`;
+  noteEl.style.display = "block";
+
+  const limitNoteEl = document.getElementById("history-limit-note");
+  if (data.limited_history_since) {
+    limitNoteEl.textContent =
+      `⚠️ Дані до ${fmtDate(data.limited_history_since)} недоступні: дашборд зберігає історію замовлень з цієї дати.`;
+    limitNoteEl.style.display = "block";
+  } else {
+    limitNoteEl.style.display = "none";
+  }
+
+  renderProducts(data.products);
+  renderCities(data);
+  renderDiscounts(data.discounts);
+
+  if (data.history_since) setEarliest(data.history_since);
+
+  loadingEl.style.display = "none";
+  errorEl.style.display = "none";
+  contentEl.style.display = "block";
+  contentEl.style.opacity = "1";
+  periodBarEl.style.display = "flex";
+}
+
+function escapeHtml(str) {
+  return String(str).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+}
+
+function retNote(qty) {
+  return qty ? ` <span class="ret-note">· повернено ${qty} шт.</span>` : "";
+}
+
+function renderProducts(products) {
+  const tbody = document.getElementById("products-body");
+  if (products.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="3" style="color:var(--muted); text-align:center; padding:24px;">Продажів за цей період немає</td></tr>`;
+    document.getElementById("products-note").style.display = "none";
+    return;
+  }
+  const anyVariants = products.some(p => p.variants.length);
+  const anyReturns = products.some(p => p.returned_qty);
+  const notes = [];
+  if (anyVariants) notes.push("Натисніть на товар, щоб побачити розбивку за розміром і кольором.");
+  if (anyReturns) notes.push("Виручка — з урахуванням повернень.");
+  const noteEl = document.getElementById("products-note");
+  noteEl.textContent = notes.join(" ");
+  noteEl.style.display = notes.length ? "block" : "none";
+  tbody.innerHTML = products.map((p, i) => {
+    const hasV = p.variants.length > 0;
+    const main = `<tr class="prod${hasV ? " has-variants" : ""}" data-i="${i}">
+      <td>${hasV ? '<span class="caret">▸</span>' : '<span class="caret"></span>'}${escapeHtml(p.title)}${retNote(p.returned_qty)}</td>
+      <td class="num">${p.quantity}</td>
+      <td class="num">${fmtMoney(p.net)}</td>
+    </tr>`;
+    const subs = p.variants.map(v => `<tr class="variant-row" data-parent="${i}">
+      <td>${escapeHtml(v.title)}${retNote(v.returned_qty)}</td>
+      <td class="num">${v.quantity}</td>
+      <td class="num">${fmtMoney(v.net)}</td>
+    </tr>`).join("");
+    return main + subs;
+  }).join("");
+}
+
+document.getElementById("products-body").addEventListener("click", e => {
+  const row = e.target.closest("tr.prod.has-variants");
+  if (!row) return;
+  const open = row.classList.toggle("open");
+  document.querySelectorAll(`#products-body tr.variant-row[data-parent="${row.dataset.i}"]`)
+    .forEach(r => r.classList.toggle("show", open));
+});
+
+function renderCities(data) {
+  const section = document.getElementById("cities-section");
+  if (!data.cities.length) { section.style.display = "none"; return; }
+  section.style.display = "block";
+  document.getElementById("cities-body").innerHTML = data.cities.map(c =>
+    `<tr><td>${escapeHtml(c.city)}</td><td class="num">${c.orders}</td><td class="num">${fmtMoney(c.revenue)}</td></tr>`
+  ).join("");
+  const notes = [];
+  if (data.cities_other_orders) notes.push(`Інші міста: ${data.cities_other_orders} замовл.`);
+  if (data.orders_without_city) notes.push(`Без адреси (самовивіз тощо): ${data.orders_without_city} замовл.`);
+  document.getElementById("cities-note").textContent = notes.join(" · ");
+}
+
+function renderDiscounts(d) {
+  const section = document.getElementById("discounts-section");
+  if (!d.amount) { section.style.display = "none"; return; }
+  section.style.display = "block";
+  document.getElementById("discounts-summary").innerHTML =
+    `<strong>${d.items}</strong> шт. у <strong>${d.orders}</strong> замовл. продано зі знижкою · разом знижок <strong>${fmtMoney(d.amount)}</strong>`;
+  document.getElementById("discounts-body").innerHTML = d.labels.map(x =>
+    `<tr><td>${escapeHtml(x.label)}</td><td class="num">${x.orders}</td><td class="num">${fmtMoney(x.amount)}</td></tr>`
+  ).join("");
+}
+
+async function loadStats({ isInitial = false } = {}) {
+  const url = buildApiUrl();
+
+  if (isInitial) {
+    loadingEl.style.display = "flex";
+    contentEl.style.display = "none";
+  } else {
+    contentEl.style.transition = "opacity 0.15s";
+    contentEl.style.opacity = "0.45";
+  }
+
+  const maxAttempts = isInitial ? 30 : 5;
+  const delayMs = 2000;
+
+  for (let i = 0; i < maxAttempts; i++) {
+    if (isInitial) {
+      loadingTextEl.textContent = messages[Math.min(i, messages.length - 1)];
+      progressFillEl.style.width = Math.min(100, (i / maxAttempts) * 100) + "%";
+    }
+
+    try {
+      const res = await fetch(url, { signal: AbortSignal.timeout(8000) });
+      if (res.ok) {
+        const data = await res.json();
+        renderData(data);
+        return;
+      }
+      if (res.status === 401 || res.status === 404) {
+        loadingEl.style.display = "none";
+        errorEl.textContent = "Сесія завершилась або посилання відкликано. Оновіть сторінку.";
+        errorEl.style.display = "block";
+        return;
+      }
+    } catch (e) {
+      // сервер ще прокидається — пробуємо ще раз
+    }
+    await new Promise(r => setTimeout(r, delayMs));
+  }
+
+  loadingEl.style.display = "none";
+  errorEl.style.display = "block";
+}
+
+periodSelect.addEventListener("change", () => {
+  if (periodSelect.value === "custom") {
+    customRangeEl.style.display = "flex";
+    minDateNoteEl.style.display = "block";
+    if (startDateInput.value) {
+      // якщо дати вже колись вводились — одразу перевіряємо, чи є що показати
+      if (endDateInput.value) loadStats();
+    }
+    return;
+  }
+  customRangeEl.style.display = "none";
+  minDateNoteEl.style.display = "none";
+  loadStats();
+});
+
+function tryOpenPicker(input) {
+  if (typeof input.showPicker === "function") {
+    try { input.showPicker(); } catch (e) { /* браузер може відмовити поза дією користувача */ }
+  } else {
+    input.focus();
+  }
+}
+
+startDateInput.addEventListener("change", () => {
+  if (!startDateInput.value) return;
+  endDateInput.min = startDateInput.value; // не дати обрати "до" раніше за "від"
+  if (endDateInput.value && endDateInput.value < startDateInput.value) {
+    endDateInput.value = "";
+  }
+  tryOpenPicker(endDateInput);
+});
+
+endDateInput.addEventListener("change", () => {
+  if (startDateInput.value && endDateInput.value) {
+    loadStats();
+  }
+});
+
+applyRangeBtn.addEventListener("click", () => {
+  if (!startDateInput.value || !endDateInput.value) return;
+  loadStats();
+});
+
+document.getElementById("export-csv-btn").addEventListener("click", () => {
+  exportCsv(currentData);
+});
+
+// ---------- Вкладки ----------
+const tabSalesEl = document.getElementById("tab-sales");
+const tabInventoryEl = document.getElementById("tab-inventory");
+const subtitleEl = document.querySelector(".subtitle");
+let salesSubtitle = subtitleEl.textContent;
+let inventoryData = null;
+let inventoryLoading = false;
+
+function showTab(name) {
+  document.querySelectorAll(".tab").forEach(t => t.classList.toggle("active", t.dataset.tab === name));
+  if (name === "inventory") {
+    if (tabSalesEl.style.display !== "none") salesSubtitle = subtitleEl.textContent;
+    tabSalesEl.style.display = "none";
+    tabInventoryEl.style.display = "block";
+    subtitleEl.textContent = "Залишки на складі зараз";
+    if (!inventoryData) loadInventory();
+  } else {
+    tabInventoryEl.style.display = "none";
+    tabSalesEl.style.display = "block";
+    subtitleEl.textContent = salesSubtitle;
+  }
+  try { history.replaceState(null, "", name === "inventory" ? "#inventory" : location.pathname); } catch (e) {}
+}
+
+document.querySelectorAll(".tab").forEach(t => t.addEventListener("click", () => showTab(t.dataset.tab)));
+
+// ---------- Залишки ----------
+
+function stockClass(item) {
+  if (!item.tracked) return "untracked";
+  if (item.quantity <= 0) return "out";
+  if (item.quantity <= inventoryData.low_stock_threshold) return "low";
+  return "ok";
+}
+
+function filteredInventory() {
+  const q = document.getElementById("inv-search").value.trim().toLowerCase();
+  const filter = document.getElementById("inv-filter").value;
+  return inventoryData.items.filter(i => {
+    const cls = stockClass(i);
+    if (filter === "low" && cls !== "low") return false;
+    if (filter === "out" && cls !== "out") return false;
+    if (!q) return true;
+    return `${i.product} ${i.variant} ${i.sku}`.toLowerCase().includes(q);
+  });
+}
+
+// Групуємо варіанти під товаром (порядок товарів і варіантів — як прийшов з сервера)
+function groupInventory(items) {
+  const groups = [];
+  const byName = new Map();
+  items.forEach(i => {
+    let g = byName.get(i.product);
+    if (!g) { g = { product: i.product, items: [] }; byName.set(i.product, g); groups.push(g); }
+    g.items.push(i);
+  });
+  return groups;
+}
+
+const openInventory = new Set();  // які товари розгорнуто (зберігається між перемальовуваннями)
+
+function stockBadge(i) {
+  return `<span class="stock ${stockClass(i)}">${i.tracked ? i.quantity : "не рахується"}</span>`;
+}
+
+function renderInventoryRows() {
+  const tbody = document.getElementById("inv-body");
+  const rows = filteredInventory();
+  const noteEl = document.getElementById("inv-note");
+  if (rows.length === 0) {
+    const empty = inventoryData.items.length === 0 ? "Активних товарів у магазині поки немає" : "Нічого не знайдено";
+    tbody.innerHTML = `<tr><td colspan="2" style="color:var(--muted); text-align:center; padding:24px;">${empty}</td></tr>`;
+    noteEl.style.display = "none";
+    return;
+  }
+  // При пошуку чи фільтрі одразу показуємо знайдені розміри
+  const autoOpen = document.getElementById("inv-search").value.trim() !== "" ||
+                   document.getElementById("inv-filter").value !== "all";
+  const groups = groupInventory(rows);
+  const anyVariants = groups.some(g => g.items.length > 1 || g.items[0].variant);
+  noteEl.style.display = anyVariants && !autoOpen ? "block" : "none";
+
+  tbody.innerHTML = groups.map((g, gi) => {
+    const single = g.items.length === 1 && !g.items[0].variant;
+    if (single) {
+      const i = g.items[0];
+      return `<tr class="prod">
+        <td><span class="caret"></span>${escapeHtml(g.product)}${i.sku ? `<div class="sku" style="margin-left:14px">${escapeHtml(i.sku)}</div>` : ""}</td>
+        <td class="num">${stockBadge(i)}</td>
+      </tr>`;
+    }
+    const open = autoOpen || openInventory.has(g.product);
+    // Підсумок і позначки — по всіх розмірах товару, навіть якщо фільтр показує не всі
+    const tracked = inventoryData.items.filter(i => i.product === g.product && i.tracked);
+    const total = tracked.reduce((a, i) => a + Math.max(0, i.quantity), 0);
+    const low = tracked.filter(i => stockClass(i) === "low").length;
+    const out = tracked.filter(i => stockClass(i) === "out").length;
+    const flags = [];
+    if (out) flags.push(`<span class="ret-note">немає: ${out}</span>`);
+    if (low) flags.push(`<span class="low-note">закінчується: ${low}</span>`);
+    const totalCell = tracked.length ? `<span class="stock total">${total}</span>` : `<span class="stock untracked">не рахується</span>`;
+    const main = `<tr class="prod has-variants${open ? " open" : ""}" data-product="${escapeHtml(g.product)}" data-g="${gi}">
+      <td><span class="caret">▸</span>${escapeHtml(g.product)}${flags.length ? `<div class="inv-flags">${flags.join(" · ")}</div>` : ""}</td>
+      <td class="num">${totalCell}</td>
+    </tr>`;
+    const subs = g.items.map(i => `<tr class="variant-row${open ? " show" : ""}" data-parent="${gi}">
+      <td>${escapeHtml(i.variant || "Без варіанту")}${i.sku ? ` <span class="sku">${escapeHtml(i.sku)}</span>` : ""}</td>
+      <td class="num">${stockBadge(i)}</td>
+    </tr>`).join("");
+    return main + subs;
+  }).join("");
+}
+
+document.getElementById("inv-body").addEventListener("click", e => {
+  const row = e.target.closest("tr.prod.has-variants");
+  if (!row) return;
+  const open = row.classList.toggle("open");
+  if (open) openInventory.add(row.dataset.product); else openInventory.delete(row.dataset.product);
+  document.querySelectorAll(`#inv-body tr.variant-row[data-parent="${row.dataset.g}"]`)
+    .forEach(r => r.classList.toggle("show", open));
+});
+
+function renderInventory(data) {
+  inventoryData = data;
+  document.getElementById("vendor-name").textContent = data.vendor;
+  document.getElementById("inv-products").textContent = data.summary.products_count;
+  document.getElementById("inv-units").textContent = data.summary.units_total;
+  document.getElementById("inv-low").textContent = data.summary.low_stock_count;
+  document.getElementById("inv-out").textContent = data.summary.out_of_stock_count;
+  document.getElementById("inv-low-label").textContent = `Закінчуються (≤ ${data.low_stock_threshold} шт.)`;
+  const t = new Date(data.updated_at);
+  document.getElementById("inv-updated").textContent =
+    `Демо-дані станом на ${t.toLocaleTimeString("uk-UA", { hour: "2-digit", minute: "2-digit" })}. У справжньому дашборді оновлюються кожні 5 хвилин.`;
+  renderInventoryRows();
+  document.getElementById("inv-loading").style.display = "none";
+  document.getElementById("inv-content").style.display = "block";
+}
+
+async function loadInventory() {
+  if (inventoryLoading) return;
+  inventoryLoading = true;
+  const loadingEl2 = document.getElementById("inv-loading");
+  const errorEl2 = document.getElementById("inv-error");
+  loadingEl2.style.display = "block";
+  errorEl2.style.display = "none";
+  try {
+    for (let i = 0; i < 5; i++) {
+      try {
+        const res = await fetch("/demo/api/inventory", { signal: AbortSignal.timeout(30000) });
+        if (res.ok) { renderInventory(await res.json()); return; }
+        if (res.status === 401 || res.status === 404) {
+          errorEl2.textContent = "Сесія завершилась або посилання відкликано. Оновіть сторінку.";
+          break;
+        }
+        if (res.status === 502 || res.status === 503) {
+          const body = await res.json().catch(() => ({}));
+          errorEl2.textContent = (body.error || "Залишки тимчасово недоступні.") + " Спробуйте пізніше.";
+          break;
+        }
+      } catch (e) { /* мережа — пробуємо ще раз */ }
+      errorEl2.textContent = "Не вдалося завантажити залишки. Спробуйте оновити сторінку пізніше.";
+      await new Promise(r => setTimeout(r, 2000));
+    }
+    loadingEl2.style.display = "none";
+    errorEl2.style.display = "block";
+  } finally {
+    inventoryLoading = false;
+  }
+}
+
+document.getElementById("inv-search").addEventListener("input", renderInventoryRows);
+document.getElementById("inv-filter").addEventListener("change", renderInventoryRows);
+document.querySelectorAll(".card.clickable").forEach(c => c.addEventListener("click", () => {
+  const sel = document.getElementById("inv-filter");
+  sel.value = sel.value === c.dataset.filter ? "all" : c.dataset.filter;
+  renderInventoryRows();
+}));
+
+document.getElementById("inv-csv-btn").addEventListener("click", () => {
+  if (!inventoryData) return;
+  const rows = [
+    ["Вендор", inventoryData.vendor],
+    ["Станом на", new Date(inventoryData.updated_at).toLocaleString("uk-UA")],
+    [],
+    ["Товар", "Варіант", "SKU", "Залишок"],
+    ...filteredInventory().map(i => [i.product, i.variant, i.sku, i.tracked ? i.quantity : "не рахується"]),
+  ];
+  const csvContent = rows.map(r => r.map(csvEscape).join(";")).join("\r\n");
+  const blob = new Blob(["\ufeff" + csvContent], { type: "text/csv;charset=utf-8;" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `${inventoryData.vendor}_залишки_${new Date().toISOString().slice(0, 10)}.csv`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+});
+
+loadStats({ isInitial: true });
+if (location.hash === "#inventory") showTab("inventory");
+</script>
+</body>
+</html>
