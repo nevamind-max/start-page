@@ -3,18 +3,101 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Метакультура для артистів</title>
-<meta name="description" content="Продаємо мерч українських артистів: розміщення, оплати, комунікація з покупцями, склад, відправки й виробництво. Тарифи від 12%.">
-<meta property="og:title" content="Метакультура для артистів">
-<meta property="og:description" content="Ви пишете музику — ми продаємо ваш мерч. Тарифи від 12%, щомісячні виплати, власні інструменти аналітики.">
+<title>Мерч для артистів і гуртів: виготовлення та продаж | Метакультура</title>
+<meta name="description" content="Допомагаємо українським артистам зробити й продавати мерч: футболки, худі, кепки, касети. Склад, відправки, оплати й щомісячні виплати. Комісія від 12%.">
+<link rel="canonical" href="https://start.metakultura.store/">
+<meta name="theme-color" content="#F7E51E">
+<meta property="og:title" content="Ви пишете музику, ми продаємо ваш мерч — Метакультура">
+<meta property="og:description" content="Виготовлення, продаж і відправки мерчу для українських артистів і гуртів. Комісія лише з продажів — від 12%, виплати щомісяця, власні бот і дашборд статистики.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://start.metakultura.store/">
+<meta property="og:site_name" content="Метакультура">
+<meta property="og:locale" content="uk_UA">
+<meta property="og:image" content="https://start.metakultura.store/static/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Метакультура: ви пишете музику, ми продаємо ваш мерч. Комісія від 12%">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="48x48" href="/static/favicon.png">
 <link rel="apple-touch-icon" href="/static/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<!-- Структуровані дані для Google. Розмітку FAQ app.py будує сам із розділу «Часті питання» на місці FAQ_JSONLD. -->
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "Organization",
+   "@id": "https://metakultura.store/#org",
+   "name": "Метакультура",
+   "alternateName": "Metakultura",
+   "url": "https://metakultura.store/",
+   "logo": "https://start.metakultura.store/static/apple-touch-icon.png",
+   "sameAs": [
+    "https://www.instagram.com/metakultura.project/",
+    "https://www.tiktok.com/@metakultura.project",
+    "https://t.me/metakultura"
+   ]
+  },
+  {
+   "@type": "WebPage",
+   "@id": "https://start.metakultura.store/#page",
+   "url": "https://start.metakultura.store/",
+   "inLanguage": "uk",
+   "name": "Мерч для артистів і гуртів: виготовлення та продаж | Метакультура",
+   "about": {
+    "@id": "https://start.metakultura.store/#service"
+   },
+   "publisher": {
+    "@id": "https://metakultura.store/#org"
+   }
+  },
+  {
+   "@type": "Service",
+   "@id": "https://start.metakultura.store/#service",
+   "name": "Виготовлення та продаж мерчу для артистів",
+   "serviceType": "Продаж і виготовлення мерчу для музичних артистів",
+   "provider": {
+    "@id": "https://metakultura.store/#org"
+   },
+   "areaServed": {
+    "@type": "Country",
+    "name": "Україна"
+   },
+   "audience": {
+    "@type": "Audience",
+    "audienceType": "Музичні артисти й гурти"
+   },
+   "description": "Розміщення мерчу на metakultura.store, спілкування з покупцями, прийом оплат і щомісячні виплати; за бажанням — склад, відправки та виготовлення мерчу.",
+   "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Тарифи",
+    "itemListElement": [
+     {
+      "@type": "Offer",
+      "name": "Тариф «Самостійний»",
+      "description": "Комісія 12% лише з фактичних продажів. Мерч уже є, ви самі зберігаєте його та відправляєте замовлення. Ми продаємо, спілкуємося з покупцями, приймаємо оплати й робимо щомісячні виплати."
+     },
+     {
+      "@type": "Offer",
+      "name": "Тариф «Делегуючий»",
+      "description": "Комісія 20% лише з фактичних продажів. Мерч уже є, а зберігання, пакування й відправки по Україні та за кордон беремо на себе."
+     },
+     {
+      "@type": "Offer",
+      "name": "Тариф «Прогресивний»",
+      "description": "Комісія 30% лише з фактичних продажів. Новий мерч під ключ: допомога з ідеєю й макетом, виготовлення, зберігання та відправки. З готовим макетом — від 25%."
+     }
+    ]
+   }
+  }
+ ]
+}
+</script>
+<!--FAQ_JSONLD-->
 <style>
 @font-face{font-family:"NAMU";src:url("/static/fonts/NAMU-1990.woff2") format("woff2");font-weight:400 900;font-display:swap}
 
@@ -140,7 +223,9 @@ nav.links a:hover{color:var(--ink)}
 /* tariffs */
 .tariffs{display:grid;gap:44px 24px;margin-top:56px}
 @media (min-width:980px){.tariffs{grid-template-columns:repeat(3,1fr)}}
-.tariff{display:flex;flex-direction:column}
+.tariff{display:flex;flex-direction:column;border:2px solid var(--ink);background:var(--white);padding:0 24px 24px}
+.tariff .plaque{margin:0 -24px}
+@media (max-width:420px){.tariff{padding:0 18px 20px}.tariff .plaque{margin:0 -18px}}
 .plaque{background:var(--ink);color:var(--white);font-size:clamp(26px,2.6vw,32px);font-weight:700;padding:22px 24px 30px;position:relative}
 .rate{position:absolute;right:-6px;bottom:-22px;background:var(--yellow);color:var(--ink);font-size:20px;font-weight:600;padding:6px 16px;transform:rotate(-2.5deg)}
 .tariff .fit{margin:40px 0 18px;font-size:16px;color:var(--grey);min-height:3.1em}
@@ -148,8 +233,8 @@ nav.links a:hover{color:var(--ink)}
 .tariff li{display:grid;grid-template-columns:26px 1fr;gap:10px;font-size:16px;line-height:1.35;align-items:start}
 .tariff li .ic{width:26px;height:26px}
 .tariff li.off{color:var(--grey)}
-.tariff .note{background:var(--white);border-left:4px solid var(--yellow);padding:12px 14px;font-size:15px;margin-bottom:20px}
-.tariff .btn{margin-top:auto;width:100%}
+.tariff .note{background:var(--paper);border-left:4px solid var(--yellow);padding:12px 14px;font-size:15px;margin-bottom:20px}
+.tariff .btn{margin-top:auto}
 .fine{margin-top:48px;display:grid;gap:10px;color:var(--grey);font-size:15px}
 @media (min-width:760px){.fine{grid-template-columns:repeat(2,1fr);gap:24px;max-width:820px}}
 
@@ -206,7 +291,17 @@ nav.links a:hover{color:var(--ink)}
 .browser-bar a{font-weight:600;text-decoration:none;white-space:nowrap}
 .browser-bar a:hover{text-decoration:underline}
 #dash-frame{display:block;width:100%;height:900px;border:0;background:#F7F7F3}
-@media (max-width:759px){.browser{margin:0 -16px;border-left:0;border-right:0;box-shadow:none}.browser-title{display:none}.browser-bar{justify-content:space-between}}
+.frame-clip{position:relative}
+.frame-toggle{display:none}
+@media (max-width:759px){
+  .browser{margin:0 -16px;border-left:0;border-right:0;box-shadow:none}
+  .browser-title{display:none}
+  .browser-bar{justify-content:space-between}
+  /* mobile: show the top of the demo, the rest behind a button */
+  .frame-clip.collapsed{max-height:620px;overflow:hidden}
+  .frame-clip.collapsed::after{content:"";position:absolute;left:0;right:0;bottom:0;height:140px;background:linear-gradient(rgba(247,247,243,0),#F7F7F3 85%);pointer-events:none}
+  .frame-toggle.show{display:flex;width:100%;min-height:52px;align-items:center;justify-content:center;border:0;border-top:2px solid var(--ink);background:var(--yellow);color:var(--ink);font:600 16px/1 var(--font);cursor:pointer}
+}
 
 /* offline */
 .offline{background:var(--ink);color:var(--white)}
@@ -218,16 +313,9 @@ nav.links a:hover{color:var(--ink)}
 .offline .off-note{font-size:15px;color:#9a9a9a;margin-bottom:28px}
 .offline .facts li{display:flex;gap:12px;align-items:baseline}
 .offline .facts b{color:var(--yellow);min-width:7.5em;font-weight:600}
-.machine{background:#1a1a1a;border:2px solid #333;padding:18px;max-width:440px;width:100%;justify-self:center}
-.machine-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;font-weight:700}
-.qr{width:44px;height:44px;background:
-  conic-gradient(from 90deg at 30% 30%,#fff 25%,#000 0) 0 0/11px 11px;border:4px solid #fff}
-.cells{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
-.cell{aspect-ratio:1/1.05;background:#262626;display:flex;flex-direction:column;justify-content:space-between;padding:7px;font-size:12px;color:#8d8d8d}
-.cell .coil{height:6px;border-top:2px dotted #555}
-.cell.on{background:var(--yellow);color:var(--ink)}
-.cell.on .coil{border-color:var(--ink)}
-.machine-foot{margin-top:14px;font-size:13px;color:#8d8d8d}
+.machine{max-width:380px;width:100%;justify-self:center;margin:0}
+.machine svg{display:block;width:100%;height:auto;font-family:var(--font)}
+.machine figcaption{margin-top:22px;font-size:14px;color:#8d8d8d;text-align:center}
 .gigs{margin-top:56px;padding-top:32px;border-top:1px solid #333;display:grid;gap:12px}
 @media (min-width:760px){.gigs{grid-template-columns:auto 1fr;gap:40px;align-items:baseline}}
 .gigs h3{font-size:24px}
@@ -363,7 +451,7 @@ footer{padding:40px 0 110px;font-size:15px;color:var(--grey)}
         <span>ми продаємо</span>
         <span>ваш мерч</span>
       </h1>
-      <p class="lead">Метакультура — магазин мерчу українських артистів. Ми беремо на себе продажі, спілкування з покупцями й оплати, а за бажанням — склад, відправки й виробництво. Виплати приходять щомісяця.</p>
+      <p class="lead">Метакультура — магазин мерчу українських артистів і гуртів. Ми беремо на себе продажі, спілкування з покупцями й оплати, а за бажанням — склад, відправки й виготовлення мерчу. Виплати приходять щомісяця.</p>
       <div class="cta-row">
         <a class="btn btn-black" href="#apply" data-track="hero_apply">Залишити заявку</a>
         <a class="btn btn-line" href="https://t.me/borees" target="_blank" rel="noopener" data-track="hero_telegram"><svg><use href="#tgi"/></svg>Написати в Telegram</a>
@@ -419,7 +507,7 @@ footer{padding:40px 0 110px;font-size:15px;color:var(--grey)}
 <section class="sec" id="tariffs" aria-labelledby="tariffs-h">
   <div class="wrap">
     <div class="sec-head">
-      <h2 id="tariffs-h">Оберіть, скільки роботи віддати нам</h2>
+      <h2 id="tariffs-h">Тарифи: оберіть, скільки роботи віддати&nbsp;нам</h2>
       <p>Комісію беремо лише з того, що продалось. Немає продажів — немає комісії.</p>
     </div>
 
@@ -449,7 +537,7 @@ footer{padding:40px 0 110px;font-size:15px;color:var(--grey)}
           <li><svg class="ic"><use href="#plus"/></svg>Зберігання товару в нас</li>
           <li><svg class="ic"><use href="#plus"/></svg>Пакування та відправка по Україні й за кордон</li>
         </ul>
-        <a class="btn btn-black" href="#apply" data-tariff="Делегуючий (20%)">Обрати «Делегуючий»</a>
+        <a class="btn btn-line" href="#apply" data-tariff="Делегуючий (20%)">Обрати «Делегуючий»</a>
       </article>
 
       <article class="tariff" id="t-prog">
@@ -477,7 +565,7 @@ footer{padding:40px 0 110px;font-size:15px;color:var(--grey)}
 <section class="sec prod" id="production" aria-labelledby="prod-h">
   <div class="wrap prod-grid">
     <div>
-      <h2 id="prod-h">Виготовимо мерч, який хочеться носити</h2>
+      <h2 id="prod-h">Виготовлення мерчу, який хочеться носити</h2>
       <p style="margin-top:24px">Під кожен запит обговорюємо умови окремо: матеріали, тиражі, терміни й бюджет. Допоможемо з ідеєю, підготуємо макет і проконтролюємо виробництво.</p>
       <div class="chips" aria-label="Що виготовляємо">
         <span>Футболки й лонгсліви</span><span>Худі та світшоти</span><span>Шопери</span><span>Кепки й шапки</span><span>Патчі</span><span>Піни</span><span>Шкарпетки</span><span>Брелоки</span><span>Стікери й плакати</span><span>Касети й CD</span>
@@ -560,7 +648,10 @@ footer{padding:40px 0 110px;font-size:15px;color:var(--grey)}
           <span class="browser-title">Демо дашборду · цифри вигадані</span>
           <a href="/demo" target="_blank" rel="noopener" data-track="open_demo_dashboard">На весь екран ↗</a>
         </div>
-        <iframe id="dash-frame" src="/demo?embed=1" title="Інтерактивне демо дашборду артиста" loading="lazy"></iframe>
+        <div class="frame-clip" id="frame-clip">
+          <iframe id="dash-frame" src="/demo?embed=1" title="Інтерактивне демо дашборду артиста" loading="lazy"></iframe>
+        </div>
+        <button class="frame-toggle" id="frame-toggle" type="button" aria-controls="frame-clip" aria-expanded="false">Показати весь дашборд</button>
       </div>
     </div>
   </div>
@@ -581,24 +672,369 @@ footer{padding:40px 0 110px;font-size:15px;color:var(--grey)}
         <p class="off-note">Не всі товари підходять за розміром і форматом, тому можливість продажу в Мерчоматі обговорюємо окремо.</p>
         <a class="btn btn-yellow" href="https://metakultura.store/collections/merchomat" target="_blank" rel="noopener">Подивитись Мерчомат</a>
       </div>
-      <div class="machine" aria-hidden="true">
-        <div class="machine-head"><span>Мерчомат</span><span class="qr"></span></div>
-        <div class="cells">
-          <div class="cell"><span>A11</span><span class="coil"></span></div>
-          <div class="cell on"><span>A12</span><span class="coil"></span></div>
-          <div class="cell"><span>A13</span><span class="coil"></span></div>
-          <div class="cell"><span>A14</span><span class="coil"></span></div>
-          <div class="cell"><span>A21</span><span class="coil"></span></div>
-          <div class="cell"><span>A22</span><span class="coil"></span></div>
-          <div class="cell"><span>A23</span><span class="coil"></span></div>
-          <div class="cell on"><span>A24</span><span class="coil"></span></div>
-          <div class="cell on"><span>A31</span><span class="coil"></span></div>
-          <div class="cell"><span>A32</span><span class="coil"></span></div>
-          <div class="cell"><span>A33</span><span class="coil"></span></div>
-          <div class="cell"><span>A34</span><span class="coil"></span></div>
-        </div>
-        <div class="machine-foot">Тут може бути ваша спіраль</div>
-      </div>
+      <figure class="machine">
+        <svg class="mm" viewBox="0 0 430 810" role="img" aria-labelledby="mm-t">
+        <title id="mm-t">Мерчомат — автомат із мерчем українських артистів</title>
+        <rect x="1" y="1" width="428" height="808" rx="10" fill="#F1E04A" stroke="#C8B630" stroke-width="2"/>
+        <text x="181" y="38" text-anchor="middle" font-size="34" font-weight="800" fill="#3A2A36" letter-spacing="1">МЕРЧОМАТ</text>
+        <circle cx="22" cy="80" r="8" fill="none" stroke="#6A4B9A" stroke-width="1.6"/><circle cx="19" cy="78" r="1.3" fill="#6A4B9A"/><circle cx="25" cy="78" r="1.3" fill="#6A4B9A"/><path d="M18.5 83 q3.5 3 7 0" fill="none" stroke="#6A4B9A" stroke-width="1.4"/>
+        <path d="M22 123 l2.6 6.2 6.4.6-4.9 4.2 1.5 6.4-5.6-3.4-5.6 3.4 1.5-6.4-4.9-4.2 6.4-.6z" fill="none" stroke="#6A4B9A" stroke-width="1.6"/>
+        <circle cx="22" cy="184" r="8" fill="none" stroke="#6A4B9A" stroke-width="1.6"/><circle cx="19" cy="182" r="1.3" fill="#6A4B9A"/><circle cx="25" cy="182" r="1.3" fill="#6A4B9A"/><path d="M18.5 187 q3.5 3 7 0" fill="none" stroke="#6A4B9A" stroke-width="1.4"/>
+        <path d="M22 227 l2.6 6.2 6.4.6-4.9 4.2 1.5 6.4-5.6-3.4-5.6 3.4 1.5-6.4-4.9-4.2 6.4-.6z" fill="none" stroke="#6A4B9A" stroke-width="1.6"/>
+        <circle cx="22" cy="288" r="8" fill="none" stroke="#6A4B9A" stroke-width="1.6"/><circle cx="19" cy="286" r="1.3" fill="#6A4B9A"/><circle cx="25" cy="286" r="1.3" fill="#6A4B9A"/><path d="M18.5 291 q3.5 3 7 0" fill="none" stroke="#6A4B9A" stroke-width="1.4"/>
+        <path d="M22 331 l2.6 6.2 6.4.6-4.9 4.2 1.5 6.4-5.6-3.4-5.6 3.4 1.5-6.4-4.9-4.2 6.4-.6z" fill="none" stroke="#6A4B9A" stroke-width="1.6"/>
+        <circle cx="22" cy="392" r="8" fill="none" stroke="#6A4B9A" stroke-width="1.6"/><circle cx="19" cy="390" r="1.3" fill="#6A4B9A"/><circle cx="25" cy="390" r="1.3" fill="#6A4B9A"/><path d="M18.5 395 q3.5 3 7 0" fill="none" stroke="#6A4B9A" stroke-width="1.4"/>
+        <path d="M22 435 l2.6 6.2 6.4.6-4.9 4.2 1.5 6.4-5.6-3.4-5.6 3.4 1.5-6.4-4.9-4.2 6.4-.6z" fill="none" stroke="#6A4B9A" stroke-width="1.6"/>
+        <circle cx="22" cy="496" r="8" fill="none" stroke="#6A4B9A" stroke-width="1.6"/><circle cx="19" cy="494" r="1.3" fill="#6A4B9A"/><circle cx="25" cy="494" r="1.3" fill="#6A4B9A"/><path d="M18.5 499 q3.5 3 7 0" fill="none" stroke="#6A4B9A" stroke-width="1.4"/>
+        <path d="M22 539 l2.6 6.2 6.4.6-4.9 4.2 1.5 6.4-5.6-3.4-5.6 3.4 1.5-6.4-4.9-4.2 6.4-.6z" fill="none" stroke="#6A4B9A" stroke-width="1.6"/>
+        <rect x="44" y="52" width="276" height="516" rx="4" fill="#24202A" stroke="#C8B630" stroke-width="4"/>
+        <rect x="50" y="58" width="264" height="6" fill="#FFFDF0" opacity=".85"/>
+        <g fill="none" stroke="#6B6872" stroke-width="1.4"><ellipse cx="68.9" cy="146.0" rx="13.6" ry="5" transform="translate(0 0)"/></g>
+        <path d="M55.3 146 q6.8 -14 13.6 -2 t13.6 -2" fill="none" stroke="#6B6872" stroke-width="1.4"/>
+        <rect x="54.9" y="94.0" width="27.9" height="50" rx="2" fill="#E7E9EE"/>
+        <rect x="57.9" y="104.0" width="21.9" height="32" fill="#fff" opacity=".35"/>
+        <circle cx="68.9" cy="123.0" r="4.7" fill="#2B6E6A" opacity=".8"/>
+        <g fill="none" stroke="#6B6872" stroke-width="1.4"><ellipse cx="106.6" cy="146.0" rx="13.6" ry="5" transform="translate(0 0)"/></g>
+        <path d="M93.0 146 q6.8 -14 13.6 -2 t13.6 -2" fill="none" stroke="#6B6872" stroke-width="1.4"/>
+        <rect x="92.6" y="88.0" width="27.9" height="56" rx="2" fill="#D9DCE2"/>
+        <rect x="95.6" y="98.0" width="21.9" height="38" fill="#fff" opacity=".35"/>
+        <circle cx="106.6" cy="120.0" r="4.7" fill="#3A2A36" opacity=".8"/>
+        <g fill="none" stroke="#6B6872" stroke-width="1.4"><ellipse cx="144.3" cy="146.0" rx="13.6" ry="5" transform="translate(0 0)"/></g>
+        <path d="M130.7 146 q6.8 -14 13.6 -2 t13.6 -2" fill="none" stroke="#6B6872" stroke-width="1.4"/>
+        <rect x="130.3" y="88.0" width="27.9" height="56" rx="2" fill="#C7CBD3"/>
+        <rect x="133.3" y="98.0" width="21.9" height="38" fill="#fff" opacity=".35"/>
+        <circle cx="144.3" cy="120.0" r="4.7" fill="#E86FA8" opacity=".8"/>
+        <g fill="none" stroke="#6B6872" stroke-width="1.4"><ellipse cx="182.0" cy="146.0" rx="13.6" ry="5" transform="translate(0 0)"/></g>
+        <path d="M168.4 146 q6.8 -14 13.6 -2 t13.6 -2" fill="none" stroke="#6B6872" stroke-width="1.4"/>
+        <rect x="168.0" y="88.0" width="27.9" height="56" rx="2" fill="#D9DCE2"/>
+        <rect x="171.0" y="98.0" width="21.9" height="38" fill="#fff" opacity=".35"/>
+        <circle cx="182.0" cy="120.0" r="4.7" fill="#6A4B9A" opacity=".8"/>
+        <g fill="none" stroke="#6B6872" stroke-width="1.4"><ellipse cx="219.7" cy="146.0" rx="13.6" ry="5" transform="translate(0 0)"/></g>
+        <path d="M206.1 146 q6.8 -14 13.6 -2 t13.6 -2" fill="none" stroke="#6B6872" stroke-width="1.4"/>
+        <rect x="205.8" y="100.0" width="27.9" height="44" rx="2" fill="#C7CBD3"/>
+        <rect x="208.8" y="110.0" width="21.9" height="26" fill="#fff" opacity=".35"/>
+        <circle cx="219.7" cy="126.0" r="4.7" fill="#2B6E6A" opacity=".8"/>
+        <g fill="none" stroke="#6B6872" stroke-width="1.4"><ellipse cx="257.4" cy="146.0" rx="13.6" ry="5" transform="translate(0 0)"/></g>
+        <path d="M243.9 146 q6.8 -14 13.6 -2 t13.6 -2" fill="none" stroke="#6B6872" stroke-width="1.4"/>
+        <rect x="243.5" y="94.0" width="27.9" height="50" rx="2" fill="#C7CBD3"/>
+        <rect x="246.5" y="104.0" width="21.9" height="32" fill="#fff" opacity=".35"/>
+        <circle cx="257.4" cy="123.0" r="4.7" fill="#6A4B9A" opacity=".8"/>
+        <g fill="none" stroke="#6B6872" stroke-width="1.4"><ellipse cx="295.1" cy="146.0" rx="13.6" ry="5" transform="translate(0 0)"/></g>
+        <path d="M281.6 146 q6.8 -14 13.6 -2 t13.6 -2" fill="none" stroke="#6B6872" stroke-width="1.4"/>
+        <rect x="281.2" y="100.0" width="27.9" height="44" rx="2" fill="#E5D7A8"/>
+        <rect x="284.2" y="110.0" width="21.9" height="26" fill="#fff" opacity=".35"/>
+        <circle cx="295.1" cy="126.0" r="4.7" fill="#3A2A36" opacity=".8"/>
+        <rect x="48" y="152" width="268" height="8" fill="#F7E51E"/>
+        <text x="54.0" y="158.5" font-size="5.5" fill="#3A2A36">A11</text>
+        <text x="91.7" y="158.5" font-size="5.5" fill="#3A2A36">A12</text>
+        <text x="129.4" y="158.5" font-size="5.5" fill="#3A2A36">A13</text>
+        <text x="167.1" y="158.5" font-size="5.5" fill="#3A2A36">A14</text>
+        <text x="204.9" y="158.5" font-size="5.5" fill="#3A2A36">A15</text>
+        <text x="242.6" y="158.5" font-size="5.5" fill="#3A2A36">A16</text>
+        <text x="280.3" y="158.5" font-size="5.5" fill="#3A2A36">A17</text>
+        <g fill="none" stroke="#6B6872" stroke-width="1.4"><ellipse cx="68.9" cy="244.0" rx="13.6" ry="5" transform="translate(0 0)"/></g>
+        <path d="M55.3 244 q6.8 -14 13.6 -2 t13.6 -2" fill="none" stroke="#6B6872" stroke-width="1.4"/>
+        <rect x="54.9" y="186.0" width="27.9" height="56" rx="2" fill="#C7CBD3"/>
+        <rect x="57.9" y="196.0" width="21.9" height="38" fill="#fff" opacity=".35"/>
+        <circle cx="68.9" cy="218.0" r="4.7" fill="#6A4B9A" opacity=".8"/>
+        <g fill="none" stroke="#6B6872" stroke-width="1.4"><ellipse cx="106.6" cy="244.0" rx="13.6" ry="5" transform="translate(0 0)"/></g>
+        <path d="M93.0 244 q6.8 -14 13.6 -2 t13.6 -2" fill="none" stroke="#6B6872" stroke-width="1.4"/>
+        <rect x="92.6" y="186.0" width="27.9" height="56" rx="2" fill="#D9DCE2"/>
+        <rect x="95.6" y="196.0" width="21.9" height="38" fill="#fff" opacity=".35"/>
+        <circle cx="106.6" cy="218.0" r="4.7" fill="#2B6E6A" opacity=".8"/>
+        <g fill="none" stroke="#6B6872" stroke-width="1.4"><ellipse cx="144.3" cy="244.0" rx="13.6" ry="5" transform="translate(0 0)"/></g>
+        <path d="M130.7 244 q6.8 -14 13.6 -2 t13.6 -2" fill="none" stroke="#6B6872" stroke-width="1.4"/>
+        <rect x="130.3" y="198.0" width="27.9" height="44" rx="2" fill="#B9C9C6"/>
+        <rect x="133.3" y="208.0" width="21.9" height="26" fill="#fff" opacity=".35"/>
+        <circle cx="144.3" cy="224.0" r="4.7" fill="#3A2A36" opacity=".8"/>
+        <g fill="none" stroke="#6B6872" stroke-width="1.4"><ellipse cx="182.0" cy="244.0" rx="13.6" ry="5" transform="translate(0 0)"/></g>
+        <path d="M168.4 244 q6.8 -14 13.6 -2 t13.6 -2" fill="none" stroke="#6B6872" stroke-width="1.4"/>
+        <rect x="168.0" y="186.0" width="27.9" height="56" rx="2" fill="#E7E9EE"/>
+        <rect x="171.0" y="196.0" width="21.9" height="38" fill="#fff" opacity=".35"/>
+        <circle cx="182.0" cy="218.0" r="4.7" fill="#E86FA8" opacity=".8"/>
+        <g fill="none" stroke="#6B6872" stroke-width="1.4"><ellipse cx="219.7" cy="244.0" rx="13.6" ry="5" transform="translate(0 0)"/></g>
+        <path d="M206.1 244 q6.8 -14 13.6 -2 t13.6 -2" fill="none" stroke="#6B6872" stroke-width="1.4"/>
+        <g fill="none" stroke="#6B6872" stroke-width="1.4"><ellipse cx="257.4" cy="244.0" rx="13.6" ry="5" transform="translate(0 0)"/></g>
+        <path d="M243.9 244 q6.8 -14 13.6 -2 t13.6 -2" fill="none" stroke="#6B6872" stroke-width="1.4"/>
+        <g fill="none" stroke="#6B6872" stroke-width="1.4"><ellipse cx="295.1" cy="244.0" rx="13.6" ry="5" transform="translate(0 0)"/></g>
+        <path d="M281.6 244 q6.8 -14 13.6 -2 t13.6 -2" fill="none" stroke="#6B6872" stroke-width="1.4"/>
+        <rect x="48" y="250" width="268" height="8" fill="#F7E51E"/>
+        <text x="54.0" y="256.5" font-size="5.5" fill="#3A2A36">A21</text>
+        <text x="91.7" y="256.5" font-size="5.5" fill="#3A2A36">A22</text>
+        <text x="129.4" y="256.5" font-size="5.5" fill="#3A2A36">A23</text>
+        <text x="167.1" y="256.5" font-size="5.5" fill="#3A2A36">A24</text>
+        <text x="204.9" y="256.5" font-size="5.5" fill="#3A2A36">A25</text>
+        <text x="242.6" y="256.5" font-size="5.5" fill="#3A2A36">A26</text>
+        <text x="280.3" y="256.5" font-size="5.5" fill="#3A2A36">A27</text>
+        <g fill="none" stroke="#6B6872" stroke-width="1.4"><ellipse cx="72.0" cy="342.0" rx="15.8" ry="5" transform="translate(0 0)"/></g>
+        <path d="M56.2 342 q7.9 -14 15.8 -2 t15.8 -2" fill="none" stroke="#6B6872" stroke-width="1.4"/>
+        <rect x="55.7" y="284.0" width="32.6" height="56" rx="2" fill="#E7E9EE"/>
+        <rect x="58.7" y="294.0" width="26.6" height="38" fill="#fff" opacity=".35"/>
+        <circle cx="72.0" cy="316.0" r="5.5" fill="#3A2A36" opacity=".8"/>
+        <g fill="none" stroke="#6B6872" stroke-width="1.4"><ellipse cx="116.0" cy="342.0" rx="15.8" ry="5" transform="translate(0 0)"/></g>
+        <path d="M100.2 342 q7.9 -14 15.8 -2 t15.8 -2" fill="none" stroke="#6B6872" stroke-width="1.4"/>
+        <rect x="99.7" y="284.0" width="32.6" height="56" rx="2" fill="#B9C9C6"/>
+        <rect x="102.7" y="294.0" width="26.6" height="38" fill="#fff" opacity=".35"/>
+        <circle cx="116.0" cy="316.0" r="5.5" fill="#E86FA8" opacity=".8"/>
+        <g fill="none" stroke="#6B6872" stroke-width="1.4"><ellipse cx="160.0" cy="342.0" rx="15.8" ry="5" transform="translate(0 0)"/></g>
+        <path d="M144.2 342 q7.9 -14 15.8 -2 t15.8 -2" fill="none" stroke="#6B6872" stroke-width="1.4"/>
+        <rect x="143.7" y="296.0" width="32.6" height="44" rx="2" fill="#C7CBD3"/>
+        <rect x="146.7" y="306.0" width="26.6" height="26" fill="#fff" opacity=".35"/>
+        <circle cx="160.0" cy="322.0" r="5.5" fill="#3A2A36" opacity=".8"/>
+        <g fill="none" stroke="#6B6872" stroke-width="1.4"><ellipse cx="204.0" cy="342.0" rx="15.8" ry="5" transform="translate(0 0)"/></g>
+        <path d="M188.2 342 q7.9 -14 15.8 -2 t15.8 -2" fill="none" stroke="#6B6872" stroke-width="1.4"/>
+        <rect x="187.7" y="284.0" width="32.6" height="56" rx="2" fill="#B9C9C6"/>
+        <rect x="190.7" y="294.0" width="26.6" height="38" fill="#fff" opacity=".35"/>
+        <circle cx="204.0" cy="316.0" r="5.5" fill="#2B6E6A" opacity=".8"/>
+        <g fill="none" stroke="#6B6872" stroke-width="1.4"><ellipse cx="248.0" cy="342.0" rx="15.8" ry="5" transform="translate(0 0)"/></g>
+        <path d="M232.2 342 q7.9 -14 15.8 -2 t15.8 -2" fill="none" stroke="#6B6872" stroke-width="1.4"/>
+        <rect x="231.7" y="284.0" width="32.6" height="56" rx="2" fill="#E5D7A8"/>
+        <rect x="234.7" y="294.0" width="26.6" height="38" fill="#fff" opacity=".35"/>
+        <circle cx="248.0" cy="316.0" r="5.5" fill="#E86FA8" opacity=".8"/>
+        <g fill="none" stroke="#6B6872" stroke-width="1.4"><ellipse cx="292.0" cy="342.0" rx="15.8" ry="5" transform="translate(0 0)"/></g>
+        <path d="M276.2 342 q7.9 -14 15.8 -2 t15.8 -2" fill="none" stroke="#6B6872" stroke-width="1.4"/>
+        <rect x="275.7" y="290.0" width="32.6" height="50" rx="2" fill="#C2B2D8"/>
+        <rect x="278.7" y="300.0" width="26.6" height="32" fill="#fff" opacity=".35"/>
+        <circle cx="292.0" cy="319.0" r="5.5" fill="#E86FA8" opacity=".8"/>
+        <rect x="48" y="348" width="268" height="8" fill="#F7E51E"/>
+        <text x="54.0" y="354.5" font-size="5.5" fill="#3A2A36">A31</text>
+        <text x="98.0" y="354.5" font-size="5.5" fill="#3A2A36">A32</text>
+        <text x="142.0" y="354.5" font-size="5.5" fill="#3A2A36">A33</text>
+        <text x="186.0" y="354.5" font-size="5.5" fill="#3A2A36">A34</text>
+        <text x="230.0" y="354.5" font-size="5.5" fill="#3A2A36">A35</text>
+        <text x="274.0" y="354.5" font-size="5.5" fill="#3A2A36">A36</text>
+        <g fill="none" stroke="#6B6872" stroke-width="1.4"><ellipse cx="72.0" cy="440.0" rx="15.8" ry="5" transform="translate(0 0)"/></g>
+        <path d="M56.2 440 q7.9 -14 15.8 -2 t15.8 -2" fill="none" stroke="#6B6872" stroke-width="1.4"/>
+        <rect x="55.7" y="388.0" width="32.6" height="50" rx="2" fill="#B9C9C6"/>
+        <rect x="58.7" y="398.0" width="26.6" height="32" fill="#fff" opacity=".35"/>
+        <circle cx="72.0" cy="417.0" r="5.5" fill="#6A4B9A" opacity=".8"/>
+        <g fill="none" stroke="#6B6872" stroke-width="1.4"><ellipse cx="116.0" cy="440.0" rx="15.8" ry="5" transform="translate(0 0)"/></g>
+        <path d="M100.2 440 q7.9 -14 15.8 -2 t15.8 -2" fill="none" stroke="#6B6872" stroke-width="1.4"/>
+        <rect x="99.7" y="382.0" width="32.6" height="56" rx="2" fill="#B9C9C6"/>
+        <rect x="102.7" y="392.0" width="26.6" height="38" fill="#fff" opacity=".35"/>
+        <circle cx="116.0" cy="414.0" r="5.5" fill="#3A2A36" opacity=".8"/>
+        <g fill="none" stroke="#6B6872" stroke-width="1.4"><ellipse cx="160.0" cy="440.0" rx="15.8" ry="5" transform="translate(0 0)"/></g>
+        <path d="M144.2 440 q7.9 -14 15.8 -2 t15.8 -2" fill="none" stroke="#6B6872" stroke-width="1.4"/>
+        <rect x="143.7" y="382.0" width="32.6" height="56" rx="2" fill="#D7B8C9"/>
+        <rect x="146.7" y="392.0" width="26.6" height="38" fill="#fff" opacity=".35"/>
+        <circle cx="160.0" cy="414.0" r="5.5" fill="#2B6E6A" opacity=".8"/>
+        <g fill="none" stroke="#6B6872" stroke-width="1.4"><ellipse cx="204.0" cy="440.0" rx="15.8" ry="5" transform="translate(0 0)"/></g>
+        <path d="M188.2 440 q7.9 -14 15.8 -2 t15.8 -2" fill="none" stroke="#6B6872" stroke-width="1.4"/>
+        <rect x="187.7" y="388.0" width="32.6" height="50" rx="2" fill="#C2B2D8"/>
+        <rect x="190.7" y="398.0" width="26.6" height="32" fill="#fff" opacity=".35"/>
+        <circle cx="204.0" cy="417.0" r="5.5" fill="#E86FA8" opacity=".8"/>
+        <g fill="none" stroke="#6B6872" stroke-width="1.4"><ellipse cx="248.0" cy="440.0" rx="15.8" ry="5" transform="translate(0 0)"/></g>
+        <path d="M232.2 440 q7.9 -14 15.8 -2 t15.8 -2" fill="none" stroke="#6B6872" stroke-width="1.4"/>
+        <rect x="231.7" y="382.0" width="32.6" height="56" rx="2" fill="#C7CBD3"/>
+        <rect x="234.7" y="392.0" width="26.6" height="38" fill="#fff" opacity=".35"/>
+        <circle cx="248.0" cy="414.0" r="5.5" fill="#3A2A36" opacity=".8"/>
+        <g fill="none" stroke="#6B6872" stroke-width="1.4"><ellipse cx="292.0" cy="440.0" rx="15.8" ry="5" transform="translate(0 0)"/></g>
+        <path d="M276.2 440 q7.9 -14 15.8 -2 t15.8 -2" fill="none" stroke="#6B6872" stroke-width="1.4"/>
+        <rect x="48" y="446" width="268" height="8" fill="#F7E51E"/>
+        <text x="54.0" y="452.5" font-size="5.5" fill="#3A2A36">A41</text>
+        <text x="98.0" y="452.5" font-size="5.5" fill="#3A2A36">A42</text>
+        <text x="142.0" y="452.5" font-size="5.5" fill="#3A2A36">A43</text>
+        <text x="186.0" y="452.5" font-size="5.5" fill="#3A2A36">A44</text>
+        <text x="230.0" y="452.5" font-size="5.5" fill="#3A2A36">A45</text>
+        <text x="274.0" y="452.5" font-size="5.5" fill="#3A2A36">A46</text>
+        <g fill="none" stroke="#6B6872" stroke-width="1.4"><ellipse cx="72.0" cy="538.0" rx="15.8" ry="5" transform="translate(0 0)"/></g>
+        <path d="M56.2 538 q7.9 -14 15.8 -2 t15.8 -2" fill="none" stroke="#6B6872" stroke-width="1.4"/>
+        <rect x="55.7" y="492.0" width="32.6" height="44" rx="2" fill="#9FB7C9"/>
+        <rect x="58.7" y="502.0" width="26.6" height="26" fill="#fff" opacity=".35"/>
+        <circle cx="72.0" cy="518.0" r="5.5" fill="#6A4B9A" opacity=".8"/>
+        <g fill="none" stroke="#6B6872" stroke-width="1.4"><ellipse cx="116.0" cy="538.0" rx="15.8" ry="5" transform="translate(0 0)"/></g>
+        <path d="M100.2 538 q7.9 -14 15.8 -2 t15.8 -2" fill="none" stroke="#6B6872" stroke-width="1.4"/>
+        <rect x="99.7" y="486.0" width="32.6" height="50" rx="2" fill="#E5D7A8"/>
+        <rect x="102.7" y="496.0" width="26.6" height="32" fill="#fff" opacity=".35"/>
+        <circle cx="116.0" cy="515.0" r="5.5" fill="#3A2A36" opacity=".8"/>
+        <g fill="none" stroke="#6B6872" stroke-width="1.4"><ellipse cx="160.0" cy="538.0" rx="15.8" ry="5" transform="translate(0 0)"/></g>
+        <path d="M144.2 538 q7.9 -14 15.8 -2 t15.8 -2" fill="none" stroke="#6B6872" stroke-width="1.4"/>
+        <rect x="143.7" y="480.0" width="32.6" height="56" rx="2" fill="#C7CBD3"/>
+        <rect x="146.7" y="490.0" width="26.6" height="38" fill="#fff" opacity=".35"/>
+        <circle cx="160.0" cy="512.0" r="5.5" fill="#E86FA8" opacity=".8"/>
+        <g fill="none" stroke="#6B6872" stroke-width="1.4"><ellipse cx="204.0" cy="538.0" rx="15.8" ry="5" transform="translate(0 0)"/></g>
+        <path d="M188.2 538 q7.9 -14 15.8 -2 t15.8 -2" fill="none" stroke="#6B6872" stroke-width="1.4"/>
+        <rect x="187.7" y="486.0" width="32.6" height="50" rx="2" fill="#9FB7C9"/>
+        <rect x="190.7" y="496.0" width="26.6" height="32" fill="#fff" opacity=".35"/>
+        <circle cx="204.0" cy="515.0" r="5.5" fill="#2B6E6A" opacity=".8"/>
+        <g fill="none" stroke="#6B6872" stroke-width="1.4"><ellipse cx="248.0" cy="538.0" rx="15.8" ry="5" transform="translate(0 0)"/></g>
+        <path d="M232.2 538 q7.9 -14 15.8 -2 t15.8 -2" fill="none" stroke="#6B6872" stroke-width="1.4"/>
+        <rect x="231.7" y="480.0" width="32.6" height="56" rx="2" fill="#C2B2D8"/>
+        <rect x="234.7" y="490.0" width="26.6" height="38" fill="#fff" opacity=".35"/>
+        <circle cx="248.0" cy="512.0" r="5.5" fill="#3A2A36" opacity=".8"/>
+        <g fill="none" stroke="#6B6872" stroke-width="1.4"><ellipse cx="292.0" cy="538.0" rx="15.8" ry="5" transform="translate(0 0)"/></g>
+        <path d="M276.2 538 q7.9 -14 15.8 -2 t15.8 -2" fill="none" stroke="#6B6872" stroke-width="1.4"/>
+        <rect x="275.7" y="492.0" width="32.6" height="44" rx="2" fill="#D7B8C9"/>
+        <rect x="278.7" y="502.0" width="26.6" height="26" fill="#fff" opacity=".35"/>
+        <circle cx="292.0" cy="518.0" r="5.5" fill="#2B6E6A" opacity=".8"/>
+        <rect x="48" y="544" width="268" height="8" fill="#F7E51E"/>
+        <text x="54.0" y="550.5" font-size="5.5" fill="#3A2A36">A51</text>
+        <text x="98.0" y="550.5" font-size="5.5" fill="#3A2A36">A52</text>
+        <text x="142.0" y="550.5" font-size="5.5" fill="#3A2A36">A53</text>
+        <text x="186.0" y="550.5" font-size="5.5" fill="#3A2A36">A54</text>
+        <text x="230.0" y="550.5" font-size="5.5" fill="#3A2A36">A55</text>
+        <text x="274.0" y="550.5" font-size="5.5" fill="#3A2A36">A56</text>
+        <rect x="50" y="64" width="40" height="498" fill="#fff" opacity=".05"/>
+        <rect x="346" y="10" width="44" height="40" rx="5" fill="#E2373B"/><rect x="356" y="18" width="24" height="24" fill="#fff"/>
+        <rect x="359" y="21" width="7" height="7" fill="#3A2A36"/><rect x="370" y="21" width="7" height="7" fill="#3A2A36"/><rect x="359" y="32" width="7" height="7" fill="#3A2A36"/><rect x="371" y="33" width="4" height="4" fill="#3A2A36"/>
+        <rect x="330" y="70" width="90" height="56" rx="3" fill="#F8C9DE" stroke="#E86FA8" stroke-width="1.5"/>
+        <rect x="336" y="80" width="38" height="3" fill="#6A4B9A" opacity=".7"/>
+        <rect x="336" y="88" width="30" height="3" fill="#6A4B9A" opacity=".7"/>
+        <rect x="336" y="96" width="38" height="3" fill="#6A4B9A" opacity=".7"/>
+        <rect x="336" y="104" width="30" height="3" fill="#6A4B9A" opacity=".7"/>
+        <rect x="380" y="78" width="34" height="34" fill="#fff"/>
+        <rect x="380.0" y="78.0" width="4.9" height="4.9" fill="#3A2A36"/>
+        <rect x="380.0" y="82.9" width="4.9" height="4.9" fill="#3A2A36"/>
+        <rect x="380.0" y="92.6" width="4.9" height="4.9" fill="#3A2A36"/>
+        <rect x="380.0" y="102.3" width="4.9" height="4.9" fill="#3A2A36"/>
+        <rect x="380.0" y="107.1" width="4.9" height="4.9" fill="#3A2A36"/>
+        <rect x="384.9" y="78.0" width="4.9" height="4.9" fill="#3A2A36"/>
+        <rect x="384.9" y="82.9" width="4.9" height="4.9" fill="#3A2A36"/>
+        <rect x="384.9" y="87.7" width="4.9" height="4.9" fill="#3A2A36"/>
+        <rect x="384.9" y="102.3" width="4.9" height="4.9" fill="#3A2A36"/>
+        <rect x="384.9" y="107.1" width="4.9" height="4.9" fill="#3A2A36"/>
+        <rect x="389.7" y="78.0" width="4.9" height="4.9" fill="#3A2A36"/>
+        <rect x="389.7" y="92.6" width="4.9" height="4.9" fill="#3A2A36"/>
+        <rect x="389.7" y="102.3" width="4.9" height="4.9" fill="#3A2A36"/>
+        <rect x="394.6" y="82.9" width="4.9" height="4.9" fill="#3A2A36"/>
+        <rect x="394.6" y="87.7" width="4.9" height="4.9" fill="#3A2A36"/>
+        <rect x="394.6" y="97.4" width="4.9" height="4.9" fill="#3A2A36"/>
+        <rect x="399.4" y="78.0" width="4.9" height="4.9" fill="#3A2A36"/>
+        <rect x="399.4" y="82.9" width="4.9" height="4.9" fill="#3A2A36"/>
+        <rect x="399.4" y="87.7" width="4.9" height="4.9" fill="#3A2A36"/>
+        <rect x="399.4" y="92.6" width="4.9" height="4.9" fill="#3A2A36"/>
+        <rect x="399.4" y="97.4" width="4.9" height="4.9" fill="#3A2A36"/>
+        <rect x="404.3" y="78.0" width="4.9" height="4.9" fill="#3A2A36"/>
+        <rect x="404.3" y="82.9" width="4.9" height="4.9" fill="#3A2A36"/>
+        <rect x="404.3" y="97.4" width="4.9" height="4.9" fill="#3A2A36"/>
+        <rect x="404.3" y="102.3" width="4.9" height="4.9" fill="#3A2A36"/>
+        <rect x="404.3" y="107.1" width="4.9" height="4.9" fill="#3A2A36"/>
+        <rect x="409.1" y="78.0" width="4.9" height="4.9" fill="#3A2A36"/>
+        <rect x="409.1" y="82.9" width="4.9" height="4.9" fill="#3A2A36"/>
+        <rect x="409.1" y="87.7" width="4.9" height="4.9" fill="#3A2A36"/>
+        <rect x="409.1" y="97.4" width="4.9" height="4.9" fill="#3A2A36"/>
+        <rect x="409.1" y="107.1" width="4.9" height="4.9" fill="#3A2A36"/>
+        <rect x="340" y="136" width="70" height="10" rx="2" fill="#E9E6F7" stroke="#B9B3E0"/>
+        <rect x="330" y="160" width="90" height="160" rx="3" fill="none" stroke="#E2563B" stroke-width="2"/>
+        <text x="338" y="184" font-size="17" font-weight="800" fill="#E2563B">1</text>
+        <text x="352" y="179" font-size="7.5" font-weight="800" fill="#3A2A36">ОБЕРИ</text>
+        <rect x="352" y="183" width="56" height="2.5" fill="#3A2A36" opacity=".35"/>
+        <text x="338" y="210" font-size="17" font-weight="800" fill="#E2563B">2</text>
+        <text x="352" y="205" font-size="7.5" font-weight="800" fill="#3A2A36">ОПЛАТИ</text>
+        <rect x="352" y="209" width="56" height="2.5" fill="#3A2A36" opacity=".35"/>
+        <text x="338" y="236" font-size="17" font-weight="800" fill="#E2563B">3</text>
+        <text x="352" y="231" font-size="7.5" font-weight="800" fill="#3A2A36">ЗАБЕРИ</text>
+        <rect x="352" y="235" width="56" height="2.5" fill="#3A2A36" opacity=".35"/>
+        <rect x="340" y="262" width="70" height="48" rx="5" fill="#2A2530"/><rect x="346" y="268" width="58" height="36" rx="3" fill="#E86FA8"/>
+        <rect x="350" y="271.0" width="14" height="5.5" rx="1.5" fill="#FFD3EA"/>
+        <rect x="368" y="271.0" width="14" height="5.5" rx="1.5" fill="#FFD3EA"/>
+        <rect x="386" y="271.0" width="14" height="5.5" rx="1.5" fill="#FFD3EA"/>
+        <rect x="350" y="279.2" width="14" height="5.5" rx="1.5" fill="#FFD3EA"/>
+        <rect x="368" y="279.2" width="14" height="5.5" rx="1.5" fill="#FFD3EA"/>
+        <rect x="386" y="279.2" width="14" height="5.5" rx="1.5" fill="#FFD3EA"/>
+        <rect x="350" y="287.4" width="14" height="5.5" rx="1.5" fill="#FFD3EA"/>
+        <rect x="368" y="287.4" width="14" height="5.5" rx="1.5" fill="#FFD3EA"/>
+        <rect x="386" y="287.4" width="14" height="5.5" rx="1.5" fill="#FFD3EA"/>
+        <rect x="350" y="295.6" width="14" height="5.5" rx="1.5" fill="#FFD3EA"/>
+        <rect x="368" y="295.6" width="14" height="5.5" rx="1.5" fill="#FFD3EA"/>
+        <rect x="386" y="295.6" width="14" height="5.5" rx="1.5" fill="#FFD3EA"/>
+        <text x="375" y="390" text-anchor="middle" font-size="12" font-weight="800" fill="#3A2A36">ПРО НАС</text>
+        <rect x="334" y="400" width="73" height="2.5" fill="#3A2A36" opacity=".45"/>
+        <rect x="334" y="408" width="82" height="2.5" fill="#3A2A36" opacity=".45"/>
+        <rect x="334" y="416" width="78" height="2.5" fill="#3A2A36" opacity=".45"/>
+        <rect x="334" y="424" width="69" height="2.5" fill="#3A2A36" opacity=".45"/>
+        <rect x="334" y="432" width="65" height="2.5" fill="#3A2A36" opacity=".45"/>
+        <rect x="334" y="440" width="71" height="2.5" fill="#3A2A36" opacity=".45"/>
+        <rect x="334" y="448" width="64" height="2.5" fill="#3A2A36" opacity=".45"/>
+        <rect x="334" y="456" width="72" height="2.5" fill="#3A2A36" opacity=".45"/>
+        <rect x="334" y="464" width="78" height="2.5" fill="#3A2A36" opacity=".45"/>
+        <rect x="336" y="478" width="30" height="30" fill="#fff"/>
+        <rect x="336.0" y="478.0" width="4.3" height="4.3" fill="#3A2A36"/>
+        <rect x="336.0" y="482.3" width="4.3" height="4.3" fill="#3A2A36"/>
+        <rect x="336.0" y="499.4" width="4.3" height="4.3" fill="#3A2A36"/>
+        <rect x="336.0" y="503.7" width="4.3" height="4.3" fill="#3A2A36"/>
+        <rect x="340.3" y="478.0" width="4.3" height="4.3" fill="#3A2A36"/>
+        <rect x="340.3" y="482.3" width="4.3" height="4.3" fill="#3A2A36"/>
+        <rect x="340.3" y="490.9" width="4.3" height="4.3" fill="#3A2A36"/>
+        <rect x="340.3" y="499.4" width="4.3" height="4.3" fill="#3A2A36"/>
+        <rect x="340.3" y="503.7" width="4.3" height="4.3" fill="#3A2A36"/>
+        <rect x="344.6" y="490.9" width="4.3" height="4.3" fill="#3A2A36"/>
+        <rect x="344.6" y="495.1" width="4.3" height="4.3" fill="#3A2A36"/>
+        <rect x="344.6" y="499.4" width="4.3" height="4.3" fill="#3A2A36"/>
+        <rect x="348.9" y="478.0" width="4.3" height="4.3" fill="#3A2A36"/>
+        <rect x="348.9" y="482.3" width="4.3" height="4.3" fill="#3A2A36"/>
+        <rect x="348.9" y="486.6" width="4.3" height="4.3" fill="#3A2A36"/>
+        <rect x="348.9" y="490.9" width="4.3" height="4.3" fill="#3A2A36"/>
+        <rect x="348.9" y="495.1" width="4.3" height="4.3" fill="#3A2A36"/>
+        <rect x="348.9" y="499.4" width="4.3" height="4.3" fill="#3A2A36"/>
+        <rect x="348.9" y="503.7" width="4.3" height="4.3" fill="#3A2A36"/>
+        <rect x="353.1" y="478.0" width="4.3" height="4.3" fill="#3A2A36"/>
+        <rect x="353.1" y="482.3" width="4.3" height="4.3" fill="#3A2A36"/>
+        <rect x="353.1" y="486.6" width="4.3" height="4.3" fill="#3A2A36"/>
+        <rect x="353.1" y="490.9" width="4.3" height="4.3" fill="#3A2A36"/>
+        <rect x="353.1" y="503.7" width="4.3" height="4.3" fill="#3A2A36"/>
+        <rect x="357.4" y="478.0" width="4.3" height="4.3" fill="#3A2A36"/>
+        <rect x="357.4" y="482.3" width="4.3" height="4.3" fill="#3A2A36"/>
+        <rect x="357.4" y="486.6" width="4.3" height="4.3" fill="#3A2A36"/>
+        <rect x="357.4" y="490.9" width="4.3" height="4.3" fill="#3A2A36"/>
+        <rect x="357.4" y="495.1" width="4.3" height="4.3" fill="#3A2A36"/>
+        <rect x="357.4" y="499.4" width="4.3" height="4.3" fill="#3A2A36"/>
+        <rect x="361.7" y="478.0" width="4.3" height="4.3" fill="#3A2A36"/>
+        <rect x="361.7" y="482.3" width="4.3" height="4.3" fill="#3A2A36"/>
+        <rect x="361.7" y="499.4" width="4.3" height="4.3" fill="#3A2A36"/>
+        <rect x="361.7" y="503.7" width="4.3" height="4.3" fill="#3A2A36"/>
+        <rect x="384" y="478" width="30" height="30" fill="#fff"/>
+        <rect x="384.0" y="478.0" width="4.3" height="4.3" fill="#3A2A36"/>
+        <rect x="384.0" y="482.3" width="4.3" height="4.3" fill="#3A2A36"/>
+        <rect x="384.0" y="486.6" width="4.3" height="4.3" fill="#3A2A36"/>
+        <rect x="384.0" y="490.9" width="4.3" height="4.3" fill="#3A2A36"/>
+        <rect x="384.0" y="499.4" width="4.3" height="4.3" fill="#3A2A36"/>
+        <rect x="384.0" y="503.7" width="4.3" height="4.3" fill="#3A2A36"/>
+        <rect x="388.3" y="478.0" width="4.3" height="4.3" fill="#3A2A36"/>
+        <rect x="388.3" y="482.3" width="4.3" height="4.3" fill="#3A2A36"/>
+        <rect x="388.3" y="486.6" width="4.3" height="4.3" fill="#3A2A36"/>
+        <rect x="388.3" y="490.9" width="4.3" height="4.3" fill="#3A2A36"/>
+        <rect x="388.3" y="499.4" width="4.3" height="4.3" fill="#3A2A36"/>
+        <rect x="388.3" y="503.7" width="4.3" height="4.3" fill="#3A2A36"/>
+        <rect x="392.6" y="482.3" width="4.3" height="4.3" fill="#3A2A36"/>
+        <rect x="392.6" y="490.9" width="4.3" height="4.3" fill="#3A2A36"/>
+        <rect x="396.9" y="482.3" width="4.3" height="4.3" fill="#3A2A36"/>
+        <rect x="396.9" y="486.6" width="4.3" height="4.3" fill="#3A2A36"/>
+        <rect x="396.9" y="490.9" width="4.3" height="4.3" fill="#3A2A36"/>
+        <rect x="401.1" y="478.0" width="4.3" height="4.3" fill="#3A2A36"/>
+        <rect x="401.1" y="482.3" width="4.3" height="4.3" fill="#3A2A36"/>
+        <rect x="405.4" y="478.0" width="4.3" height="4.3" fill="#3A2A36"/>
+        <rect x="405.4" y="482.3" width="4.3" height="4.3" fill="#3A2A36"/>
+        <rect x="405.4" y="490.9" width="4.3" height="4.3" fill="#3A2A36"/>
+        <rect x="405.4" y="499.4" width="4.3" height="4.3" fill="#3A2A36"/>
+        <rect x="405.4" y="503.7" width="4.3" height="4.3" fill="#3A2A36"/>
+        <rect x="409.7" y="478.0" width="4.3" height="4.3" fill="#3A2A36"/>
+        <rect x="409.7" y="482.3" width="4.3" height="4.3" fill="#3A2A36"/>
+        <rect x="409.7" y="486.6" width="4.3" height="4.3" fill="#3A2A36"/>
+        <rect x="409.7" y="490.9" width="4.3" height="4.3" fill="#3A2A36"/>
+        <rect x="409.7" y="495.1" width="4.3" height="4.3" fill="#3A2A36"/>
+        <text x="375" y="530" text-anchor="middle" font-size="7" font-weight="800" fill="#3A2A36">ВІЗЬМИ СТІКЕР</text><text x="375" y="539" text-anchor="middle" font-size="7" font-weight="800" fill="#3A2A36">У ПОДАРУНОК</text>
+        <rect x="358" y="546" width="34" height="18" rx="2" fill="#2A2530"/>
+        <rect x="58" y="576" width="248" height="24" rx="12" fill="#F7B6D6" stroke="#E86FA8" stroke-width="2"/>
+        <text x="182" y="593" text-anchor="middle" font-size="14" font-weight="800" fill="#6A4B9A">@metakultura.project</text>
+        <rect x="62" y="610" width="240" height="56" rx="2" fill="#151317"/><rect x="62" y="610" width="240" height="8" fill="#000" opacity=".5"/>
+        <ellipse cx="358" cy="606" rx="22" ry="26" fill="#F2A2C4" stroke="#6A4B9A" stroke-width="1.5"/><path d="M336 606 h44 M358 580 v52" stroke="#6A4B9A" stroke-width="1.2" opacity=".6"/><rect x="351" y="640" width="14" height="10" fill="#6A4B9A"/><path d="M345 628 l8 12 M371 628 l-8 12" stroke="#6A4B9A" stroke-width="1.2"/>
+        <rect x="372" y="652" width="50" height="58" fill="#B08AD8" stroke="#6A4B9A" stroke-width="1.5"/><rect x="380" y="662" width="14" height="12" fill="#E86FA8"/><rect x="400" y="662" width="14" height="12" fill="#7FD3C6"/>
+        <path d="M2 700 C60 680 110 690 150 700 S250 690 300 700 S380 690 428 696 V808 H2Z" fill="#7C5BB5"/>
+        <path d="M2 730 C50 712 90 722 130 736 S220 728 270 744 S370 732 428 740 V808 H2Z" fill="#A784DA"/>
+        <path d="M80 724 q55 -46 110 0" fill="none" stroke="#F6E9FF" stroke-width="6"/><path d="M80 724 h110" stroke="#F6E9FF" stroke-width="4"/>
+        <path d="M98 724 v-7" stroke="#F6E9FF" stroke-width="2"/>
+        <path d="M116 724 v-10" stroke="#F6E9FF" stroke-width="2"/>
+        <path d="M134 724 v-13" stroke="#F6E9FF" stroke-width="2"/>
+        <path d="M152 724 v-11" stroke="#F6E9FF" stroke-width="2"/>
+        <path d="M170 724 v-8" stroke="#F6E9FF" stroke-width="2"/>
+        <circle cx="40" cy="760" r="18" fill="#7BC98A"/><circle cx="62" cy="770" r="14" fill="#5FB27A"/>
+        <path d="M236 772 l6 14 15 1-11 10 3 15-13-8-13 8 3-15-11-10 15-1z" fill="#E86FA8"/>
+        <circle cx="300" cy="756" r="9" fill="#F3D0A8"/><rect x="292" y="765" width="16" height="22" rx="4" fill="#E86FA8"/><circle cx="330" cy="748" r="9" fill="#F3D0A8"/><rect x="322" y="757" width="16" height="24" rx="4" fill="#3F7DD0"/>
+        <path d="M370 790 q20 -40 50 -30 v48 h-50z" fill="#6A4B9A"/><circle cx="398" cy="774" r="2.5" fill="#fff"/>
+        </svg>
+        <figcaption>Тут може бути ваша спіраль</figcaption>
+      </figure>
     </div>
     <div class="gigs">
       <h3>Концерти й фестивалі</h3>
@@ -629,7 +1065,7 @@ footer{padding:40px 0 110px;font-size:15px;color:var(--grey)}
 <!-- STEPS -->
 <section class="sec steps-sec" aria-labelledby="steps-h">
   <div class="wrap">
-    <div class="sec-head"><h2 id="steps-h">Як почати</h2></div>
+    <div class="sec-head"><h2 id="steps-h">Як почати продавати мерч</h2></div>
     <ol class="steps">
       <li><b>Заявка</b><p>Заповніть форму нижче або напишіть у Telegram — це кілька хвилин.</p></li>
       <li><b>Знайомство</b><p>Обговорюємо ваш мерч, тариф і умови, відповідаємо на питання.</p></li>
@@ -644,6 +1080,28 @@ footer{padding:40px 0 110px;font-size:15px;color:var(--grey)}
   <div class="wrap">
     <div class="sec-head"><h2 id="faq-h">Часті питання</h2></div>
     <div class="faq">
+      <details>
+        <summary>Скільки коштує зробити мерч?</summary>
+        <p>Залежить від виробу, матеріалів і тиражу. Для найпопулярніших товарів вартість можна одразу порахувати в <a href="https://calc.metakultura.store" target="_blank" rel="noopener">калькуляторі мерчу</a>, а решту обговорюємо індивідуально під ваш запит.</p>
+      </details>
+      <details>
+        <summary>Який мінімальний тираж мерчу?</summary>
+        <!-- TODO: уточнити відповідь -->
+        <p>Залежить від виробу й технології: для одних товарів можна почати з невеликої партії, для інших виробництво вигідне лише від певного тиражу. Назвемо мінімум для вашого запиту, а для популярних позицій його видно в калькуляторі мерчу.</p>
+      </details>
+      <details>
+        <summary>Скільки часу займає виготовлення мерчу?</summary>
+        <!-- TODO: уточнити відповідь -->
+        <p>Терміни залежать від виробу, тиражу й того, чи є готовий макет. Орієнтовний строк назвемо одразу після обговорення запиту.</p>
+      </details>
+      <details>
+        <summary>Як продавати мерч, якщо немає власного інтернет-магазину?</summary>
+        <p>Розмістимо ваші товари окремою колекцією на metakultura.store: зробимо фото, приймемо оплати, відповімо покупцям і щомісяця перерахуємо гроші. За бажанням зберігатимемо й відправлятимемо замовлення самі.</p>
+      </details>
+      <details>
+        <summary>Чи відправляєте мерч за кордон?</summary>
+        <p>Так, відправляємо по Україні й за кордон. На тарифі «Самостійний» відправляєте ви, і ми даємо гайди з пакування та доставки.</p>
+      </details>
       <details>
         <summary>Що потрібно для початку?</summary>
         <p>Назва проєкту, логотип, фото або макети чи вже готовий товар, а також реквізити для виплат. Якщо чогось бракує — допоможемо підготувати.</p>
@@ -831,12 +1289,31 @@ footer{padding:40px 0 110px;font-size:15px;color:var(--grey)}
 
   /* demo dashboard iframe: grow to fit its content (same origin) */
   var frame = document.getElementById("dash-frame");
+  var clip = document.getElementById("frame-clip");
+  var toggle = document.getElementById("frame-toggle");
+  var CLIP_H = 620, expanded = false;
+  function syncToggle(){
+    // on mobile the demo is collapsed by default; no button if it already fits
+    var tall = frame.offsetHeight > CLIP_H + 40;
+    clip.classList.toggle("collapsed", tall && !expanded);
+    toggle.classList.toggle("show", tall);
+    toggle.textContent = expanded ? "Згорнути дашборд" : "Показати весь дашборд";
+    toggle.setAttribute("aria-expanded", String(expanded));
+  }
+  toggle.addEventListener("click", function(){
+    expanded = !expanded;
+    if (expanded) track("demo_dashboard_expand");
+    else if (clip.getBoundingClientRect().top < 0) clip.scrollIntoView({block: "start"});
+    syncToggle();
+  });
   function fit(){
     try {
       var doc = frame.contentDocument;
       if (doc && doc.body) frame.style.height = Math.max(480, Math.ceil(doc.body.getBoundingClientRect().height)) + "px";
     } catch (e) {}
+    syncToggle();
   }
+  syncToggle();
   frame.addEventListener("load", function(){
     fit();
     try {
