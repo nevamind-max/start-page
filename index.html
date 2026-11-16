@@ -223,10 +223,9 @@ nav.links a:hover{color:var(--ink)}
 /* tariffs */
 .tariffs{display:grid;gap:44px 24px;margin-top:56px}
 @media (min-width:980px){.tariffs{grid-template-columns:repeat(3,1fr)}}
-.tariff{display:flex;flex-direction:column;border:2px solid var(--ink);background:var(--white);padding-bottom:24px}
-.tariff > :not(.plaque){margin-left:24px;margin-right:24px}
-@media (max-width:420px){.tariff > :not(.plaque){margin-left:18px;margin-right:18px}}
-.tariff .btn{width:auto}
+.tariff{display:flex;flex-direction:column;border:2px solid var(--ink);background:var(--white);padding:0 24px 24px}
+.tariff .plaque{margin:0 -24px}
+@media (max-width:420px){.tariff{padding:0 18px 20px}.tariff .plaque{margin:0 -18px}}
 .plaque{background:var(--ink);color:var(--white);font-size:clamp(26px,2.6vw,32px);font-weight:700;padding:22px 24px 30px;position:relative}
 .rate{position:absolute;right:-6px;bottom:-22px;background:var(--yellow);color:var(--ink);font-size:20px;font-weight:600;padding:6px 16px;transform:rotate(-2.5deg)}
 .tariff .fit{margin:40px 0 18px;font-size:16px;color:var(--grey);min-height:3.1em}
