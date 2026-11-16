@@ -3,18 +3,169 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Метакультура для артистів</title>
-<meta name="description" content="Продаємо мерч українських артистів: розміщення, оплати, комунікація з покупцями, склад, відправки й виробництво. Тарифи від 12%.">
-<meta property="og:title" content="Метакультура для артистів">
-<meta property="og:description" content="Ви пишете музику — ми продаємо ваш мерч. Тарифи від 12%, щомісячні виплати, власні інструменти аналітики.">
+<title>Мерч для артистів і гуртів: виготовлення та продаж | Метакультура</title>
+<meta name="description" content="Допомагаємо українським артистам зробити й продавати мерч: футболки, худі, кепки, вініл. Склад, відправки, оплати й щомісячні виплати. Комісія від 12%.">
+<link rel="canonical" href="https://start.metakultura.store/">
+<meta name="theme-color" content="#F7E51E">
+<meta property="og:title" content="Ви пишете музику, ми продаємо ваш мерч — Метакультура">
+<meta property="og:description" content="Виготовлення, продаж і відправки мерчу для українських артистів і гуртів. Комісія лише з продажів — від 12%, виплати щомісяця, власні бот і дашборд статистики.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://start.metakultura.store/">
+<meta property="og:site_name" content="Метакультура">
+<meta property="og:locale" content="uk_UA">
+<meta property="og:image" content="https://start.metakultura.store/static/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Метакультура: ви пишете музику, ми продаємо ваш мерч. Комісія від 12%">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="48x48" href="/static/favicon.png">
 <link rel="apple-touch-icon" href="/static/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<!-- Структуровані дані для Google. FAQ має збігатися з розділом «Часті питання». -->
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "Organization",
+   "@id": "https://metakultura.store/#org",
+   "name": "Метакультура",
+   "url": "https://metakultura.store/",
+   "logo": "https://start.metakultura.store/static/apple-touch-icon.png",
+   "sameAs": [
+    "https://www.instagram.com/metakultura.project/",
+    "https://www.tiktok.com/@metakultura.project",
+    "https://t.me/metakultura"
+   ]
+  },
+  {
+   "@type": "WebPage",
+   "@id": "https://start.metakultura.store/#page",
+   "url": "https://start.metakultura.store/",
+   "inLanguage": "uk",
+   "name": "Мерч для артистів і гуртів: виготовлення та продаж | Метакультура",
+   "about": {
+    "@id": "https://start.metakultura.store/#service"
+   },
+   "publisher": {
+    "@id": "https://metakultura.store/#org"
+   }
+  },
+  {
+   "@type": "Service",
+   "@id": "https://start.metakultura.store/#service",
+   "name": "Виготовлення та продаж мерчу для артистів",
+   "serviceType": "Продаж і виготовлення мерчу для музичних артистів",
+   "provider": {
+    "@id": "https://metakultura.store/#org"
+   },
+   "areaServed": {
+    "@type": "Country",
+    "name": "Україна"
+   },
+   "audience": {
+    "@type": "Audience",
+    "audienceType": "Музичні артисти й гурти"
+   },
+   "description": "Розміщення мерчу на metakultura.store, спілкування з покупцями, прийом оплат і щомісячні виплати; за бажанням — склад, відправки та виготовлення мерчу.",
+   "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Тарифи",
+    "itemListElement": [
+     {
+      "@type": "Offer",
+      "name": "Тариф «Самостійний»",
+      "description": "Комісія 12% лише з фактичних продажів. Мерч уже є, ви самі зберігаєте його та відправляєте замовлення. Ми продаємо, спілкуємося з покупцями, приймаємо оплати й робимо щомісячні виплати."
+     },
+     {
+      "@type": "Offer",
+      "name": "Тариф «Делегуючий»",
+      "description": "Комісія 20% лише з фактичних продажів. Мерч уже є, а зберігання, пакування й відправки по Україні та за кордон беремо на себе."
+     },
+     {
+      "@type": "Offer",
+      "name": "Тариф «Прогресивний»",
+      "description": "Комісія 30% лише з фактичних продажів. Новий мерч під ключ: допомога з ідеєю й макетом, виготовлення, зберігання та відправки. З готовим макетом — від 25%."
+     }
+    ]
+   }
+  },
+  {
+   "@type": "FAQPage",
+   "@id": "https://start.metakultura.store/#faq",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Скільки коштує зробити мерч?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Залежить від виробу, матеріалів і тиражу. Для найпопулярніших товарів вартість можна одразу порахувати в калькуляторі мерчу, а решту обговорюємо індивідуально під ваш запит."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Як продавати мерч, якщо немає власного інтернет-магазину?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Розмістимо ваші товари окремою колекцією на metakultura.store: зробимо фото, приймемо оплати, відповімо покупцям і щомісяця перерахуємо гроші. За бажанням зберігатимемо й відправлятимемо замовлення самі."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Чи відправляєте мерч за кордон?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Так, відправляємо по Україні й за кордон. На тарифі «Самостійний» відправляєте ви, і ми даємо гайди з пакування та доставки."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Що потрібно для початку?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Назва проєкту, логотип, фото або макети чи вже готовий товар, а також реквізити для виплат. Якщо чогось бракує — допоможемо підготувати."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Чи можна продавати паралельно через Instagram?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Так, ексклюзивності ми не вимагаємо."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Як ви анонсуєте товари?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Публікуємо їх в Instagram Метакультури, показуємо на сайті й у рекомендованих, підв’язуємо до вашого профілю в Spotify."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Чи обов’язково підписувати договір?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Ні, як вам зручніше. Можна почати без зайвих формальностей, а якщо потрібна офіційна співпраця — у нас є ФОП і шаблони договорів, актів і рахунків."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Коли й як приходять виплати?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Раз на місяць. Рахуємо лише з фактичних продажів за вирахуванням комісії тарифу."
+     }
+    }
+   ]
+  }
+ ]
+}
+</script>
 <style>
 @font-face{font-family:"NAMU";src:url("/static/fonts/NAMU-1990.woff2") format("woff2");font-weight:400 900;font-display:swap}
 
@@ -373,7 +524,7 @@ footer{padding:40px 0 110px;font-size:15px;color:var(--grey)}
         <span>ми продаємо</span>
         <span>ваш мерч</span>
       </h1>
-      <p class="lead">Метакультура — магазин мерчу українських артистів. Ми беремо на себе продажі, спілкування з покупцями й оплати, а за бажанням — склад, відправки й виробництво. Виплати приходять щомісяця.</p>
+      <p class="lead">Метакультура — магазин мерчу українських артистів і гуртів. Ми беремо на себе продажі, спілкування з покупцями й оплати, а за бажанням — склад, відправки й виготовлення мерчу. Виплати приходять щомісяця.</p>
       <div class="cta-row">
         <a class="btn btn-black" href="#apply" data-track="hero_apply">Залишити заявку</a>
         <a class="btn btn-line" href="https://t.me/borees" target="_blank" rel="noopener" data-track="hero_telegram"><svg><use href="#tgi"/></svg>Написати в Telegram</a>
@@ -429,7 +580,7 @@ footer{padding:40px 0 110px;font-size:15px;color:var(--grey)}
 <section class="sec" id="tariffs" aria-labelledby="tariffs-h">
   <div class="wrap">
     <div class="sec-head">
-      <h2 id="tariffs-h">Оберіть, скільки роботи віддати нам</h2>
+      <h2 id="tariffs-h">Тарифи: оберіть, скільки роботи віддати&nbsp;нам</h2>
       <p>Комісію беремо лише з того, що продалось. Немає продажів — немає комісії.</p>
     </div>
 
@@ -487,7 +638,7 @@ footer{padding:40px 0 110px;font-size:15px;color:var(--grey)}
 <section class="sec prod" id="production" aria-labelledby="prod-h">
   <div class="wrap prod-grid">
     <div>
-      <h2 id="prod-h">Виготовимо мерч, який хочеться носити</h2>
+      <h2 id="prod-h">Виготовлення мерчу, який хочеться носити</h2>
       <p style="margin-top:24px">Під кожен запит обговорюємо умови окремо: матеріали, тиражі, терміни й бюджет. Допоможемо з ідеєю, підготуємо макет і проконтролюємо виробництво.</p>
       <div class="chips" aria-label="Що виготовляємо">
         <span>Футболки й лонгсліви</span><span>Худі та світшоти</span><span>Шопери</span><span>Кепки й шапки</span><span>Патчі</span><span>Піни</span><span>Шкарпетки</span><span>Брелоки</span><span>Стікери й плакати</span><span>Касети й CD</span>
@@ -642,7 +793,7 @@ footer{padding:40px 0 110px;font-size:15px;color:var(--grey)}
 <!-- STEPS -->
 <section class="sec steps-sec" aria-labelledby="steps-h">
   <div class="wrap">
-    <div class="sec-head"><h2 id="steps-h">Як почати</h2></div>
+    <div class="sec-head"><h2 id="steps-h">Як почати продавати мерч</h2></div>
     <ol class="steps">
       <li><b>Заявка</b><p>Заповніть форму нижче або напишіть у Telegram — це кілька хвилин.</p></li>
       <li><b>Знайомство</b><p>Обговорюємо ваш мерч, тариф і умови, відповідаємо на питання.</p></li>
@@ -657,6 +808,18 @@ footer{padding:40px 0 110px;font-size:15px;color:var(--grey)}
   <div class="wrap">
     <div class="sec-head"><h2 id="faq-h">Часті питання</h2></div>
     <div class="faq">
+      <details>
+        <summary>Скільки коштує зробити мерч?</summary>
+        <p>Залежить від виробу, матеріалів і тиражу. Для найпопулярніших товарів вартість можна одразу порахувати в <a href="https://calc.metakultura.store" target="_blank" rel="noopener">калькуляторі мерчу</a>, а решту обговорюємо індивідуально під ваш запит.</p>
+      </details>
+      <details>
+        <summary>Як продавати мерч, якщо немає власного інтернет-магазину?</summary>
+        <p>Розмістимо ваші товари окремою колекцією на metakultura.store: зробимо фото, приймемо оплати, відповімо покупцям і щомісяця перерахуємо гроші. За бажанням зберігатимемо й відправлятимемо замовлення самі.</p>
+      </details>
+      <details>
+        <summary>Чи відправляєте мерч за кордон?</summary>
+        <p>Так, відправляємо по Україні й за кордон. На тарифі «Самостійний» відправляєте ви, і ми даємо гайди з пакування та доставки.</p>
+      </details>
       <details>
         <summary>Що потрібно для початку?</summary>
         <p>Назва проєкту, логотип, фото або макети чи вже готовий товар, а також реквізити для виплат. Якщо чогось бракує — допоможемо підготувати.</p>

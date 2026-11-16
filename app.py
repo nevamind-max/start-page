@@ -57,6 +57,24 @@ def apple_touch_icon():
     return send_from_directory(os.path.join(BASE_DIR, "static"), "apple-touch-icon.png")
 
 
+SITE_URL = "https://start.metakultura.store"
+
+
+@app.get("/robots.txt")
+def robots():
+    body = f"User-agent: *\nDisallow: /api/\nDisallow: /demo/api/\n\nSitemap: {SITE_URL}/sitemap.xml\n"
+    return app.response_class(body, mimetype="text/plain")
+
+
+@app.get("/sitemap.xml")
+def sitemap():
+    body = ('<?xml version="1.0" encoding="UTF-8"?>\n'
+            '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+            f"  <url><loc>{SITE_URL}/</loc></url>\n"
+            "</urlset>\n")
+    return app.response_class(body, mimetype="application/xml")
+
+
 @app.get("/health")
 def health():
     return {"ok": True, "telegram_configured": bool(BOT_TOKEN and CHAT_ID)}
