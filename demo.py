@@ -7,8 +7,9 @@
 До Shopify не звертаємось.
 """
 
+import json
 import random
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 
 from flask import Blueprint, jsonify, render_template, request
 
@@ -50,8 +51,69 @@ def compute_product_highlights(current_products, comp_products):
     return result
 
 
-def _period(start_dt, end_dt):
-    sales, refunds = stats.demo_rows(start_dt, end_dt)
+# ---------- Демо-дані для лендингу ----------
+# Статичний набір замовлень: ~12 000 грн за 30 днів, у періоді для порівняння
+# ~8 500 грн: рідші замовлення, дешевші кошики й ціни на 8% нижчі. Для коротших чи довших періодів беремо
+# пропорційно менше чи більше замовлень і рівномірно розкладаємо їх по днях.
+# Шаблон замовлення: [(індекс товару в DEMO_PRODUCTS, варіант, кількість), ...]
+CURRENT_ORDERS = [  # 8 замовлень, 5980 грн; за 30 днів — 16 замовлень, 11 960 грн
+    [(1, "M / Білий", 1)],
+    [(0, "L / Чорний", 1)],
+    [(4, "", 2), (5, "", 1)],
+    [(1, "L / Білий", 1), (2, "", 1)],
+    [(3, "A2", 1)],
+    [(1, "S / Білий", 1), (4, "", 1)],
+    [(2, "", 1)],
+    [(6, "41-45", 1), (5, "", 1)],
+]
+PREVIOUS_ORDERS = [  # 7 замовлень, 5000 грн (−8% → 4600); за 30 днів — 13 замовлень, ≈8 500 грн
+    [(1, "M / Білий", 1)],
+    [(2, "", 1)],
+    [(0, "M / Чорний", 1)],
+    [(3, "A3", 1)],
+    [(1, "L / Білий", 1), (4, "", 1)],
+    [(4, "", 2), (5, "", 1)],
+    [(5, "", 1), (4, "", 2)],
+]
+CITIES = ["Київ", "Львів", "Київ", "Харків", "Одеса", "Київ", "Дніпро", "Львів", "Вінниця", "Київ"]
+DISCOUNT_EVERY = 6      # кожне 6-те замовлення — з промокодом WELCOME10 (−10%)
+
+
+def _demo_rows(start_dt, end_dt, templates, per_month, price_factor=1.0):
+    start = start_dt.date()
+    last = min(end_dt.date(), datetime.now(timezone.utc).date())
+    days = (last - start).days + 1
+    if days <= 0:
+        return [], []
+    n = max(1, round(per_month * days / 30))
+    sales, refunds = [], []
+    for i in range(n):
+        d = start + timedelta(days=i * days // n)
+        oid = int(d.strftime("%Y%m%d")) * 100 + i
+        code = "WELCOME10" if i % DISCOUNT_EVERY == DISCOUNT_EVERY - 1 else None
+        for j, (idx, variant, qty) in enumerate(templates[i % len(templates)]):
+            title, _, price, _ = stats.DEMO_PRODUCTS[idx]
+            price = round(price * price_factor, 2)
+            discount = round(price * qty * 0.1, 2) if code else 0.0
+            sales.append({
+                "order_id": oid, "id": oid * 10 + j, "product_id": 9000 + idx, "title": title,
+                "variant_title": variant, "sku": "", "quantity": qty, "price": float(price),
+                "discount": discount, "discount_labels": json.dumps([[code, discount]]) if code else None,
+                "local_date": d.isoformat(), "city": CITIES[i % len(CITIES)], "province": None, "vendor": "__DEMO__",
+            })
+    if templates is CURRENT_ORDERS and n >= 8:
+        # одне повернення стікерпаку, щоб було видно, як воно враховується
+        title = stats.DEMO_PRODUCTS[4][0]
+        refunds.append({"quantity": 1, "amount": 150.0, "local_date": last.isoformat(), "vendor": "__DEMO__",
+                        "product_id": 9004, "title": title, "variant_title": "", "sku": ""})
+    return sales, refunds
+
+
+def _period(start_dt, end_dt, comparison=False):
+    if comparison:
+        sales, refunds = _demo_rows(start_dt, end_dt, PREVIOUS_ORDERS, 13, price_factor=0.92)
+    else:
+        sales, refunds = _demo_rows(start_dt, end_dt, CURRENT_ORDERS, 16)
     return stats.compute(sales, refunds, start_dt, end_dt, DEMO_COMMISSION_RATE, {})
 
 
@@ -71,7 +133,7 @@ def demo_stats():
         return jsonify({"error": "Оберіть період до року."}), 400
 
     data = _period(start_dt, end_dt)
-    comp = _period(comp_start, comp_end)
+    comp = _period(comp_start, comp_end, comparison=True)
     daily = data.pop("daily")
     comparison_daily = comp.pop("daily")
 
@@ -81,6 +143,7 @@ def demo_stats():
         [{"title": p["title"], "revenue": p["net"]} for p in data["products"]],
         [{"title": p["title"], "revenue": p["net"]} for p in comp["products"]],
     )
+    highlight.pop("top_decline", None)  # демо показує лише ріст
     return jsonify({
         "vendor": DEMO_DISPLAY_NAME,
         "period": {"start": start_dt.date().isoformat(), "end": end_dt.date().isoformat()},

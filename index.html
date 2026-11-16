@@ -79,17 +79,17 @@
      {
       "@type": "Offer",
       "name": "Тариф «Самостійний»",
-      "description": "Комісія 12% лише з фактичних продажів. Мерч уже є, ви самі зберігаєте його та відправляєте замовлення. Ми продаємо, спілкуємося з покупцями, приймаємо оплати й робимо щомісячні виплати."
+      "description": "Комісія 12% від суми продажів (обороту), лише з фактичних продажів. Мерч уже є, ви самі зберігаєте його та відправляєте замовлення. Ми продаємо, спілкуємося з покупцями, приймаємо оплати й робимо щомісячні виплати."
      },
      {
       "@type": "Offer",
       "name": "Тариф «Делегуючий»",
-      "description": "Комісія 20% лише з фактичних продажів. Мерч уже є, а зберігання, пакування й відправки по Україні та за кордон беремо на себе."
+      "description": "Комісія 20% від суми продажів (обороту), лише з фактичних продажів. Мерч уже є, а зберігання, пакування й відправки по Україні та за кордон беремо на себе."
      },
      {
       "@type": "Offer",
       "name": "Тариф «Прогресивний»",
-      "description": "Комісія 30% лише з фактичних продажів. Новий мерч під ключ: допомога з ідеєю й макетом, виготовлення, зберігання та відправки. З готовим макетом — від 25%."
+      "description": "Комісія 30% від суми продажів (обороту), лише з фактичних продажів. Новий мерч під ключ: допомога з ідеєю й макетом, виготовлення, зберігання та відправки. З готовим макетом — від 25%."
      }
     ]
    }
@@ -440,6 +440,21 @@ footer{padding:40px 0 110px;font-size:15px;color:var(--grey)}
 .m-cta.show{transform:none}
 .m-cta .btn{width:100%;box-shadow:0 6px 20px rgba(0,0,0,.25)}
 @media (min-width:760px){.m-cta{display:none}}
+
+/* scroll progress: dots on wide screens, a thin bar elsewhere */
+.scroll-bar{position:fixed;left:0;right:0;top:0;height:4px;z-index:40;pointer-events:none;background:rgba(0,0,0,.08)}
+.scroll-bar i{display:block;height:100%;background:var(--yellow);box-shadow:0 1px 0 rgba(0,0,0,.35);transform-origin:0 50%;transform:scaleX(0)}
+.dots{display:none}
+@media (min-width:1100px){
+  .scroll-bar{display:none}
+  .dots{display:flex;flex-direction:column;gap:12px;position:fixed;right:22px;top:50%;transform:translateY(-50%);z-index:25}
+  .dots a{position:relative;display:block;width:12px;height:12px;border-radius:50%;background:var(--white);border:2px solid var(--ink);box-shadow:0 0 0 1.5px var(--white);transition:transform .2s ease,background .2s ease}
+  .dots a:hover{transform:scale(1.25)}
+  .dots a.on{background:var(--yellow);transform:scale(1.35)}
+  .dots a span{position:absolute;right:22px;top:50%;transform:translateY(-50%);white-space:nowrap;background:var(--ink);color:var(--white);font-size:13px;padding:4px 10px;opacity:0;pointer-events:none;transition:opacity .15s}
+  .dots a:hover span,.dots a:focus-visible span{opacity:1}
+}
+@media (prefers-reduced-motion:reduce){.dots a{transition:none}}
 </style>
 
 <!-- Аналітика. GA4 підключено напряму (усі події йдуть через track()).
@@ -503,7 +518,7 @@ footer{padding:40px 0 110px;font-size:15px;color:var(--grey)}
 <main id="top">
 
 <!-- HERO -->
-<section class="hero">
+<section class="hero" data-dot="Початок">
   <div class="wrap hero-grid">
     <div>
       <h1 class="stack" aria-label="Ви пишете музику — ми продаємо ваш мерч">
@@ -536,7 +551,7 @@ footer{padding:40px 0 110px;font-size:15px;color:var(--grey)}
 </section>
 
 <!-- ARTISTS -->
-<section class="sec" aria-labelledby="artists-h">
+<section class="sec" aria-labelledby="artists-h" data-dot="Артисти">
   <div class="wrap">
     <div class="sec-head"><h2 id="artists-h">З нами вже працюють</h2></div>
     <p class="names"><span>SadSvit</span> <i>/</i> <span>Юля Юріна</span> <i>/</i> <span>Berliner Döner</span> <i>/</i> <span>Drevo</span> <i>/</i> <span>YUKO</span> <i>/</i> <span>Сусіди Стерплять</span> <i>/</i> <span>The Elliens</span> <i>/</i> <span>туди-сюди і смерть</span> <i>/</i> <span class="more">та ще 40+ артистів</span></p>
@@ -545,7 +560,7 @@ footer{padding:40px 0 110px;font-size:15px;color:var(--grey)}
 </section>
 
 <!-- BASE PACKAGE -->
-<section class="sec base" aria-labelledby="base-h">
+<section class="sec base" aria-labelledby="base-h" data-dot="Що отримуєте">
   <div class="wrap">
     <div class="sec-head">
       <h2 id="base-h">Що отримує кожен артист</h2>
@@ -569,11 +584,11 @@ footer{padding:40px 0 110px;font-size:15px;color:var(--grey)}
 </section>
 
 <!-- TARIFFS -->
-<section class="sec" id="tariffs" aria-labelledby="tariffs-h">
+<section class="sec" id="tariffs" aria-labelledby="tariffs-h" data-dot="Тарифи">
   <div class="wrap">
     <div class="sec-head">
       <h2 id="tariffs-h">Тарифи: оберіть, скільки роботи доручити&nbsp;нам</h2>
-      <p>Комісію беремо лише з того, що продалось. Немає продажів — немає комісії.</p>
+      <p>Комісія — це відсоток від суми продажів, тобто обороту, а не від вашого прибутку після витрат на виробництво. Немає продажів — немає комісії.</p>
     </div>
 
     <div class="tariffs">
@@ -627,7 +642,7 @@ footer{padding:40px 0 110px;font-size:15px;color:var(--grey)}
 </section>
 
 <!-- PRODUCTION -->
-<section class="sec prod" id="production" aria-labelledby="prod-h">
+<section class="sec prod" id="production" aria-labelledby="prod-h" data-dot="Виготовлення">
   <div class="wrap prod-grid">
     <div>
       <h2 id="prod-h">Виготовлення мерчу, який хочеться носити</h2>
@@ -647,7 +662,7 @@ footer{padding:40px 0 110px;font-size:15px;color:var(--grey)}
 </section>
 
 <!-- TOOLS -->
-<section class="sec" id="tools" aria-labelledby="tools-h">
+<section class="sec" id="tools" aria-labelledby="tools-h" data-dot="Інструменти">
   <div class="wrap">
     <div class="sec-head">
       <h2 id="tools-h">Інструменти, які ми зробили для артистів</h2>
@@ -750,7 +765,7 @@ footer{padding:40px 0 110px;font-size:15px;color:var(--grey)}
 </section>
 
 <!-- OFFLINE -->
-<section class="sec offline" id="offline" aria-labelledby="off-h">
+<section class="sec offline" id="offline" aria-labelledby="off-h" data-dot="Мерчомат">
   <div class="wrap">
     <div class="off-grid">
       <div>
@@ -918,7 +933,7 @@ footer{padding:40px 0 110px;font-size:15px;color:var(--grey)}
 </section>
 
 <!-- GALLERY -->
-<section class="sec" aria-labelledby="gal-h">
+<section class="sec" aria-labelledby="gal-h" data-dot="Мерч артистів">
   <div class="wrap">
     <div class="sec-head">
       <h2 id="gal-h">Мерч наших артистів</h2>
@@ -937,7 +952,7 @@ footer{padding:40px 0 110px;font-size:15px;color:var(--grey)}
 </section>
 
 <!-- STEPS -->
-<section class="sec steps-sec" aria-labelledby="steps-h">
+<section class="sec steps-sec" aria-labelledby="steps-h" data-dot="Як почати">
   <div class="wrap">
     <div class="sec-head"><h2 id="steps-h">Як почати продавати мерч</h2></div>
     <ol class="steps">
@@ -950,7 +965,7 @@ footer{padding:40px 0 110px;font-size:15px;color:var(--grey)}
 </section>
 
 <!-- FAQ -->
-<section class="sec" id="faq" aria-labelledby="faq-h">
+<section class="sec" id="faq" aria-labelledby="faq-h" data-dot="Питання">
   <div class="wrap">
     <div class="sec-head"><h2 id="faq-h">Часті питання</h2></div>
     <div class="faq">
@@ -993,6 +1008,10 @@ footer{padding:40px 0 110px;font-size:15px;color:var(--grey)}
         <p>Все залежить від ваших потреб. Можна почати без зайвих формальностей, а якщо потрібна офіційна співпраця — у нас є ФОП і шаблони договорів, актів та рахунків.</p>
       </details>
       <details>
+        <summary>З якої суми рахується комісія?</summary>
+        <p>Із суми продажів, тобто з того, що заплатили покупці за ваш мерч з урахуванням знижок і повернень. Це не відсоток від вашого прибутку: витрати на виготовлення мерчу не віднімаються. Наприклад, за місяць продано товарів на 8000 грн, тариф «Делегуючий» (20%): комісія — 1600 грн, ви отримуєте 6400 грн.</p>
+      </details>
+      <details>
         <summary>Коли й як приходять виплати?</summary>
         <p>Раз на місяць з 1 по 5 число нового місяця. Рахуємо лише з фактичних продажів за вирахуванням комісії тарифу.</p>
       </details>
@@ -1001,7 +1020,7 @@ footer{padding:40px 0 110px;font-size:15px;color:var(--grey)}
 </section>
 
 <!-- APPLY -->
-<section class="sec apply" id="apply" aria-labelledby="apply-h">
+<section class="sec apply" id="apply" aria-labelledby="apply-h" data-dot="Заявка">
   <div class="wrap apply-grid">
     <div class="apply-copy">
       <h2 id="apply-h">Розкажіть про свій проєкт</h2>
@@ -1072,6 +1091,9 @@ footer{padding:40px 0 110px;font-size:15px;color:var(--grey)}
     </nav>
   </div>
 </footer>
+
+<div class="scroll-bar" aria-hidden="true"><i id="scroll-fill"></i></div>
+<nav class="dots" id="dots" aria-label="Блоки сторінки"></nav>
 
 <div class="m-cta" id="m-cta"><a class="btn btn-black" href="#apply" data-track="sticky_apply">Залишити заявку</a></div>
 
@@ -1202,6 +1224,36 @@ footer{padding:40px 0 110px;font-size:15px;color:var(--grey)}
       });
     } catch (e) {}
   });
+
+  /* scroll progress */
+  var secs = Array.prototype.slice.call(document.querySelectorAll("section[data-dot]"));
+  var dotsNav = document.getElementById("dots");
+  var fill = document.getElementById("scroll-fill");
+  var dots = secs.map(function(sec){
+    var a = document.createElement("a");
+    a.href = "#"; a.setAttribute("aria-label", sec.getAttribute("data-dot"));
+    var tip = document.createElement("span"); tip.textContent = sec.getAttribute("data-dot");
+    a.appendChild(tip);
+    a.addEventListener("click", function(e){ e.preventDefault(); sec.scrollIntoView({behavior: reduce ? "auto" : "smooth"}); });
+    dotsNav.appendChild(a);
+    return a;
+  });
+  var ticking = false;
+  function onScroll(){
+    ticking = false;
+    var max = document.documentElement.scrollHeight - innerHeight;
+    fill.style.transform = "scaleX(" + (max > 0 ? Math.min(1, scrollY / max) : 0) + ")";
+    var mid = innerHeight * 0.45, cur = 0;
+    secs.forEach(function(sec, i){ if (sec.getBoundingClientRect().top <= mid) cur = i; });
+    if (max - scrollY < 4) cur = secs.length - 1;
+    dots.forEach(function(d, i){
+      d.classList.toggle("on", i === cur);
+      if (i === cur) d.setAttribute("aria-current", "true"); else d.removeAttribute("aria-current");
+    });
+  }
+  addEventListener("scroll", function(){ if (!ticking){ ticking = true; requestAnimationFrame(onScroll); } }, {passive: true});
+  addEventListener("resize", onScroll);
+  onScroll();
 
   /* sticky mobile CTA: after hero, hidden over the form */
   var cta = document.getElementById("m-cta");
