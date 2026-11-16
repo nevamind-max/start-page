@@ -441,20 +441,27 @@ footer{padding:40px 0 110px;font-size:15px;color:var(--grey)}
 .m-cta .btn{width:100%;box-shadow:0 6px 20px rgba(0,0,0,.25)}
 @media (min-width:760px){.m-cta{display:none}}
 
-/* scroll progress: dots on wide screens, a thin bar elsewhere */
-.scroll-bar{position:fixed;left:0;right:0;top:0;height:4px;z-index:40;pointer-events:none;background:rgba(0,0,0,.08)}
-.scroll-bar i{display:block;height:100%;background:var(--yellow);box-shadow:0 1px 0 rgba(0,0,0,.35);transform-origin:0 50%;transform:scaleX(0)}
-.dots{display:none}
-@media (min-width:1100px){
-  .scroll-bar{display:none}
-  .dots{display:flex;flex-direction:column;gap:12px;position:fixed;right:22px;top:50%;transform:translateY(-50%);z-index:25}
-  .dots a{position:relative;display:block;width:12px;height:12px;border-radius:50%;background:var(--white);border:2px solid var(--ink);box-shadow:0 0 0 1.5px var(--white);transition:transform .2s ease,background .2s ease}
-  .dots a:hover{transform:scale(1.25)}
-  .dots a.on{background:var(--yellow);transform:scale(1.35)}
-  .dots a span{position:absolute;right:22px;top:50%;transform:translateY(-50%);white-space:nowrap;background:var(--ink);color:var(--white);font-size:13px;padding:4px 10px;opacity:0;pointer-events:none;transition:opacity .15s}
-  .dots a:hover span,.dots a:focus-visible span{opacity:1}
+/* scroll progress: section dots. Wide screens: always visible, clickable.
+   Narrow screens: small dots in the right gutter, shown only while scrolling. */
+nav.dots{display:flex;flex-direction:column;position:fixed;top:50%;transform:translateY(-50%);z-index:25}
+nav.dots a{position:relative;display:block;border-radius:50%;background:var(--white);border:1.5px solid var(--ink);box-shadow:0 0 0 1px var(--white);transition:transform .2s ease,background .2s ease}
+nav.dots a.on{background:var(--yellow)}
+@media (max-width:1099px){
+  nav.dots{right:5px;gap:7px;opacity:0;pointer-events:none;transition:opacity .35s ease}
+  nav.dots.show{opacity:1}
+  nav.dots a{width:7px;height:7px}
+  nav.dots a.on{transform:scale(1.45)}
+  nav.dots a span{display:none}
 }
-@media (prefers-reduced-motion:reduce){.dots a{transition:none}}
+@media (min-width:1100px){
+  nav.dots{right:22px;gap:12px}
+  nav.dots a{width:12px;height:12px;border-width:2px;box-shadow:0 0 0 1.5px var(--white)}
+  nav.dots a:hover{transform:scale(1.25)}
+  nav.dots a.on{transform:scale(1.35)}
+  nav.dots a span{position:absolute;right:22px;top:50%;transform:translateY(-50%);white-space:nowrap;background:var(--ink);color:var(--white);font-size:13px;padding:4px 10px;opacity:0;pointer-events:none;transition:opacity .15s}
+  nav.dots a:hover span,nav.dots a:focus-visible span{opacity:1}
+}
+@media (prefers-reduced-motion:reduce){nav.dots,nav.dots a{transition:none}}
 </style>
 
 <!-- Аналітика. GA4 підключено напряму (усі події йдуть через track()).
@@ -1092,7 +1099,6 @@ footer{padding:40px 0 110px;font-size:15px;color:var(--grey)}
   </div>
 </footer>
 
-<div class="scroll-bar" aria-hidden="true"><i id="scroll-fill"></i></div>
 <nav class="dots" id="dots" aria-label="Блоки сторінки"></nav>
 
 <div class="m-cta" id="m-cta"><a class="btn btn-black" href="#apply" data-track="sticky_apply">Залишити заявку</a></div>
@@ -1228,7 +1234,7 @@ footer{padding:40px 0 110px;font-size:15px;color:var(--grey)}
   /* scroll progress */
   var secs = Array.prototype.slice.call(document.querySelectorAll("section[data-dot]"));
   var dotsNav = document.getElementById("dots");
-  var fill = document.getElementById("scroll-fill");
+  var hideTimer;
   var dots = secs.map(function(sec){
     var a = document.createElement("a");
     a.href = "#"; a.setAttribute("aria-label", sec.getAttribute("data-dot"));
@@ -1242,7 +1248,6 @@ footer{padding:40px 0 110px;font-size:15px;color:var(--grey)}
   function onScroll(){
     ticking = false;
     var max = document.documentElement.scrollHeight - innerHeight;
-    fill.style.transform = "scaleX(" + (max > 0 ? Math.min(1, scrollY / max) : 0) + ")";
     var mid = innerHeight * 0.45, cur = 0;
     secs.forEach(function(sec, i){ if (sec.getBoundingClientRect().top <= mid) cur = i; });
     if (max - scrollY < 4) cur = secs.length - 1;
@@ -1251,7 +1256,13 @@ footer{padding:40px 0 110px;font-size:15px;color:var(--grey)}
       if (i === cur) d.setAttribute("aria-current", "true"); else d.removeAttribute("aria-current");
     });
   }
-  addEventListener("scroll", function(){ if (!ticking){ ticking = true; requestAnimationFrame(onScroll); } }, {passive: true});
+  addEventListener("scroll", function(){
+    if (!ticking){ ticking = true; requestAnimationFrame(onScroll); }
+    // on narrow screens the dots appear only while scrolling
+    dotsNav.classList.add("show");
+    clearTimeout(hideTimer);
+    hideTimer = setTimeout(function(){ dotsNav.classList.remove("show"); }, 1200);
+  }, {passive: true});
   addEventListener("resize", onScroll);
   onScroll();
 
