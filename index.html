@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Мерч для артистів і гуртів: виготовлення та продаж | Метакультура</title>
-<meta name="description" content="Допомагаємо українським артистам зробити й продавати мерч: футболки, худі, кепки, вініл. Склад, відправки, оплати й щомісячні виплати. Комісія від 12%.">
+<meta name="description" content="Допомагаємо українським артистам зробити й продавати мерч: футболки, худі, кепки, касети. Склад, відправки, оплати й щомісячні виплати. Комісія від 12%.">
 <link rel="canonical" href="https://start.metakultura.store/">
 <meta name="theme-color" content="#F7E51E">
 <meta property="og:title" content="Ви пишете музику, ми продаємо ваш мерч — Метакультура">
@@ -24,7 +24,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<!-- Структуровані дані для Google. FAQ має збігатися з розділом «Часті питання». -->
+<!-- Структуровані дані для Google. Розмітку FAQ app.py будує сам із розділу «Часті питання» на місці FAQ_JSONLD. -->
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -33,6 +33,7 @@
    "@type": "Organization",
    "@id": "https://metakultura.store/#org",
    "name": "Метакультура",
+   "alternateName": "Metakultura",
    "url": "https://metakultura.store/",
    "logo": "https://start.metakultura.store/static/apple-touch-icon.png",
    "sameAs": [
@@ -92,80 +93,11 @@
      }
     ]
    }
-  },
-  {
-   "@type": "FAQPage",
-   "@id": "https://start.metakultura.store/#faq",
-   "mainEntity": [
-    {
-     "@type": "Question",
-     "name": "Скільки коштує зробити мерч?",
-     "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "Залежить від виробу, матеріалів і тиражу. Для найпопулярніших товарів вартість можна одразу порахувати в калькуляторі мерчу, а решту обговорюємо індивідуально під ваш запит."
-     }
-    },
-    {
-     "@type": "Question",
-     "name": "Як продавати мерч, якщо немає власного інтернет-магазину?",
-     "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "Розмістимо ваші товари окремою колекцією на metakultura.store: зробимо фото, приймемо оплати, відповімо покупцям і щомісяця перерахуємо гроші. За бажанням зберігатимемо й відправлятимемо замовлення самі."
-     }
-    },
-    {
-     "@type": "Question",
-     "name": "Чи відправляєте мерч за кордон?",
-     "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "Так, відправляємо по Україні й за кордон. На тарифі «Самостійний» відправляєте ви, і ми даємо гайди з пакування та доставки."
-     }
-    },
-    {
-     "@type": "Question",
-     "name": "Що потрібно для початку?",
-     "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "Назва проєкту, логотип, фото або макети чи вже готовий товар, а також реквізити для виплат. Якщо чогось бракує — допоможемо підготувати."
-     }
-    },
-    {
-     "@type": "Question",
-     "name": "Чи можна продавати паралельно через Instagram?",
-     "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "Так, ексклюзивності ми не вимагаємо."
-     }
-    },
-    {
-     "@type": "Question",
-     "name": "Як ви анонсуєте товари?",
-     "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "Публікуємо їх в Instagram Метакультури, показуємо на сайті й у рекомендованих, підв’язуємо до вашого профілю в Spotify."
-     }
-    },
-    {
-     "@type": "Question",
-     "name": "Чи обов’язково підписувати договір?",
-     "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "Ні, як вам зручніше. Можна почати без зайвих формальностей, а якщо потрібна офіційна співпраця — у нас є ФОП і шаблони договорів, актів і рахунків."
-     }
-    },
-    {
-     "@type": "Question",
-     "name": "Коли й як приходять виплати?",
-     "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "Раз на місяць. Рахуємо лише з фактичних продажів за вирахуванням комісії тарифу."
-     }
-    }
-   ]
   }
  ]
 }
 </script>
+<!--FAQ_JSONLD-->
 <style>
 @font-face{font-family:"NAMU";src:url("/static/fonts/NAMU-1990.woff2") format("woff2");font-weight:400 900;font-display:swap}
 
@@ -811,6 +743,16 @@ footer{padding:40px 0 110px;font-size:15px;color:var(--grey)}
       <details>
         <summary>Скільки коштує зробити мерч?</summary>
         <p>Залежить від виробу, матеріалів і тиражу. Для найпопулярніших товарів вартість можна одразу порахувати в <a href="https://calc.metakultura.store" target="_blank" rel="noopener">калькуляторі мерчу</a>, а решту обговорюємо індивідуально під ваш запит.</p>
+      </details>
+      <details>
+        <summary>Який мінімальний тираж мерчу?</summary>
+        <!-- TODO: уточнити відповідь -->
+        <p>Залежить від виробу й технології: для одних товарів можна почати з невеликої партії, для інших виробництво вигідне лише від певного тиражу. Назвемо мінімум для вашого запиту, а для популярних позицій його видно в калькуляторі мерчу.</p>
+      </details>
+      <details>
+        <summary>Скільки часу займає виготовлення мерчу?</summary>
+        <!-- TODO: уточнити відповідь -->
+        <p>Терміни залежать від виробу, тиражу й того, чи є готовий макет. Орієнтовний строк назвемо одразу після обговорення запиту.</p>
       </details>
       <details>
         <summary>Як продавати мерч, якщо немає власного інтернет-магазину?</summary>

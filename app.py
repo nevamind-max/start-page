@@ -1,6 +1,8 @@
 """start.metakultura.store — лендинг для артистів + приймач заявок у Telegram."""
 import html
+import json
 import os
+import re
 import time
 from collections import defaultdict, deque
 
@@ -41,9 +43,37 @@ def rate_limited(ip):
     return False
 
 
+SITE_URL = "https://start.metakultura.store"
+INDEX_PATH = os.path.join(BASE_DIR, "index.html")
+_FAQ_RE = re.compile(r"<details>\s*(?:<!--.*?-->\s*)*<summary>(.*?)</summary>(.*?)</details>", re.S)
+_index_cache = {"mtime": None, "html": ""}
+
+
+def _plain(fragment):
+    text = re.sub(r"<!--.*?-->|<[^>]+>", "", fragment, flags=re.S)
+    return " ".join(html.unescape(text).split())
+
+
+def render_index():
+    """index.html з розміткою FAQPage, зібраною з розділу «Часті питання».
+    Так розмітка завжди збігається з текстом, який бачать відвідувачі."""
+    mtime = os.path.getmtime(INDEX_PATH)
+    if _index_cache["mtime"] != mtime:
+        with open(INDEX_PATH, encoding="utf-8") as f:
+            page = f.read()
+        faq = [{"@type": "Question", "name": _plain(q),
+                "acceptedAnswer": {"@type": "Answer", "text": _plain(a)}}
+               for q, a in _FAQ_RE.findall(page)]
+        ld = json.dumps({"@context": "https://schema.org", "@type": "FAQPage",
+                         "@id": SITE_URL + "/#faq", "mainEntity": faq}, ensure_ascii=False)
+        script = '<script type="application/ld+json">' + ld.replace("</", "<\\/") + "</script>"
+        _index_cache.update(mtime=mtime, html=page.replace("<!--FAQ_JSONLD-->", script, 1))
+    return _index_cache["html"]
+
+
 @app.get("/")
 def index():
-    return send_from_directory(BASE_DIR, "index.html")
+    return app.response_class(render_index(), mimetype="text/html")
 
 
 @app.get("/favicon.ico")
@@ -55,9 +85,6 @@ def favicon():
 @app.get("/apple-touch-icon.png")
 def apple_touch_icon():
     return send_from_directory(os.path.join(BASE_DIR, "static"), "apple-touch-icon.png")
-
-
-SITE_URL = "https://start.metakultura.store"
 
 
 @app.get("/robots.txt")
